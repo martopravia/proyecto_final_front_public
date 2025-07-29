@@ -6,8 +6,6 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/footer" element={<Footer />} />
-
         {/* <Route path="/login" element={<Login />} /> */}
         {/* <Route path="/register" element={<Register />} /> */}
         {/* <Route path="/" element={<Home />} /> */}
@@ -18,6 +16,7 @@ function App() {
         {/* <Route path="/:username" element={<Profile />} /> */}
         <Route path="*" element={<p>There's nothing here: 404!</p>} />
       </Routes>
+      <Route path="/footer" element={<Footer />} />
     </>
   );
 }
