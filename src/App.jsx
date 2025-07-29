@@ -1,9 +1,13 @@
+import { Route, Routes } from "react-router";
 import "./App.css";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <>
       <Routes>
+        <Route path="/footer" element={<Footer />} />
+
         {/* <Route path="/login" element={<Login />} /> */}
         {/* <Route path="/register" element={<Register />} /> */}
         {/* <Route path="/" element={<Home />} /> */}
