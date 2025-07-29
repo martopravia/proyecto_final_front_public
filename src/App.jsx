@@ -1,5 +1,9 @@
 import { Route, Routes } from "react-router";
 import "./App.css";
+
+import {Routes , Route} from "react-router-dom";
+import Navbar from "./components/AppNavbar";
+
 import Login from "./components/Login";
 import Register from "./components/Register";
 import { Bounce, ToastContainer, toast } from "react-toastify";
@@ -8,13 +12,12 @@ import TermsOfUse from "./components/TermsOfUse";
 
 import Footer from "./components/Footer";
 
-
 function App() {
   return (
     <>
-
       <div className="d-flex flex-column min-vh-100">
         <main className="flex-grow-1">
+                                 <Navbar />
           <Routes>
             <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
