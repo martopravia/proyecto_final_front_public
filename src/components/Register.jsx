@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,30 +69,64 @@ function Register() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">
-              * Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="form-control"
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div className="position-relative">
+              <label htmlFor="password" className="form-label">
+                * Password
+              </label>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                className="form-control"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="btn btn-sm btn-outline-secondary position-absolute"
+                style={{
+                  top: "50%",
+                  right: "10px",
+                }}
+              >
+                {showPassword ? (
+                  <i className="bi bi-eye-slash"></i>
+                ) : (
+                  <i className="bi bi-eye"></i>
+                )}
+              </button>
+            </div>
           </div>
           <div className="mb-3">
-            <label htmlFor="confirmPassword" className="form-label">
-              * Confirm Password
-            </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              className="form-control"
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
+            <div className=" position-relative">
+              <label htmlFor="confirmPassword" className="form-label">
+                * Confirm Password
+              </label>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="confirmPassword"
+                name="confirmPassword"
+                className="form-control"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="btn btn-sm btn-outline-secondary position-absolute"
+                style={{
+                  top: "50%",
+                  right: "10px",
+                }}
+              >
+                {showPassword ? (
+                  <i className="bi bi-eye-slash"></i>
+                ) : (
+                  <i className="bi bi-eye"></i>
+                )}
+              </button>
+            </div>
 
             <div className="form-check mt-3">
               <input type="checkbox" required /> By checking this box, you

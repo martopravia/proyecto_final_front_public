@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router";
 
 function Login() {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
       <div className="row container ">
@@ -20,17 +21,33 @@ function Login() {
                 required
               />
             </div>
-            <div>
+            <div className="mb-3 position-relative">
               <label htmlFor="password" className="form-label">
-                * Password
+                <div>* Password </div>
               </label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
                 className="form-control mb-2"
                 required
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="btn btn-sm btn-outline-secondary position-absolute"
+                style={{
+                  top: "50%",
+                  right: "10px",
+                  transform: "translateY(-50%)",
+                }}
+              >
+                {showPassword ? (
+                  <i className="bi bi-eye-slash"></i>
+                ) : (
+                  <i className="bi bi-eye"></i>
+                )}
+              </button>
               <p>
                 <a href="">Forgot your password?</a>
               </p>
@@ -43,9 +60,9 @@ function Login() {
         <div className="col border border-black shadow rounded p-5">
           <h3 className="mt-4">New customer?</h3>
           <p className="mt-4">
-            Welcome to DeConcept! By creating an account, you can enjoy a faster
-            checkout process, manage your orders, access your personal
-            information, and save your favorite items.
+            Welcome to <strong>DeConcept!</strong> By creating an account, you
+            can enjoy a faster checkout process, manage your orders, access your
+            personal information, and save your favorite items.
           </p>
           <Link
             to="/register"
