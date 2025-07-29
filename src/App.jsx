@@ -1,12 +1,11 @@
 import { Route, Routes } from "react-router";
 import "./App.css";
-
-import {Routes , Route} from "react-router-dom";
+import AboutUs from "./components/AboutUs";
 import Navbar from "./components/AppNavbar";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { Bounce, ToastContainer } from "react-toastify";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfUse from "./components/TermsOfUse";
 
@@ -15,6 +14,7 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <>
+
       <div className="d-flex flex-column min-vh-100">
         <main className="flex-grow-1">
                                  <Navbar />
@@ -29,6 +29,7 @@ function App() {
             {/* <Route path="/products" element={<Products />} /> */}
             {/* <Route path="/products/:productId" element={<Product />} /> */}
             {/* <Route path="/:username" element={<Profile />} /> */}
+            {<Route path="/aboutus" element={<AboutUs />} />}
             <Route path="*" element={<p>There's nothing here: 404!</p>} />
           </Routes>
                                       <ToastContainer
@@ -47,6 +48,7 @@ function App() {
         </main>
         <Footer />
       </div>
+
     </>
   );
 }
