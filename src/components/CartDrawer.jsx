@@ -1,13 +1,10 @@
 import "../AboutUs.css";
 
-export default function CartDrawer({ isOpen, onClose, cartItems }) {
+export default function CartDrawer({ isOpen, cartItems, onQuantityChange }) {
   return (
     <div className={`cart-drawer ${isOpen ? "open" : ""}`}>
       <div className="cart-header">
         <h2>Tu carrito</h2>
-        <button onClick={onClose} className="close-btn">
-          &times;
-        </button>
       </div>
 
       <div className="text-content">
@@ -15,9 +12,18 @@ export default function CartDrawer({ isOpen, onClose, cartItems }) {
           <p>Tu carrito está vacío.</p>
         ) : (
           cartItems.map((item, index) => (
-            <div key={index} className="cart-item">
+            <div key={index} className="cart-item d-flex">
               <span>{item.name}</span>
-              <span>{item.price} UYU</span>
+              <input
+                className="col-2"
+                type="number"
+                value={item.quantity}
+                min={1}
+                onChange={(num) =>
+                  onQuantityChange(item.id, parseInt(num.target.value))
+                }
+              />
+              <span>{item.price * item.quantity} UYU</span>
             </div>
           ))
         )}

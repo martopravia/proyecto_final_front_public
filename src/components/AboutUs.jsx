@@ -1,8 +1,10 @@
 import "../AboutUs.css";
+import CartHandler from "./CartHandler";
 
 export default function AboutUs() {
   return (
     <>
+      <CartHandler />
       <div>
         <section className="values-section">
           <div className="values-text">

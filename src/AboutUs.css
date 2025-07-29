@@ -50,6 +50,9 @@
 
 .cart-drawer {
   position: fixed;
+  border: 1px solid #000000;
+  margin: 5px;
+  padding: 10px;
   top: 0;
   right: -100%;
   width: 350px;
