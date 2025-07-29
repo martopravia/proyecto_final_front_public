@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
 export default function AppNavbar() {
