@@ -3,10 +3,12 @@ import React from "react";
 function PrivacyPolicy() {
   return (
     <div className="container border border-black rounded shadow p-5 mt-5">
-      <h3>🔒 Privacy Policy – DeConcept</h3>
+      <h3>
+        🔒 Privacy Policy – <strong>STUDIO NÖRA</strong>
+      </h3>
 
       <p>
-        At <strong>DeConcept</strong>, we take your privacy seriously. This
+        At <strong>STUDIO NÖRA</strong>, we take your privacy seriously. This
         policy explains how we collect, use, and protect your personal
         information.
       </p>
@@ -72,7 +74,7 @@ function PrivacyPolicy() {
       </ul>
       <p>
         To exercise your rights, please contact us at{" "}
-        <a href="mailto:privacy@deconcept.uy">privacy@deconcept.uy</a>.
+        <a href="mailto:privacy@studionöra.uy">privacy@studionöra.uy</a>.
       </p>
 
       <h4 className="mt-4">7. Contact</h4>
@@ -82,7 +84,7 @@ function PrivacyPolicy() {
       </p>
       <p>
         📧 <strong>Email:</strong>{" "}
-        <a href="mailto:privacy@deconcept.uy">privacy@deconcept.uy</a>
+        <a href="mailto:privacy@studionöra.uy">privacy@studionöra.uy</a>
         <br />
         📍 <strong>Address:</strong> Calle Ficticia 1234, Montevideo, Uruguay
       </p>
