@@ -131,17 +131,17 @@ function Register() {
             <div className="form-check mt-3">
               <input type="checkbox" required /> By checking this box, you
               consent to the processing of your personal data by{" "}
-              <strong>STUDIO NÖRA</strong> under the conditions set out in our{" "}
-              <Link to="/terms-of-use">Terms of use</Link> and our{" "}
-              <Link to="/privacy-policy">Privacy Policy</Link>. You confirm that
-              you have understood it.
+              <span className="fw-bold">STUDIO NÖRA</span> under the conditions
+              set out in our <Link to="/terms-of-use">Terms of use</Link> and
+              our <Link to="/privacy-policy">Privacy Policy</Link>. You confirm
+              that you have understood it.
             </div>
             <div className="form-check mt-3">
               <input type="checkbox" /> I want to receive news from{" "}
-              <strong>STUDIO NÖRA</strong> and be informed about upcoming
-              events. I consent to receive proposals via email, SMS, phone
-              calls, and postal mail. I accept that my information may be shared
-              with partners.
+              <span className="fw-bold">STUDIO NÖRA</span> and be informed about
+              upcoming events. I consent to receive proposals via email, SMS,
+              phone calls, and postal mail. I accept that my information may be
+              shared with partners.
             </div>
           </div>
           <button type="submit" className="btn btn-dark w-100 mt-3">

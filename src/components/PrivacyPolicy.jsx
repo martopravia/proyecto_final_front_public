@@ -8,9 +8,9 @@ function PrivacyPolicy() {
       </h3>
 
       <p>
-        At <strong>STUDIO NÖRA</strong>, we take your privacy seriously. This
-        policy explains how we collect, use, and protect your personal
-        information.
+        At <span className="fw-bold">STUDIO NÖRA</span>, we take your privacy
+        seriously. This policy explains how we collect, use, and protect your
+        personal information.
       </p>
 
       <h4 className="mt-4">1. Information We Collect</h4>
@@ -55,7 +55,8 @@ function PrivacyPolicy() {
         <li>Government authorities if required by law</li>
       </ul>
       <p>
-        We do <strong>not</strong> sell your personal data to third parties.
+        We do <span className="fw-bold">not</span> sell your personal data to
+        third parties.
       </p>
 
       <h4 className="mt-4">5. Data Security</h4>
@@ -74,7 +75,7 @@ function PrivacyPolicy() {
       </ul>
       <p>
         To exercise your rights, please contact us at{" "}
-        <a href="mailto:privacy@studionöra.uy">privacy@studionöra.uy</a>.
+        <a href="mailto:privacy@studionora.uy">privacy@studionora.uy</a>.
       </p>
 
       <h4 className="mt-4">7. Contact</h4>
@@ -83,10 +84,11 @@ function PrivacyPolicy() {
         data rights, contact us at:
       </p>
       <p>
-        📧 <strong>Email:</strong>{" "}
-        <a href="mailto:privacy@studionöra.uy">privacy@studionöra.uy</a>
+        📧 <span className="fw-bold">email</span>{" "}
+        <a href="mailto:privacy@studionora.uy">privacy@studionora.uy</a>
         <br />
-        📍 <strong>Address:</strong> Calle Ficticia 1234, Montevideo, Uruguay
+        📍 <span className="fw-bold">Address</span>: Calle Ficticia 1234,
+        Montevideo, Uruguay
       </p>
     </div>
   );

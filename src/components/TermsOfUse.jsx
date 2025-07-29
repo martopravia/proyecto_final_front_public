@@ -4,13 +4,14 @@ function TermsOfUse() {
   return (
     <div className="container border border-black rounded shadow p-5 mt-5">
       <h3>
-        📄 Terms of Use – <strong>STUDIO NÖRA</strong>
+        📄 Terms of Use – <span className="fw-bold">STUDIO NÖRA</span>
       </h3>
 
       <p>
         These Terms of Use ("Terms") govern your access to and use of the
-        website operated by <strong>STUDIO NÖRA</strong> (referred to as "we",
-        "us", or "our"). By using our website, you agree to these Terms.
+        website operated by <span className="fw-bold">STUDIO NÖRA</span>{" "}
+        (referred to as "we", "us", or "our"). By using our website, you agree
+        to these Terms.
       </p>
 
       <h4 className="mt-4">1. Use of the Website</h4>
@@ -24,10 +25,10 @@ function TermsOfUse() {
       <p>
         All content on this website, including but not limited to text, images,
         logos, graphics, product descriptions, and designs, is the property of{" "}
-        <strong>STUDIO NÖRA</strong> or its content suppliers and is protected
-        by copyright and intellectual property laws. You may not reproduce,
-        copy, or redistribute any part of the site without our express written
-        consent.
+        <span className="fw-bold">STUDIO NÖRA</span> or its content suppliers
+        and is protected by copyright and intellectual property laws. You may
+        not reproduce, copy, or redistribute any part of the site without our
+        express written consent.
       </p>
 
       <h4 className="mt-4">3. Product Information</h4>
@@ -55,10 +56,10 @@ function TermsOfUse() {
 
       <h4 className="mt-4">6. Limitation of Liability</h4>
       <p>
-        To the fullest extent permitted by law, <strong>STUDIO NÖRA</strong>{" "}
-        shall not be liable for any indirect, incidental, or consequential
-        damages arising from the use or inability to use this website or the
-        products purchased through it.
+        To the fullest extent permitted by law,
+        <span className="fw-bold"> STUDIO NÖRA</span> shall not be liable for
+        any indirect, incidental, or consequential damages arising from the use
+        or inability to use this website or the products purchased through it.
       </p>
 
       <h4 className="mt-4">7. Changes to These Terms</h4>
@@ -78,10 +79,11 @@ function TermsOfUse() {
       <h4 className="mt-4">9. Contact Us</h4>
       <p>If you have any questions about these Terms, please contact us at:</p>
       <p>
-        📧 <strong>Email:</strong>{" "}
-        <a href="mailto:legal@studionöra.uy">legal@studionöra.uy</a>
+        📧 <span className="fw-bold">Email</span>{" "}
+        <a href="mailto:legal@studionora.uy">legal@studionora.uy</a>
         <br />
-        📍 <strong>Address:</strong> Calle Ficticia 1234, Montevideo, Uruguay
+        📍 <span className="fw-bold">Address</span>: Calle Ficticia 1234,
+        Montevideo, Uruguay
       </p>
     </div>
   );

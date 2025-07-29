@@ -2,13 +2,11 @@ import { Route, Routes } from "react-router";
 import "./App.css";
 import AboutUs from "./components/AboutUs";
 import Navbar from "./components/AppNavbar";
-
 import Login from "./components/Login";
 import Register from "./components/Register";
 import { Bounce, ToastContainer } from "react-toastify";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfUse from "./components/TermsOfUse";
-
 import Footer from "./components/Footer";
 
 function App() {
