@@ -4,7 +4,7 @@ import CartHandler from "./CartHandler";
 
 export default function AppNavbar() {
   return (
-    <Navbar bg="dark" variant="dark" expand={false}>
+    <Navbar bg="secondary" variant="dark" expand={false}>
       <Container className="d-flex justify-content-between align-items-center">
         <Navbar.Toggle aria-controls="main-navbar-nav" />
 
@@ -13,7 +13,11 @@ export default function AppNavbar() {
           as={NavLink}
           to="/"
         >
-          De Concept
+          <img
+            className="img-fluid logoNavBar"
+            src="src\img\sutdio_nora_logo.png"
+            alt=""
+          />
         </Navbar.Brand>
 
         <div className="d-flex gap-2 justify-content-between align-items-center">
