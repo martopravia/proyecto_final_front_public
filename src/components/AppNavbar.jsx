@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import CartHandler from "./CartHandler";
 
 export default function AppNavbar() {
   return (
@@ -15,15 +16,16 @@ export default function AppNavbar() {
           De Concept
         </Navbar.Brand>
 
-        <div className="d-flex gap-2">
+        <div className="d-flex gap-2 justify-content-between align-items-center">
           <Nav.Link as={NavLink} to="/login" className="text-light">
             Login
           </Nav.Link>
-          <Nav.Link
+          <CartHandler />
+          {/* <Nav.Link
             as={NavLink}
             to="/carrito"
             className="text-light"
-          ></Nav.Link>
+          ></Nav.Link> */}
         </div>
 
         <Navbar.Collapse id="main-navbar-nav">

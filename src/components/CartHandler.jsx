@@ -20,11 +20,8 @@ export default function CartHandler() {
 
   return (
     <>
-      <button
-        onClick={cartFlag}
-        style={{ position: "fixed", top: 20, right: 20, zIndex: 1100 }}
-      >
-        {cartOpen ? "✖ Cerrar carrito" : "🛒 Carrito"}
+      <button className="btn border-0 bg-dark text-light" onClick={cartFlag}>
+        {cartOpen ? "✖ Close Cart" : "🛒 Cart"}
       </button>
 
       <CartDrawer
