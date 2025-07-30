@@ -26,3 +26,8 @@
   max-height: 90vh;
   overflow-y: auto;
 }
+
+.img-home {
+  height: 600px;
+  width: 100%;
+}

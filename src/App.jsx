@@ -9,13 +9,14 @@ import TermsOfUse from "./components/TermsOfUse";
 import Layout from "./components/Layout";
 import ProductPage from "./components/ProductPage";
 import CategoryPage from "./components/CategoryPage";
+import Home from "./components/Home";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* <Route element={<Home />} /> */}
+          <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
