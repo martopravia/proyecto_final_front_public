@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
 import PrivacyPolicy from "./PrivacyPolicy";
@@ -21,7 +21,10 @@ function Register() {
 
   return (
     <div>
-      <div className="container border border-black rounded shadow p-5 my-5">
+      <div
+        className="container border border-black rounded p-5 my-5"
+        style={{ maxWidth: "55vw" }}
+      >
         <h3>Create an account</h3>
         <form action="" onSubmit={handleSubmit}>
           <div className="mb-3">
