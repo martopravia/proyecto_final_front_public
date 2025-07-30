@@ -5,8 +5,6 @@ import Navbar from "./components/AppNavbar";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import { Bounce, ToastContainer } from "react-toastify";
-import PrivacyPolicy from "./components/PrivacyPolicy";
-import TermsOfUse from "./components/TermsOfUse";
 import Footer from "./components/Footer";
 
 function App() {
@@ -18,8 +16,6 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-use" element={<TermsOfUse />} />
             {/* <Route path="/" element={<Home />} /> */}
             {/* <Route path="/cart" element={<Checkout />} /> */}
             {/* <Route path="/checkout" element={<Checkout />} /> */}

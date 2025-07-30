@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
+import PrivacyPolicy from "./PrivacyPolicy";
+import TermsOfUse from "./TermsOfUse";
 
 function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [modalPrivacy, setModalPrivacy] = useState(false);
+  const [modalTerms, setModalTerms] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -132,9 +136,23 @@ function Register() {
               <input type="checkbox" required /> By checking this box, you
               consent to the processing of your personal data by{" "}
               <span className="fw-bold">STUDIO NÖRA</span> under the conditions
-              set out in our <Link to="/terms-of-use">Terms of use</Link> and
-              our <Link to="/privacy-policy">Privacy Policy</Link>. You confirm
-              that you have understood it.
+              set out in our{" "}
+              <span
+                role="button"
+                className="text-primary"
+                onClick={() => setModalTerms(true)}
+              >
+                Terms of use
+              </span>{" "}
+              and our{" "}
+              <span
+                role="button"
+                className="text-primary"
+                onClick={() => setModalPrivacy(true)}
+              >
+                Privacy Policy
+              </span>
+              . You confirm that you have understood it.
             </div>
             <div className="form-check mt-3">
               <input type="checkbox" /> I want to receive news from{" "}
@@ -152,6 +170,15 @@ function Register() {
           Already have an account? Log in
         </Link>
       </div>
+      {modalPrivacy && (
+        <PrivacyPolicy
+          show={modalPrivacy}
+          onClose={() => setModalPrivacy(false)}
+        />
+      )}
+      {modalTerms && (
+        <TermsOfUse show={modalTerms} onClose={() => setModalTerms(false)} />
+      )}
     </div>
   );
 }
