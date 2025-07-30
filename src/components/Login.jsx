@@ -60,9 +60,10 @@ function Login() {
         <div className="col border border-black shadow rounded p-5">
           <h3 className="mt-4">New customer?</h3>
           <p className="mt-4">
-            Welcome to <strong>STUDIO NÖRA!</strong> By creating an account, you
-            can enjoy a faster checkout process, manage your orders, access your
-            personal information, and save your favorite items.
+            Welcome to <span className="fw-bold">STUDIO NÖRA</span> By creating
+            an account, you can enjoy a faster checkout process, manage your
+            orders, access your personal information, and save your favorite
+            items.
           </p>
           <Link
             to="/register"
