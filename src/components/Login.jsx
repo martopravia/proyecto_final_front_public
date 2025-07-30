@@ -32,22 +32,19 @@ function Login() {
                 className="form-control mb-2"
                 required
               />
-              <button
-                type="button"
+              <i
+                className={`bi ${
+                  showPassword ? "bi-eye-slash" : "bi-eye"
+                } position-absolute`}
                 onClick={() => setShowPassword(!showPassword)}
-                className="btn btn-sm btn-outline-secondary position-absolute"
                 style={{
                   top: "50%",
                   right: "10px",
+                  cursor: "pointer",
                   transform: "translateY(-50%)",
+                  fontSize: "1.2rem",
                 }}
-              >
-                {showPassword ? (
-                  <i className="bi bi-eye-slash"></i>
-                ) : (
-                  <i className="bi bi-eye"></i>
-                )}
-              </button>
+              ></i>
               <p>
                 <a href="">Forgot your password?</a>
               </p>
