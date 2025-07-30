@@ -37,7 +37,7 @@ export default function AppNavbar() {
             <Nav.Link as={NavLink} to="/" end>
               Home
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/productos">
+            <Nav.Link as={NavLink} to="/products">
               Productos
             </Nav.Link>
             <Nav.Link as={NavLink} to="/contacto">
