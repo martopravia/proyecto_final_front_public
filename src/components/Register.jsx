@@ -8,6 +8,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [modalPrivacy, setModalPrivacy] = useState(false);
   const [modalTerms, setModalTerms] = useState(false);
 
@@ -76,10 +77,10 @@ function Register() {
             />
           </div>
           <div className="mb-3">
+            <label htmlFor="password" className="form-label">
+              * Password
+            </label>
             <div className="position-relative">
-              <label htmlFor="password" className="form-label">
-                * Password
-              </label>
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
@@ -88,51 +89,47 @@ function Register() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <button
-                type="button"
+              <i
+                className={`bi ${
+                  showPassword ? "bi-eye-slash" : "bi-eye"
+                } position-absolute`}
                 onClick={() => setShowPassword(!showPassword)}
-                className="btn btn-sm btn-outline-secondary position-absolute"
                 style={{
                   top: "50%",
                   right: "10px",
+                  cursor: "pointer",
+                  transform: "translateY(-50%)",
+                  fontSize: "1.2rem",
                 }}
-              >
-                {showPassword ? (
-                  <i className="bi bi-eye-slash"></i>
-                ) : (
-                  <i className="bi bi-eye"></i>
-                )}
-              </button>
+              ></i>
             </div>
           </div>
           <div className="mb-3">
-            <div className=" position-relative">
-              <label htmlFor="confirmPassword" className="form-label">
-                * Confirm Password
-              </label>
+            <label htmlFor="confirmPassword" className="form-label">
+              * Confirm Password
+            </label>
+            <div className="position-relative">
               <input
-                type={showPassword ? "text" : "password"}
+                type={showConfirmPassword ? "text" : "password"}
                 id="confirmPassword"
                 name="confirmPassword"
                 className="form-control"
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="btn btn-sm btn-outline-secondary position-absolute"
+              <i
+                className={`bi ${
+                  showConfirmPassword ? "bi-eye-slash" : "bi-eye"
+                } position-absolute`}
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 style={{
                   top: "50%",
                   right: "10px",
+                  cursor: "pointer",
+                  transform: "translateY(-50%)",
+                  fontSize: "1.2rem",
                 }}
-              >
-                {showPassword ? (
-                  <i className="bi bi-eye-slash"></i>
-                ) : (
-                  <i className="bi bi-eye"></i>
-                )}
-              </button>
+              ></i>
             </div>
 
             <div className="form-check mt-3">
