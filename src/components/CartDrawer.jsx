@@ -1,6 +1,13 @@
-import "../AboutUs.css";
+import { useCart } from "./CartState";
 
-export default function CartDrawer({ isOpen, cartItems, onQuantityChange }) {
+export default function CartDrawer({ isOpen, onQuantityChange }) {
+  const { cartItems } = useCart();
+
+  if (!Array.isArray(cartItems)) {
+    console.error("cartItems is not an array:", cartItems);
+    return <p>Error loading cart items.</p>;
+  }
+
   return (
     <div className={`cart-drawer ${isOpen ? "open" : ""}`}>
       <div className="border-bottom pb-2 mb-3">
