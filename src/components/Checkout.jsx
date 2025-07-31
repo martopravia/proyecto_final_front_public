@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useCart } from "./CartState";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clearCart, removeFromCart } from "../redux/cartSlice";
 
 export default function Checkout() {
-  const { cartItems } = useCart();
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const dispatch = useDispatch();
   const step = useSelector((state) => state.checkout.step);
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -37,6 +38,8 @@ export default function Checkout() {
       totalPrice,
     };
     console.log("Order confirmed:", orderPayload); //cambia por enviar order a la API
+    dispatch(clearCart());
+    alert("Order confirmed! Thank you for your purchase.");
   };
 
   return (
@@ -74,7 +77,7 @@ export default function Checkout() {
                       <i
                         className="bi bi-trash3"
                         style={{ cursor: "pointer" }}
-                        onClick={() => console.log("Remove item", item.id)}
+                        onClick={() => dispatch(removeFromCart(item.id))}
                       ></i>
                     </div>
                   </div>
