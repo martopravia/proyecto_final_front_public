@@ -1,4 +1,6 @@
 import { useParams } from "react-router";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/cartSlice";
 
 export default function ProductPage() {
   const { productId } = useParams();
@@ -9,6 +11,10 @@ export default function ProductPage() {
     price: 500.0,
     image:
       "https://media.roche-bobois.com/is/render/rocheboboisRender/bubble_mini_techno_fauteuil_pers_02?wid=1120&fmt=webp&resMode=sharp2&network=on&bfc=on&obj=Revp&color=224,205,28",
+  };
+  const dispatch = useDispatch();
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
   };
 
   const { name, description, stock, price, image } = product;
@@ -25,7 +31,10 @@ export default function ProductPage() {
             <hr />
             <p className="fs-4">{price} USD</p>
             <p>Price without shipping</p>
-            <button className="btn btn-dark rounded-pill w-100">
+            <button
+              className="btn btn-dark rounded-pill w-100"
+              onClick={handleAddToCart}
+            >
               Add to cart
             </button>
           </div>

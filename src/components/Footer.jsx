@@ -6,7 +6,7 @@ const Footer = () => {
     <>
       <footer className="bg-light border text-dark mt-5 pt-5 border-top">
         {/* bg-light y border puestos para ver coom encajan */}
-        <div className="container">
+        <div className="container-fluid px-4 footer-content">
           <div className="row">
             <div className="col-md-6 mb-2 text-center">
               <p className="fw-bold ">
@@ -132,7 +132,9 @@ const Footer = () => {
               </ul>
             </div>
             <div className="col-md-6">
-              <h6>STUDIO NÖRA - Soulful Furniture</h6>
+              <h6>
+                <strong>STUDIO NÖRA - Soulful Furniture</strong>
+              </h6>
               <p>
                 Studio Nöra crafts soulful furniture where Nordic minimalism
                 meets quiet beauty. Each piece, from sculptural chairs to serene
@@ -142,7 +144,7 @@ const Footer = () => {
                 every room.
               </p>
               <p>
-                <a href="#">studionöra.com</a> or at any of our stores around
+                <a href="#">studionora.com</a> or at any of our stores around
                 the world.
               </p>
             </div>

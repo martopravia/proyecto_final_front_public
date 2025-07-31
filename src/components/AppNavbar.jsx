@@ -4,12 +4,15 @@ import CartHandler from "./CartHandler";
 
 export default function AppNavbar() {
   return (
-    <Navbar bg="secondary" variant="dark" expand={false}>
-      <Container className="d-flex justify-content-between align-items-center">
+    <Navbar expand={false} className="position-relative">
+      <Container
+        fluid
+        className="nav-content d-flex justify-content-between align-items-center fs-5 w-100"
+      >
         <Navbar.Toggle aria-controls="main-navbar-nav" />
 
         <Navbar.Brand
-          className="d-flex justify-content-center align-items-center"
+          className="logo-center d-flex justify-content-center align-items-center"
           as={NavLink}
           to="/"
         >
@@ -21,7 +24,7 @@ export default function AppNavbar() {
         </Navbar.Brand>
 
         <div className="d-flex gap-2 justify-content-between align-items-center">
-          <Nav.Link as={NavLink} to="/login" className="text-light">
+          <Nav.Link as={NavLink} to="/login" className="text-dark">
             Login
           </Nav.Link>
           <CartHandler />
@@ -33,15 +36,15 @@ export default function AppNavbar() {
         </div>
 
         <Navbar.Collapse id="main-navbar-nav">
-          <Nav className="flex-column">
+          <Nav className="flex-column text-dark">
             <Nav.Link as={NavLink} to="/" end>
               Home
             </Nav.Link>
             <Nav.Link as={NavLink} to="/products">
               Productos
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/contacto">
-              Contacto
+            <Nav.Link as={NavLink} to="/aboutus">
+              About Us
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

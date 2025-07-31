@@ -14,11 +14,9 @@ import CategoryPage from "./components/CategoryPage";
 import Home from "./components/Home";
 import ProductList from "./components/ProductList";
 
-
 function App() {
   return (
     <>
-
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
@@ -30,7 +28,7 @@ function App() {
           <Route path="/category/:categoryId" element={<CategoryPage />} />
           <Route path="/products/:productId" element={<ProductPage />} />
           {/* <Route path="/profile/:username" element={<Profile />} /> */}
-          {<Route path="aboutus" element={<AboutUs />} />}
+          {<Route path="/aboutus" element={<AboutUs />} />}
           <Route path="*" element={<p>There's nothing here: 404!</p>} />
         </Route>
       </Routes>
@@ -47,7 +45,6 @@ function App() {
         theme="light"
         transition={Bounce}
       />
-
     </>
   );
 }
