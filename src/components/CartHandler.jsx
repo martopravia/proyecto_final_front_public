@@ -11,7 +11,10 @@ export default function CartHandler() {
 
   return (
     <>
-      <button className="btn border-0 bg-dark text-light" onClick={cartFlag}>
+      <button
+        className="btn border-0 bg-dark text-light fs-5"
+        onClick={cartFlag}
+      >
         {cartOpen ? "✖ Close Cart" : "🛒 Cart"}
       </button>
 
