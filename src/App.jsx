@@ -10,6 +10,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfUse from "./components/TermsOfUse";
 
 import Footer from "./components/Footer";
+import CheckoutPage from "./components/CheckoutPage";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
             <Route path="/terms-of-use" element={<TermsOfUse />} />
             {/* <Route path="/" element={<Home />} /> */}
             {/* <Route path="/cart" element={<Checkout />} /> */}
-            {/* <Route path="/checkout" element={<Checkout />} /> */}
+            <Route path="/checkout" element={<CheckoutPage />} />
             {/* <Route path="/products" element={<Products />} /> */}
             {/* <Route path="/products/:productId" element={<Product />} /> */}
             {/* <Route path="/:username" element={<Profile />} /> */}
