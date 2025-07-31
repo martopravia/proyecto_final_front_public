@@ -56,7 +56,7 @@ const Footer = () => {
                     className="btn btn-outline-dark btn-sm rounded-circle"
                     title={socialMediaName}
                   >
-                    <i className={`bi nbi-${socialMediaName}`}></i>
+                    <i className={`bi bi-${socialMediaName}`}></i>
                   </a>
                 ))}
               </div>
