@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart, removeFromCart } from "../redux/cartSlice";
+import { Link } from "react-router";
 
 export default function Checkout() {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -191,10 +192,11 @@ export default function Checkout() {
       )}
       {step === 3 && (
         <>
-          <div className="row mt-4">
-            <div className="col-md-4 mb-3 ms-3">
+          <h3 className="fw-bold ms-5">* Payment method</h3>
+          <div className="row">
+            <div className="col-4 mb-3 mt-3">
               <div
-                className={`card p-3 h-100 shadow-sm ${
+                className={`card p-3 h-100 shadow-sm text- ${
                   paymentMethod === "creditCard" ? "border-primary" : ""
                 }`}
                 onClick={() => setPaymentMethod("creditCard")}
@@ -220,7 +222,7 @@ export default function Checkout() {
               </div>
             </div>
 
-            <div className="col-md-4 mb-3">
+            <div className="col-4 mb-3 mt-3">
               <div
                 className={`card p-3 h-100 shadow-sm ${
                   paymentMethod === "paypal" ? "border-primary" : ""
@@ -246,13 +248,51 @@ export default function Checkout() {
                 </p>
               </div>
             </div>
+            <div className="col-md-4 mb-3 mt-3">
+              <div
+                className={`card p-3 h-100 shadow-sm ${
+                  paymentMethod === "crypto" ? "border-primary" : ""
+                }`}
+                onClick={() => setPaymentMethod("crypto")}
+                style={{ cursor: "pointer" }}
+              >
+                <div className="form-check">
+                  <input
+                    type="radio"
+                    className="form-check-input me-2"
+                    name="payment"
+                    id="crypto"
+                    checked={paymentMethod === "crypto"}
+                    onChange={() => setPaymentMethod("crypto")}
+                  />
+                  <label htmlFor="crypto" className="form-check-label fw-bold">
+                    Crypto Wallet
+                  </label>
+                </div>
+                <p className="mt-2 text-muted">
+                  Pay with Bitcoin or other supported wallets.
+                </p>
+              </div>
+            </div>
           </div>
 
           {paymentMethod === "paypal" && (
             <div className="mt-3 ms-3">
-              <button className="btn btn-outline-secondary" disabled>
-                Continue with PayPal
-              </button>
+              <Link to={"https://www.paypal.com/uy/home"}>
+                <button className="btn btn-outline-secondary" disabled>
+                  Continue with PayPal
+                </button>
+              </Link>
+            </div>
+          )}
+
+          {paymentMethod === "crypto" && (
+            <div className="mt-3 ms-3">
+              <Link to={"https://accounts.binance.com/es/register"}>
+                <button className="btn btn-outline-secondary" disabled>
+                  Continue with Binance
+                </button>
+              </Link>
             </div>
           )}
 
