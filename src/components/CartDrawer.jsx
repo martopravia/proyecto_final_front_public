@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { useCart } from "./CartState";
 import { useEffect } from "react";
 
@@ -103,13 +104,12 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
           </span>
         </div>
         <div className="d-flex flex-column gap-2">
-          <button
-            className="btn btn-outline-danger"
-            onClick={clearCart}
-          >
+          <button className="btn btn-outline-danger" onClick={clearCart}>
             Vaciar Carrito
           </button>
-          <button className="btn btn-dark w-100">Finalizar compra</button>
+          <Link to={"/checkout"}>
+            <button className="btn btn-dark w-100">Finalizar compra</button>
+          </Link>
         </div>
       </div>
     </div>
