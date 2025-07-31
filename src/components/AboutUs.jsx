@@ -165,7 +165,7 @@ export default function AboutUs() {
                       Some quick example text to build on the card title and
                       make up the bulk of the card's content.
                     </p>
-                    <a href="#">
+                    <a href="https://www.linkedin.com/in/martin-pravia/">
                       <i className="bi bi-linkedin"></i>
                     </a>
                   </div>
@@ -225,7 +225,7 @@ export default function AboutUs() {
                       Some quick example text to build on the card title and
                       make up the bulk of the card's content.
                     </p>
-                    <a href="#">
+                    <a href="https://www.linkedin.com/in/juanpedrodiazlumaca/">
                       <i className="bi bi-linkedin"></i>
                     </a>
                   </div>
@@ -244,7 +244,7 @@ export default function AboutUs() {
                       Some quick example text to build on the card title and
                       make up the bulk of the card's content.
                     </p>
-                    <a href="#">
+                    <a href="https://www.linkedin.com/in/joaquin-reinante-818007193/">
                       <i className="bi bi-linkedin"></i>
                     </a>
                   </div>
