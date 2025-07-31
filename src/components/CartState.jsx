@@ -1,5 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
+import sillon from "../img/sillon nordico.png";
+
 const CartContext = createContext();
 
 export function useCart() {
@@ -8,16 +10,11 @@ export function useCart() {
 
 export function CartState({ children }) {
   const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Item 1", quantity: 1, price: 1000 },
-    { id: 2, name: "Item 2", quantity: 1, price: 2000 },
-    { id: 3, name: "Item 3", quantity: 1, price: 1000 },
-    { id: 4, name: "Item 4", quantity: 1, price: 2000 },
-    { id: 5, name: "Item 5", quantity: 1, price: 1000 },
-    { id: 6, name: "Item 6", quantity: 1, price: 2000 },
-    { id: 7, name: "Item 7", quantity: 1, price: 1000 },
-    { id: 8, name: "Item 8", quantity: 1, price: 2000 },
-    { id: 9, name: "Item 9", quantity: 1, price: 1000 },
-    { id: 10, name: "Item 10", quantity: 1, price: 2000 },
+    { id: 1, name: "Item 1", quantity: 1, price: 1000 ,imageUrl: sillon,},
+    { id: 2, name: "Item 2", quantity: 1, price: 2000 ,imageUrl: sillon},
+    { id: 3, name: "Item 3", quantity: 1, price: 1000 ,imageUrl: sillon},
+    { id: 4, name: "Item 4", quantity: 1, price: 2000 ,imageUrl: sillon},
+    { id: 5, name: "Item 5", quantity: 1, price: 1000 ,imageUrl: sillon},
   ]);
 
   const updateQuantity = (id, quantity) => {
