@@ -43,8 +43,8 @@ export default function AppNavbar() {
             <Nav.Link as={NavLink} to="/products">
               Productos
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/contacto">
-              Contacto
+            <Nav.Link as={NavLink} to="/aboutus">
+              About Us
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

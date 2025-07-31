@@ -28,7 +28,7 @@ function App() {
           <Route path="/category/:categoryId" element={<CategoryPage />} />
           <Route path="/products/:productId" element={<ProductPage />} />
           {/* <Route path="/profile/:username" element={<Profile />} /> */}
-          {<Route path="aboutus" element={<AboutUs />} />}
+          {<Route path="/aboutus" element={<AboutUs />} />}
           <Route path="*" element={<p>There's nothing here: 404!</p>} />
         </Route>
       </Routes>
