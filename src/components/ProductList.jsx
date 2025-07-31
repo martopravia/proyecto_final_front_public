@@ -1,39 +1,30 @@
+import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
+import { useEffect } from "react";
+import { setProducts } from "../redux/productsSlice";
+import axios from "axios";
 
 export default function ProductList() {
-  const productList = [
-    {
-      name: "Sillon Exótico",
-      description: "Muy detallado",
-      stock: 4,
-      price: 500.0,
-      image:
-        "https://media.roche-bobois.com/is/render/rocheboboisRender/bubble_mini_techno_fauteuil_pers_02?wid=1120&fmt=webp&resMode=sharp2&network=on&bfc=on&obj=Revp&color=224,205,28",
-    },
-    {
-      name: "Sillon Exótico",
-      description: "Muy detallado",
-      stock: 4,
-      price: 500.0,
-      image:
-        "https://media.roche-bobois.com/is/render/rocheboboisRender/bubble_mini_techno_fauteuil_pers_02?wid=1120&fmt=webp&resMode=sharp2&network=on&bfc=on&obj=Revp&color=224,205,28",
-    },
-    {
-      name: "Sillon Exótico",
-      description: "Muy detallado",
-      stock: 4,
-      price: 500.0,
-      image:
-        "https://media.roche-bobois.com/is/render/rocheboboisRender/bubble_mini_techno_fauteuil_pers_02?wid=1120&fmt=webp&resMode=sharp2&network=on&bfc=on&obj=Revp&color=224,205,28",
-    },
-  ];
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/products")
+      .then((res) => {
+        dispatch(setProducts(res.data));
+      })
+      .catch((error) => console.error(error));
+  }, [dispatch]);
   return (
-    <div className="row">
-      {productList.map((product) => (
-        <div className="col-12 col-md-4" key={product.id}>
-          <ProductCard {...product} />
-        </div>
-      ))}
+    <div className="container">
+      <div className="row">
+        {products.map((product) => (
+          <div className="col-12 col-md-4" key={product.id}>
+            <ProductCard {...product} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
