@@ -17,7 +17,7 @@ export default function Checkout() {
     phone: "",
   });
 
-  const [paymentMethod, setPaymentMethod] = useState("cash");
+  const [paymentMethod, setPaymentMethod] = useState("");
   const handleShippingChange = (e) => {
     setShippingInfo({
       ...shippingInfo,
@@ -41,10 +41,12 @@ export default function Checkout() {
 
   return (
     <div className="p-4">
-      <h2>Checkout - Step {step} / 3</h2>
+      <h2 className="ms-5 fw-bold">Checkout - Step {step} / 3</h2>
       {step === 1 && (
         <>
-          <h3 className="text-lg font-medium mb-4">Order details</h3>
+          <h3 className="text-lg font-medium mb-4 ms-5 fw-bold">
+            * Order details
+          </h3>
           <ul style={{ listStyleType: "none" }}>
             {cartItems.map((item) => (
               <li
@@ -88,7 +90,7 @@ export default function Checkout() {
 
       {step === 2 && (
         <>
-          <h3 className="mt-4">* Contact & Shipping info</h3>
+          <h3 className=" ms-5 fw-bold">* Contact & Shipping info</h3>
           {/* {!LoggedUser ? (
       <div>
         <h4>To continue, please log in or register</h4>
@@ -186,16 +188,118 @@ export default function Checkout() {
       )}
       {step === 3 && (
         <>
-          <h3>Payment method</h3>
-          <select
-            value={paymentMethod}
-            onChange={(e) => setPaymentMethod(e.target.value)}
+          <div className="row mt-4">
+            <div className="col-md-4 mb-3 ms-3">
+              <div
+                className={`card p-3 h-100 shadow-sm ${
+                  paymentMethod === "creditCard" ? "border-primary" : ""
+                }`}
+                onClick={() => setPaymentMethod("creditCard")}
+                style={{ cursor: "pointer" }}
+              >
+                <div className="form-check">
+                  <input
+                    type="radio"
+                    className="form-check-input me-2"
+                    name="payment"
+                    id="creditCard"
+                    checked={paymentMethod === "creditCard"}
+                    onChange={() => setPaymentMethod("creditCard")}
+                  />
+                  <label
+                    htmlFor="creditCard"
+                    className="form-check-label fw-bold"
+                  >
+                    Credit/Debit Card
+                  </label>
+                </div>
+                <p className="mt-2 text-muted">Pay securely with your card.</p>
+              </div>
+            </div>
+
+            <div className="col-md-4 mb-3">
+              <div
+                className={`card p-3 h-100 shadow-sm ${
+                  paymentMethod === "paypal" ? "border-primary" : ""
+                }`}
+                onClick={() => setPaymentMethod("paypal")}
+                style={{ cursor: "pointer" }}
+              >
+                <div className="form-check">
+                  <input
+                    type="radio"
+                    className="form-check-input me-2"
+                    name="payment"
+                    id="paypal"
+                    checked={paymentMethod === "paypal"}
+                    onChange={() => setPaymentMethod("paypal")}
+                  />
+                  <label htmlFor="paypal" className="form-check-label fw-bold">
+                    PayPal
+                  </label>
+                </div>
+                <p className="mt-2 text-muted">
+                  Pay easily with your PayPal account.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {paymentMethod === "paypal" && (
+            <div className="mt-3 ms-3">
+              <button className="btn btn-outline-secondary" disabled>
+                Continue with PayPal
+              </button>
+            </div>
+          )}
+
+          {paymentMethod === "creditCard" && (
+            <div className="mt-4 ms-3">
+              <h5>Card Details</h5>
+              <div className="row">
+                <div className="col-md-6 mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Cardholder Name"
+                    autoComplete="off"
+                  />
+                </div>
+                <div className="col-md-6 mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Card Number"
+                    autoComplete="off"
+                  />
+                </div>
+                <div className="col-md-6 mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="MM/YY"
+                    autoComplete="off"
+                  />
+                </div>
+                <div className="col-md-6 mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="CVV"
+                    autoComplete="off"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          <button
+            className="btn btn-success mt-4 ms-3"
+            onClick={handleConfirm}
+            disabled={!paymentMethod}
           >
-            <option value="cash">Cash upond delivery</option>
-            <option value="creditCard">Credit Card</option>
-            <option value="paypal">PayPal</option>
-          </select>
-          <button onClick={handleConfirm}>Confirm Order</button>
+            ✅ Confirm Order
+          </button>
         </>
       )}
     </div>
