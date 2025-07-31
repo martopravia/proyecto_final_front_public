@@ -1,19 +1,25 @@
 import { useState } from "react";
 import { useCart } from "./CartState";
+import { useSelector } from "react-redux";
 
 export default function Checkout() {
   const { cartItems } = useCart();
-  const [step, setStep] = useState(1);
+  const step = useSelector((state) => state.checkout.step);
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
   const [shippingInfo, setShippingInfo] = useState({
     name: "",
     address: "",
     email: "",
     phone: "",
   });
-  if (!cartItems || !Array.isArray(cartItems)) return <p>Carrito vacío.</p>;
-  const totalPrice = Array.isArray(cartItems)
-    ? cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
-    : 0;
+  // if (!cartItems || !Array.isArray(cartItems)) return <p>Carrito vacío.</p>;
+  // const totalPrice = Array.isArray(cartItems)
+  //   ? cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
+  //   : 0;
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const handleShippingChange = (e) => {
     setShippingInfo({
@@ -41,15 +47,45 @@ export default function Checkout() {
       <h2>Checkout - Step {step}</h2>
       {step === 1 && (
         <>
-          <h3>Order details</h3>
-          <ul>
+          <h3 className="text-lg font-medium mb-4">Order details</h3>
+          <ul style={{ listStyleType: "none" }}>
             {cartItems.map((item) => (
-              <li key={item.id}>
-                {item.name} x {item.quantity} = ${item.price * item.quantity}
+              <li
+                key={item.id}
+                className="p-4 mb-5 border border-black rounded shadow d-flex"
+              >
+                <div className="row">
+                  <div className="col">
+                    <img
+                      src="src\img\sillon nordico.png"
+                      style={{ width: "500px", height: "auto" }}
+                      className="img-fluid me-4"
+                      alt=""
+                    />
+                  </div>
+                  <div className="col-8">
+                    <h4>{item.name}</h4>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Repudiandae accusamus quas architecto a, maxime
+                      consequatur?
+                    </p>
+                    <p>Quantity: {item.quantity}</p>
+                    <p>Price per unit: ${item.price}</p>
+                    <p>Subtotal: ${item.price * item.quantity}</p>
+                    <div className="d-flex justify-content-end">
+                      <i
+                        className="bi bi-trash3"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => console.log("Remove item", item.id)}
+                      ></i>
+                    </div>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
-          <h4>Total: ${totalPrice}</h4>
+          <h4 className="text-lg font-semibold">Total: ${totalPrice}</h4>
         </>
       )}
 
@@ -96,10 +132,6 @@ export default function Checkout() {
           <button onClick={handleConfirm}>Confirm Order</button>
         </>
       )}
-      <div className="mt-4">
-        {step > 1 && <button onClick={() => setStep(step - 1)}>Back</button>}
-        {step < 3 && <button onClick={() => setStep(step + 1)}>Next</button>}
-      </div>
     </div>
   );
 }
