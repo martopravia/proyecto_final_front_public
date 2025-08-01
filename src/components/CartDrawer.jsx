@@ -105,10 +105,10 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
         </div>
         <div className="d-flex flex-column gap-2">
           <button className="btn btn-outline-danger" onClick={clearCart}>
-            Vaciar Carrito
+            Empty cart
           </button>
           <Link to={"/checkout"}>
-            <button className="btn btn-dark w-100">Finalizar compra</button>
+            <button className="btn btn-dark w-100">Proceed to checkout</button>
           </Link>
         </div>
       </div>
