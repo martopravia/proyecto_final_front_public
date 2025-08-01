@@ -1,10 +1,20 @@
 import { NavLink } from "react-router";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import CartHandler from "./CartHandler";
+import { useState } from "react";
 
 export default function AppNavbar() {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <Navbar expand={false} className="position-relative bg-white">
+    <Navbar
+      expand="{false}"
+      className=" bg-white"
+      collapseOnSelect
+      sticky="top"
+      expanded={expanded}
+      onToggle={() => setExpanded(!expanded)}
+    >
       <Container
         fluid
         className="nav-content d-flex justify-content-between align-items-center fs-5 w-100"
@@ -34,14 +44,17 @@ export default function AppNavbar() {
           ></Nav.Link> */}
         </div>
         <Navbar.Collapse id="main-navbar-nav">
-          <Nav className="flex-column text-dark">
-            <Nav.Link as={NavLink} to="/" end>
+          <Nav
+            className="flex-column text-dark"
+            onSelect={() => setExpanded(false)}
+          >
+            <Nav.Link eventKey="1" as={NavLink} to="/" end>
               Home
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/products">
+            <Nav.Link eventKey="2" as={NavLink} to="/products">
               Products
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/aboutus">
+            <Nav.Link eventKey="3" as={NavLink} to="/aboutus">
               About Us
             </Nav.Link>
           </Nav>

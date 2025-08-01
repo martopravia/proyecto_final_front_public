@@ -6,7 +6,7 @@ export default function Breadcrumbs() {
 
   return (
     <nav aria-label="breadcrumb">
-      <ol className="breadcrumb m-2">
+      <ol className="breadcrumb m-2 justify-content-center">
         <li className="breadcrumb-item">
           <Link className="text-dark" to="/">
             Home
