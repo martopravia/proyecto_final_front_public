@@ -5,7 +5,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="container vh-100 d-flex align-items-center">
-      <div className="row w-100">
+      <div className="row w-100 mx-1">
         <div className="d-lg-flex w-100">
           <div className="col-12 col-lg-6 mb-4  me-lg-3 border rounded shadow p-5">
             <h3>Already a customer?</h3>

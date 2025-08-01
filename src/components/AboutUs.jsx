@@ -6,11 +6,11 @@ export default function AboutUs() {
     <>
       <div
         className="about-hero d-flex flex-column justify-content-center align-items-center text-center"
-        style={{
-          background: "url('src/img/fotoFondo1.jpg') center/cover no-repeat",
-          minHeight: "300px",
-          padding: "3rem 1rem",
-        }}
+        // style={{
+        //   background: "url('src/img/fotoFondo1.jpg') center/cover no-repeat",
+        //   minHeight: "300px",
+        //   padding: "3rem 1rem",
+        // }}
       >
         <div className="container">
           <h1 className="fw-bold my-4">About this project</h1>
@@ -19,8 +19,8 @@ export default function AboutUs() {
             students from Hack Academy's intensive Coding Bootcamp. Our
             comprehensive full-time program spans 3 months, during which we
             dedicated over 600 hours mastering cutting-edge technologies
-            including Node.js, Express, React.js, SQL, MongoDB, and Git
-            version control.
+            including Node.js, Express, React.js, SQL, MongoDB, and Git version
+            control.
           </p>
         </div>
       </div>
@@ -30,16 +30,16 @@ export default function AboutUs() {
           {[
             {
               title: "⏳ Duration",
-              text: "This project was completed within 3 weeks during July/August 2025 using Agile methodology and sprints in Asana."
+              text: "This project was completed within 3 weeks during July/August 2025 using Agile methodology and sprints in Asana.",
             },
             {
               title: "💻 Technologies",
-              text: "Frontend built with React.js + CRA. Backend: Node.js, Express, SQL, and Git/GitHub."
+              text: "Frontend built with React.js + CRA. Backend: Node.js, Express, SQL, and Git/GitHub.",
             },
             {
               title: "📋 Task Management",
-              text: "We used Asana to track milestones and manage team communication and task assignments."
-            }
+              text: "We used Asana to track milestones and manage team communication and task assignments.",
+            },
           ].map((item, index) => (
             <div
               key={index}
@@ -60,7 +60,7 @@ export default function AboutUs() {
         <div className="row mt-5">
           <div className="col-12 col-lg-4 mb-4">
             <div className="text-block">
-              <h3>How we are</h3>
+              <h3>Who are we</h3>
               <p>
                 We are a team of five passionate developers currently enrolled
                 in an intensive full-stack programming course. Throughout this
@@ -97,32 +97,36 @@ export default function AboutUs() {
 
           <div className="col-12 col-lg-8">
             <div className="row">
-              {["Martin Pravia", "Manuel Negrin", "Alfonso Pavia", "Juan Pedro Diaz", "Joaquin Reinante"].map(
-                (name, index) => (
-                  <div
-                    key={index}
-                    className="col-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center"
-                  >
-                    <div className="card h-100 text-center">
-                      <img
-                        className="card-img-top img-fluid cardSize"
-                        src="src/img/avatar.avif"
-                        alt="Avatar"
-                      />
-                      <div className="card-body">
-                        <h4 className="card-title">{name}</h4>
-                        <h5 className="card-subtitle my-2">Junior Developer</h5>
-                        <p className="card-text">
-                          Some quick example text to build on the card title.
-                        </p>
-                        <a href="#">
-                          <i className="bi bi-linkedin"></i>
-                        </a>
-                      </div>
+              {[
+                "Martin Pravia",
+                "Manuel Negrin",
+                "Alfonso Pavia",
+                "Juan Pedro Diaz",
+                "Joaquin Reinante",
+              ].map((name, index) => (
+                <div
+                  key={index}
+                  className="col-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center"
+                >
+                  <div className="card h-100 text-center">
+                    <img
+                      className="card-img-top img-fluid cardSize"
+                      src="src/img/avatar.avif"
+                      alt="Avatar"
+                    />
+                    <div className="card-body">
+                      <h4 className="card-title">{name}</h4>
+                      <h5 className="card-subtitle my-2">Junior Developer</h5>
+                      <p className="card-text">
+                        Some quick example text to build on the card title.
+                      </p>
+                      <a href="#">
+                        <i className="bi bi-linkedin"></i>
+                      </a>
                     </div>
                   </div>
-                )
-              )}
+                </div>
+              ))}
             </div>
           </div>
         </div>

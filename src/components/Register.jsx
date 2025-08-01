@@ -21,10 +21,10 @@ function Register() {
   };
 
   return (
-    <div>
+    <div className="mx-4">
       <div
-        className="container border rounded shadow p-5 my-5"
-        style={{ maxWidth: "55vw" }}
+        className="container border rounded shadow p-3 p-md-5 my-3"
+        style={{ width: "80vh", maxWidth: "100%" }}
       >
         <h3>Create an account</h3>
         <form action="" onSubmit={handleSubmit}>
