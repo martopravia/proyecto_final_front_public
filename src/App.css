@@ -74,6 +74,20 @@ body {
   gap: 1rem;
   padding-bottom: 1rem;
   scrollbar-width: thin;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 30%,
+    black 70%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 30%,
+    black 70%,
+    transparent
+  );
 }
 
 .scroll-item {
@@ -104,4 +118,23 @@ body {
   .img-home {
     max-height: 300px;
   }
+}
+
+/* Scrollbar personalizada el slider */
+.scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #999;
 }
