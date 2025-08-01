@@ -11,7 +11,7 @@ export default function AppNavbar() {
       >
         <Navbar.Toggle aria-controls="main-navbar-nav" />
         <Navbar.Brand
-          className="logo-center d-flex justify-content-center align-items-center position-absolute top-50 start-50 translate-middle"
+          className="logo-center d-flex justify-content-center align-items-center "
           as={NavLink}
           to="/"
         >
