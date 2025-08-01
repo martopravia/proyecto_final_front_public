@@ -10,16 +10,15 @@ export default function AppNavbar() {
         className="nav-content d-flex justify-content-between align-items-center fs-5 w-100"
       >
         <Navbar.Toggle aria-controls="main-navbar-nav" />
-
         <Navbar.Brand
-          className="logo-center d-flex justify-content-center align-items-center"
+          className="logo-center d-flex justify-content-center align-items-center position-absolute top-50 start-50 translate-middle"
           as={NavLink}
           to="/"
         >
           <img
             className="img-fluid logoNavBar"
             src="src\img\sutdio_nora_logo.png"
-            alt=""
+            alt="Studio Nora Logo"
           />
         </Navbar.Brand>
 
@@ -34,14 +33,13 @@ export default function AppNavbar() {
             className="text-light"
           ></Nav.Link> */}
         </div>
-
         <Navbar.Collapse id="main-navbar-nav">
           <Nav className="flex-column text-dark">
             <Nav.Link as={NavLink} to="/" end>
               Home
             </Nav.Link>
             <Nav.Link as={NavLink} to="/products">
-              Productos
+              Products
             </Nav.Link>
             <Nav.Link as={NavLink} to="/aboutus">
               About Us
