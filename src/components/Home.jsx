@@ -46,7 +46,7 @@ function Home() {
       <div className="row m-5">
         <div
           className="col-12 col-md-6 col-xl-4 text-center mb-4 mt-5"
-          onClick={() => handleClick(1)}
+          onClick={() => handleClick("sofas")}
         >
           <img
             src={sofas?.image || "src/img/sillon nordico.png"}
@@ -57,7 +57,7 @@ function Home() {
         </div>
         <div
           className="col-12 col-md-6 col-xl-4 text-center mb-4 mt-5"
-          onClick={() => handleClick(3)}
+          onClick={() => handleClick("chairs")}
         >
           <img
             src={chairs?.image || "src/img/sillon nordico.png"}
@@ -68,7 +68,7 @@ function Home() {
         </div>
         <div
           className="col-12 col-md-6 col-xl-4 text-center mb-4 mt-5"
-          onClick={() => handleClick(2)}
+          onClick={() => handleClick("tables")}
         >
           <img
             src={tables?.image || "src/img/sillon nordico.png"}
