@@ -11,13 +11,22 @@ export default function ProductCard({
     navigate(`/products/${id}`);
   };
   return (
-    <div className="card  rounded-0" onClick={handleClick}>
-      <img src={image} className="card-img-top" alt="..." />
-      <div className="card-body">
-        <h5 className="card-title">{name}</h5>
-        <h4>USD {price}</h4>
-
-        <p className="card-text">Disponible en 6 revestimientos</p>
+    <div
+      className="card h-100 d-flex flex-column border rounded shadow"
+      onClick={handleClick}
+    >
+      <img
+        src={image}
+        alt={name}
+        className="card-img-top img-fluid"
+        style={{ height: "350px", objectFit: "cover" }}
+      />
+      <div className="card-body d-flex flex-column justify-content-between flex-grow-1">
+        <div>
+          <h5 className="card-title">{name}</h5>
+          <h4>USD {price}</h4>
+          <p className="card-text">Avaible in stock</p>
+        </div>
       </div>
     </div>
   );
