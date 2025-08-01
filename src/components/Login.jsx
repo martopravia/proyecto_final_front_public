@@ -7,7 +7,7 @@ function Login() {
     <div className="container vh-100 d-flex align-items-center">
       <div className="row w-100">
         <div className="d-lg-flex w-100">
-          <div className="col-12 col-lg-6 mb-4  me-lg-3 border border-black rounded shadow p-5">
+          <div className="col-12 col-lg-6 mb-4  me-lg-3 border rounded shadow p-5">
             <h3>Already a customer?</h3>
             <form action="input">
               <div className="mb-3">
@@ -57,7 +57,7 @@ function Login() {
           </div>
 
           {/* Register */}
-          <div className="col-12 col-lg-6 mb-4 border border-black shadow rounded p-5">
+          <div className="col-12 col-lg-6 mb-4 border shadow rounded p-5">
             <h3 className="mt-4 mt-lg-0">New customer?</h3>
             <p className="mt-4">
               Welcome to <span className="fw-bold">STUDIO NÖRA</span>. By

@@ -23,7 +23,7 @@ function Register() {
   return (
     <div>
       <div
-        className="container border border-black rounded p-5 my-5"
+        className="container border rounded shadow p-5 my-5"
         style={{ maxWidth: "55vw" }}
       >
         <h3>Create an account</h3>
