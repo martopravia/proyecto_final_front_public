@@ -1,6 +1,12 @@
+body {
+  padding-top: 80px;
+}
+
 .logoNavBar {
   max-width: 200px;
   max-height: 70px;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 .nav-content {
   width: 100%;
