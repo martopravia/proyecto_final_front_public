@@ -1,16 +1,37 @@
 import { use, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart, removeFromCart } from "../redux/cartSlice";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 export default function Checkout() {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const step = useSelector((state) => state.checkout.step);
+  const [selectedShippingOption, setSelectedShippingOption] = useState("saved");
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
+
+  const paymentOptions = [
+    {
+      id: "creditCard",
+      label: "Credit/Debit Card",
+      description: "Pay securely with your card.",
+    },
+    {
+      id: "paypal",
+      label: "PayPal",
+      description: "Pay easily with your PayPal account.",
+    },
+    {
+      id: "crypto",
+      label: "Crypto Wallet",
+      description: "Pay with Bitcoin or other supported wallets.",
+    },
+  ];
 
   const [shippingInfo, setShippingInfo] = useState({
     name: "",
@@ -40,7 +61,11 @@ export default function Checkout() {
     };
     console.log("Order confirmed:", orderPayload); //cambia por enviar order a la API
     dispatch(clearCart());
-    alert("Order confirmed! Thank you for your purchase.");
+    toast.success("Order confirmed! Thank you for your purchase.");
+
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
   };
 
   return (
@@ -106,74 +131,122 @@ export default function Checkout() {
       </div>
     ) : ( */}
           <div className="p-0 align-items-left d-flex">
-            {/* <input
-              className="form-check-input me-5"
-              type="radio"
-              id="useSaved"
-              name="shippingOption"
-            /> */}
+            <div
+              className={`border rounded shadow p-4 w-100 d-flex flex-column ${
+                selectedShippingOption === "saved" ? "border-black" : ""
+              }`}
+              style={{ cursor: "pointer" }}
+              onClick={() => setSelectedShippingOption("saved")}
+            >
+              <div className="d-flex align-items-start mb-3">
+                <input
+                  className="form-check-input me-3 mt-1"
+                  type="radio"
+                  name="shippingOption"
+                  checked={selectedShippingOption === "saved"}
+                  onChange={() => setSelectedShippingOption("saved")}
+                />
+                <label className="fw-bold">Use saved shipping info</label>
+              </div>
 
-            <li className="border rounded shadow p-4 list-unstyled w-100  d-flex ">
-              <div className="p-2 me-4">
-                <p>Name: LoggedUser.name loggedUser.Lastname</p>
-                <p>Shipping to: LoggedUser.location</p>
+              <div className="row">
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value="Matias Fernandez"
+                    disabled
+                  />
+                </div>
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Address</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value="123 calle, Montevideo"
+                    disabled
+                  />
+                </div>
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    value="matias@example.com"
+                    disabled
+                  />
+                </div>
+                <div className="col-md-6 mb-2">
+                  <label className="form-label">Phone</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value="+598 1234 5678"
+                    disabled
+                  />
+                </div>
               </div>
-              <div className="p-2">
-                <p>Email: LoggedUser.email</p>
-                <p>Phone: LoggedUser.phone</p>
-              </div>
-            </li>
+            </div>
           </div>
-          <div className="mt-5 p-0 align-items-left d-flex">
-            {/* <input
-              className="form-check-input me-5"
-              type="radio"
-              id="useManual"
-              name="shippingOption"
-            /> */}
 
-            <li className="border rounded shadow p-4 list-unstyled w-100 ">
-              <div className="p-2 d-flex">
-                <input
-                  className="form-control mb-2  "
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  value={shippingInfo.name}
-                  onChange={handleShippingChange}
-                  required
-                />
-                <input
-                  className="form-control mb-2 w-100"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={shippingInfo.email}
-                  onChange={handleShippingChange}
-                  required
-                />
-              </div>
-              <div className="d-flex p-2">
-                <input
-                  className="form-control mb-2  w-100"
-                  type="text"
-                  name="address"
-                  placeholder="Address"
-                  value={shippingInfo.address}
-                  onChange={handleShippingChange}
-                  required
-                />
-                <input
-                  className="form-control mb-2"
-                  type="text"
-                  name="phone"
-                  placeholder="Phone"
-                  value={shippingInfo.phone}
-                  onChange={handleShippingChange}
-                  required
-                />
-              </div>
-            </li>
+          <div className="mt-5 p-0 align-items-left d-flex">
+            <div
+              className={`border rounded shadow p-4 w-100 ${
+                selectedShippingOption === "manual" ? "border-black" : ""
+              }`}
+              style={{ cursor: "pointer" }}
+              onClick={() => setSelectedShippingOption("manual")}
+            >
+              <input
+                className="form-check-input me-3"
+                type="radio"
+                name="shippingOption"
+                checked={selectedShippingOption === "manual"}
+                onChange={() => setSelectedShippingOption("manual")}
+              />
+              <label className="fw-bold">Add new shipping info</label>
+              {selectedShippingOption === "manual" && (
+                <>
+                  <div className="p-2 mt-2 d-flex">
+                    <input
+                      className="form-control mb-2 me-2"
+                      type="text"
+                      name="name"
+                      placeholder="Name"
+                      value={shippingInfo.name}
+                      onChange={handleShippingChange}
+                    />
+                    <input
+                      className="form-control mb-2"
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      value={shippingInfo.email}
+                      onChange={handleShippingChange}
+                    />
+                  </div>
+                  <div className="p-2 d-flex">
+                    <input
+                      className="form-control mb-2 me-2"
+                      type="text"
+                      name="address"
+                      placeholder="Address"
+                      value={shippingInfo.address}
+                      onChange={handleShippingChange}
+                    />
+                    <input
+                      className="form-control mb-2"
+                      type="text"
+                      name="phone"
+                      placeholder="Phone"
+                      value={shippingInfo.phone}
+                      onChange={handleShippingChange}
+                    />
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </>
       )}
@@ -181,86 +254,32 @@ export default function Checkout() {
         <>
           <h3 className="mt-5 mb-4">Payment method</h3>
           <div className="row">
-            <div className="col-4 mb-3 ">
-              <div
-                className={`card p-3 h-100 border rounded shadow text- ${
-                  paymentMethod === "creditCard" ? "border-primary" : ""
-                }`}
-                onClick={() => setPaymentMethod("creditCard")}
-                style={{ cursor: "pointer" }}
-              >
-                <div className="form-check">
-                  <input
-                    type="radio"
-                    className="form-check-input me-2"
-                    name="payment"
-                    id="creditCard"
-                    checked={paymentMethod === "creditCard"}
-                    onChange={() => setPaymentMethod("creditCard")}
-                  />
-                  <label
-                    htmlFor="creditCard"
-                    className="form-check-label fw-bold"
-                  >
-                    Credit/Debit Card
-                  </label>
+            {paymentOptions.map(({ id, label, description }) => (
+              <div className="col-md-4 mb-3" key={id}>
+                <div
+                  className={`card p-3 h-100 border rounded shadow ${
+                    paymentMethod === id ? "border-primary" : ""
+                  }`}
+                  onClick={() => setPaymentMethod(id)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <div className="form-check">
+                    <input
+                      type="radio"
+                      className="form-check-input me-2"
+                      name="payment"
+                      id={id}
+                      checked={paymentMethod === id}
+                      onChange={() => setPaymentMethod(id)}
+                    />
+                    <label htmlFor={id} className="form-check-label fw-bold">
+                      {label}
+                    </label>
+                  </div>
+                  <p className="mt-2 text-muted">{description}</p>
                 </div>
-                <p className="mt-2 text-muted">Pay securely with your card.</p>
               </div>
-            </div>
-
-            <div className="col-4 mb-3">
-              <div
-                className={`card p-3 h-100 border rounded shadow text ${
-                  paymentMethod === "paypal" ? "border-primary" : ""
-                }`}
-                onClick={() => setPaymentMethod("paypal")}
-                style={{ cursor: "pointer" }}
-              >
-                <div className="form-check">
-                  <input
-                    type="radio"
-                    className="form-check-input me-2"
-                    name="payment"
-                    id="paypal"
-                    checked={paymentMethod === "paypal"}
-                    onChange={() => setPaymentMethod("paypal")}
-                  />
-                  <label htmlFor="paypal" className="form-check-label fw-bold">
-                    PayPal
-                  </label>
-                </div>
-                <p className="mt-2 text-muted">
-                  Pay easily with your PayPal account.
-                </p>
-              </div>
-            </div>
-            <div className="col-md-4 mb-3">
-              <div
-                className={`card p-3 h-100 border rounded shadow text ${
-                  paymentMethod === "crypto" ? "border-primary" : ""
-                }`}
-                onClick={() => setPaymentMethod("crypto")}
-                style={{ cursor: "pointer" }}
-              >
-                <div className="form-check">
-                  <input
-                    type="radio"
-                    className="form-check-input me-2"
-                    name="payment"
-                    id="crypto"
-                    checked={paymentMethod === "crypto"}
-                    onChange={() => setPaymentMethod("crypto")}
-                  />
-                  <label htmlFor="crypto" className="form-check-label fw-bold">
-                    Crypto Wallet
-                  </label>
-                </div>
-                <p className="mt-2 text-muted">
-                  Pay with Bitcoin or other supported wallets.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
 
           {paymentMethod === "paypal" && (
@@ -293,6 +312,7 @@ export default function Checkout() {
                     className="form-control"
                     placeholder="Cardholder Name"
                     autoComplete="off"
+                    required
                   />
                 </div>
                 <div className="col-md-6 mb-3">
@@ -301,6 +321,7 @@ export default function Checkout() {
                     className="form-control"
                     placeholder="Card Number"
                     autoComplete="off"
+                    required
                   />
                 </div>
                 <div className="col-md-6 mb-3">
@@ -309,6 +330,7 @@ export default function Checkout() {
                     className="form-control"
                     placeholder="MM/YY"
                     autoComplete="off"
+                    required
                   />
                 </div>
                 <div className="col-md-6 mb-3">
@@ -317,19 +339,23 @@ export default function Checkout() {
                     className="form-control"
                     placeholder="CVV"
                     autoComplete="off"
+                    required
                   />
                 </div>
               </div>
             </div>
           )}
 
-          <button
-            className="btn btn-success mt-4 ms-3"
-            onClick={handleConfirm}
-            disabled={!paymentMethod}
-          >
-            ✅ Confirm Order
-          </button>
+          <div className="d-flex justify-content-center">
+            <button
+              className="btn btn-success mt-4"
+              style={{ width: "200px" }}
+              onClick={handleConfirm}
+              disabled={!paymentMethod}
+            >
+              ✅ Confirm Order
+            </button>
+          </div>
         </>
       )}
     </div>
