@@ -53,7 +53,7 @@ function Home() {
         >
           <img
             src={sofas?.image || "src/img/sillon nordico.png"}
-            className="img-fluid img-home"
+            className="img-fluid img-home interactive"
             alt=""
           />
           <h4 className="mt-5">Heritage Sofas</h4>
@@ -64,7 +64,7 @@ function Home() {
         >
           <img
             src={chairs?.image || "src/img/sillon nordico.png"}
-            className="img-fluid img-home"
+            className="img-fluid img-home interactive"
             alt=""
           />
           <h4 className="mt-5">Refined Seating</h4>
@@ -75,7 +75,7 @@ function Home() {
         >
           <img
             src={tables?.image || "src/img/sillon nordico.png"}
-            className="img-fluid img-home"
+            className="img-fluid img-home interactive"
             alt=""
           />
           <h4 className="mt-5">Artisan Tables</h4>
@@ -90,7 +90,7 @@ function Home() {
           {randomProducts.map((product) => (
             <div
               key={product.id}
-              className="scroll-item text-center col-6 col-sm-4 col-md-3 col-lg-2"
+              className="scroll-item interactive text-center col-6 col-sm-4 col-md-3 col-lg-2"
               style={{
                 maxWidth: "300px",
               }}

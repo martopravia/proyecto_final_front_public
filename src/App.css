@@ -52,10 +52,6 @@
   max-height: 400px;
   object-fit: cover;
   border-radius: 8px;
-  transition: transform 0.3s ease;
-}
-.img-home:hover {
-  transform: scale(1.08);
 }
 
 .scroll-container {
@@ -71,12 +67,16 @@
   flex: 0 0 auto;
   width: 250px;
   scroll-snap-align: start;
-  transition: transform 0.3s ease;
 }
 
-.scroll-item:hover {
-  transform: scale(1.03);
+.interactive {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.08);
+  }
 }
+
 @media (max-width: 576px) {
   .footer-content {
     padding: 0 1rem;
