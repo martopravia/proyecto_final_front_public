@@ -86,19 +86,19 @@ const Footer = () => {
               <ul className="list-unstyled">
                 <li>
                   {" "}
-                  <Link to="/category/1" className="nav-link text-dark">
+                  <Link to="/category/sofas" className="nav-link text-dark">
                     Sofas
                   </Link>
                 </li>
                 <li>
                   {" "}
-                  <Link to="/category/3" className="nav-link text-dark">
+                  <Link to="/category/chairs" className="nav-link text-dark">
                     Chairs
                   </Link>
                 </li>
                 <li>
                   {" "}
-                  <Link to="/category/2" className="nav-link text-dark">
+                  <Link to="/category/tables" className="nav-link text-dark">
                     Tables
                   </Link>
                 </li>
