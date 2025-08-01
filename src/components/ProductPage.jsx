@@ -1,23 +1,21 @@
 import { useParams } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
+import { formatName } from "../utils/formatName";
 
 export default function ProductPage() {
   const { productId } = useParams();
-  const product = {
-    name: "Sillon Exótico",
-    description: "Muy detallado, de alta calidad",
-    stock: 4,
-    price: 500.0,
-    image:
-      "https://media.roche-bobois.com/is/render/rocheboboisRender/bubble_mini_techno_fauteuil_pers_02?wid=1120&fmt=webp&resMode=sharp2&network=on&bfc=on&obj=Revp&color=224,205,28",
-  };
   const dispatch = useDispatch();
+
+  const products = useSelector((state) => state.products.items);
+
+  const product = products.find((product) => product.id === Number(productId));
+
   const handleAddToCart = () => {
     dispatch(addToCart(product));
   };
 
-  const { name, description, stock, price, image } = product;
+  const { name, description, price, image } = product;
   return (
     <div className="container-fluid">
       <div className="row flex-column flex-md-row">
@@ -26,7 +24,7 @@ export default function ProductPage() {
         </div>
         <div className="col-md-6">
           <div className="container p-5">
-            <h2>{name}</h2>
+            <h2>{formatName(name)}</h2>
             <p>{description}</p>
             <hr />
             <p className="fs-4">{price} USD</p>
