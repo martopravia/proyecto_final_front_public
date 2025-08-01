@@ -14,20 +14,18 @@ import CategoryPage from "./components/CategoryPage";
 import Home from "./components/Home";
 import ProductList from "./components/ProductList";
 
-
 function App() {
   return (
     <>
-
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} 
+          <Route path="register" element={<Register />} />
           {/* <Route path="/cart" element={<Checkout />} /> */}
           <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/products" element={<ProductList />} />
-          <Route path="/category/:categoryId" element={<CategoryPage />} />
+          <Route path="/products" element={<CategoryPage />} />
+          <Route path="/category/:category" element={<CategoryPage />} />
           <Route path="/products/:productId" element={<ProductPage />} />
           {/* <Route path="/profile/:username" element={<Profile />} /> */}
           {<Route path="aboutus" element={<AboutUs />} />}
@@ -47,7 +45,6 @@ function App() {
         theme="light"
         transition={Bounce}
       />
-
     </>
   );
 }
