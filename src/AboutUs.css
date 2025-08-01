@@ -82,3 +82,25 @@
   justify-content: space-between;
   margin-bottom: 1rem;
 }
+
+@media (max-width: 768px) {
+  .text-block {
+    margin-bottom: 2rem;
+  }
+
+  .cardSize {
+    max-height: 180px;
+  }
+
+  .card .card-body {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .values-text p {
+    font-size: 1rem;
+  }
+}
