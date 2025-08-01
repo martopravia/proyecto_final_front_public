@@ -4,7 +4,7 @@ import CartHandler from "./CartHandler";
 
 export default function AppNavbar() {
   return (
-    <Navbar expand={false} className="position-relative">
+    <Navbar expand={false} className="position-relative bg-white">
       <Container
         fluid
         className="nav-content d-flex justify-content-between align-items-center fs-5 w-100"
