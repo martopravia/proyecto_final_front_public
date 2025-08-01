@@ -13,3 +13,5 @@ export default function CategoryPage() {
     </>
   );
 }
+
+export default CategoryPage;
