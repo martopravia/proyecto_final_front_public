@@ -22,8 +22,8 @@ export default function ProductPage() {
         <div className="col-md-6">
           <img className="img-fluid border-0" src={image} alt={name} />
         </div>
-        <div className="col-md-6">
-          <div className="container p-5">
+        <div className="col-md-6 d-flex">
+          <div className="container p-5 d-flex flex-column justify-content-center align-content-center">
             <h2>{formatName(name)}</h2>
             <p>{description}</p>
             <hr />

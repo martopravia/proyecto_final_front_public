@@ -15,7 +15,7 @@ export default function ProductCard({
 
   return (
     <div
-      className="interactive card h-100 d-flex flex-column border rounded shadow"
+      className="interactive card h-100 w-100 d-flex flex-column border rounded shadow"
       onClick={handleClick}
     >
       <img
