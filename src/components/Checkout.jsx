@@ -80,7 +80,7 @@ export default function Checkout() {
             {cartItems.map((item) => (
               <li
                 key={item.id}
-                className="align-items-left p-4 border rounded shadow"
+                className="align-items-left p-4 border rounded shadow mb-3"
               >
                 <div className="row">
                   <div className="col">

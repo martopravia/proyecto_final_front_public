@@ -9,10 +9,10 @@ export default function CheckoutPage() {
   return (
     <div className=" p-4">
       <div className="row">
-        <div className="col-8">
+        <div className="col-md-8 col-sm-12 ">
           <Checkout cartItems={cartItems} />
         </div>
-        <div className="col-4 ">
+        <div className="col-md-4 col-sm-12">
           <div className="position-sticky" style={{ top: "50px" }}>
             <CheckoutSummary />
           </div>
