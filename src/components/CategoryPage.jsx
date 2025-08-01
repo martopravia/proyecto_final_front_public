@@ -7,7 +7,7 @@ export default function CategoryPage() {
   const { products } = useCategoryProducts({ category });
   return (
     <>
-      <div className="container mt-3">
+      <div className="container mt-5">
         <ProductList products={products} />
       </div>
     </>
