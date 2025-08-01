@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { formatName } from "../utils/formatName";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -32,13 +33,6 @@ function Home() {
     .sort(() => 0.5 - Math.random())
     .slice(0, 10);
 
-  function formatName(name) {
-    return name
-      .replace(/[0-9]/g, "") // saco num
-      .replace(/_/g, " ") //cambio _ por espacoi
-      .trim() // saco espacios final y principio
-      .replace(/\b\w/g, (c) => c.toUpperCase()); // La primera mayusc y saco la f(capitalize) para upperCase
-  }
   return (
     <div className="my-5">
       <h1 className="text-center my-5">Choose your signature piece</h1>
