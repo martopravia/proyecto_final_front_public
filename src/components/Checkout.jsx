@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart, removeFromCart } from "../redux/cartSlice";
+import { Link } from "react-router";
 
 export default function Checkout() {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -43,18 +44,18 @@ export default function Checkout() {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="ms-5 fw-bold">Checkout - Step {step} / 3</h2>
+    <div className="p-4 d-flex flex-column align-items-left">
       {step === 1 && (
         <>
-          <h3 className="text-lg font-medium mb-4 ms-5 fw-bold">
-            * Order details
-          </h3>
-          <ul style={{ listStyleType: "none" }}>
+          <h3 className="mt-5 mb-4 text">Order details</h3>
+          <ul
+            className="p-0 align-items-left"
+            style={{ listStyleType: "none" }}
+          >
             {cartItems.map((item) => (
               <li
                 key={item.id}
-                className="p-4 mb-5 border border-black rounded shadow d-flex"
+                className="align-items-left p-4 border rounded shadow"
               >
                 <div className="row">
                   <div className="col">
@@ -87,13 +88,12 @@ export default function Checkout() {
               </li>
             ))}
           </ul>
-          <h4 className="text-lg font-semibold">Total: ${totalPrice}</h4>
         </>
       )}
 
       {step === 2 && (
         <>
-          <h3 className=" ms-5 fw-bold">* Contact & Shipping info</h3>
+          <h3 className="mt-5 mb-4"> Contact & Shipping info</h3>
           {/* {!LoggedUser ? (
       <div>
         <h4>To continue, please log in or register</h4>
@@ -105,21 +105,15 @@ export default function Checkout() {
         </button>
       </div>
     ) : ( */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              margin: "50px",
-            }}
-          >
-            <input
+          <div className="p-0 align-items-left d-flex">
+            {/* <input
               className="form-check-input me-5"
               type="radio"
               id="useSaved"
               name="shippingOption"
-            />
+            /> */}
 
-            <li className="border border-black rounded shadow p-4 list-unstyled w-100  d-flex ">
+            <li className="border rounded shadow p-4 list-unstyled w-100  d-flex ">
               <div className="p-2 me-4">
                 <p>Name: LoggedUser.name loggedUser.Lastname</p>
                 <p>Shipping to: LoggedUser.location</p>
@@ -130,21 +124,15 @@ export default function Checkout() {
               </div>
             </li>
           </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              margin: "50px",
-            }}
-          >
-            <input
+          <div className="mt-5 p-0 align-items-left d-flex">
+            {/* <input
               className="form-check-input me-5"
               type="radio"
               id="useManual"
               name="shippingOption"
-            />
+            /> */}
 
-            <li className="border border-black rounded shadow p-4 list-unstyled w-100 ">
+            <li className="border rounded shadow p-4 list-unstyled w-100 ">
               <div className="p-2 d-flex">
                 <input
                   className="form-control mb-2  "
@@ -191,10 +179,11 @@ export default function Checkout() {
       )}
       {step === 3 && (
         <>
-          <div className="row mt-4">
-            <div className="col-md-4 mb-3 ms-3">
+          <h3 className="mt-5 mb-4">Payment method</h3>
+          <div className="row">
+            <div className="col-4 mb-3 ">
               <div
-                className={`card p-3 h-100 shadow-sm ${
+                className={`card p-3 h-100 border rounded shadow text- ${
                   paymentMethod === "creditCard" ? "border-primary" : ""
                 }`}
                 onClick={() => setPaymentMethod("creditCard")}
@@ -220,9 +209,9 @@ export default function Checkout() {
               </div>
             </div>
 
-            <div className="col-md-4 mb-3">
+            <div className="col-4 mb-3">
               <div
-                className={`card p-3 h-100 shadow-sm ${
+                className={`card p-3 h-100 border rounded shadow text ${
                   paymentMethod === "paypal" ? "border-primary" : ""
                 }`}
                 onClick={() => setPaymentMethod("paypal")}
@@ -246,13 +235,51 @@ export default function Checkout() {
                 </p>
               </div>
             </div>
+            <div className="col-md-4 mb-3">
+              <div
+                className={`card p-3 h-100 border rounded shadow text ${
+                  paymentMethod === "crypto" ? "border-primary" : ""
+                }`}
+                onClick={() => setPaymentMethod("crypto")}
+                style={{ cursor: "pointer" }}
+              >
+                <div className="form-check">
+                  <input
+                    type="radio"
+                    className="form-check-input me-2"
+                    name="payment"
+                    id="crypto"
+                    checked={paymentMethod === "crypto"}
+                    onChange={() => setPaymentMethod("crypto")}
+                  />
+                  <label htmlFor="crypto" className="form-check-label fw-bold">
+                    Crypto Wallet
+                  </label>
+                </div>
+                <p className="mt-2 text-muted">
+                  Pay with Bitcoin or other supported wallets.
+                </p>
+              </div>
+            </div>
           </div>
 
           {paymentMethod === "paypal" && (
             <div className="mt-3 ms-3">
-              <button className="btn btn-outline-secondary" disabled>
-                Continue with PayPal
-              </button>
+              <Link to={"https://www.paypal.com/uy/home"}>
+                <button className="btn btn-outline-secondary" disabled>
+                  Continue with PayPal
+                </button>
+              </Link>
+            </div>
+          )}
+
+          {paymentMethod === "crypto" && (
+            <div className="mt-3 ms-3">
+              <Link to={"https://accounts.binance.com/es/register"}>
+                <button className="btn btn-outline-secondary" disabled>
+                  Continue with Binance
+                </button>
+              </Link>
             </div>
           )}
 

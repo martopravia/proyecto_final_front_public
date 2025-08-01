@@ -5,115 +5,60 @@ export default function AboutUs() {
   return (
     <>
       <div
-        className="d-flex justify-content-center position-relative"
+        className="about-hero d-flex flex-column justify-content-center align-items-center text-center"
         style={{
-          backgroundImage: "url('src/img/fotoFondo1.jpg')",
-          height: "400px",
-          marginBottom: "230px",
+          background: "url('src/img/fotoFondo1.jpg') center/cover no-repeat",
+          minHeight: "300px",
+          padding: "3rem 1rem",
         }}
       >
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="text-center mb-5">
-              <h1 className=" fw-bold my-4">About this project</h1>
-              <p
-                className="mx-auto"
-                style={{
-                  maxWidth: "900px",
-                  fontSize: "1.2rem",
-                  fontWeight: "500",
-                  lineHeight: "1.6",
-                }}
-              >
-                This e-commerce platform represents a collaborative effort by
-                students from Hack Academy's intensive Coding Bootcamp. Our
-                comprehensive full-time program spans 3 months, during which we
-                dedicated over 600 hours mastering cutting-edge technologies
-                including Node.js, Express, React.js, SQL, MongoDB, and Git
-                version control.
-              </p>
-            </div>
-
-            <div className="row mb-5">
-              <div className="col-4">
-                <div
-                  className="card shadow-lg border-0"
-                  style={{ borderRadius: "15px" }}
-                >
-                  <div className="card-body p-4">
-                    <div className="d-flex align-items-center mb-3">
-                      <h5 className="card-title mb-0 text-dark fw-bold">
-                        ⏳ Duration
-                      </h5>
-                    </div>
-                    <p
-                      className="card-text text-muted"
-                      style={{ lineHeight: "1.6" }}
-                    >
-                      This project was successfully completed within a 3-week
-                      timeframe during July/August 2025. We implemented an Agile
-                      methodology using weekly sprint cycles in Asana to ensure
-                      efficient development and continuous progress tracking.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-4">
-                <div
-                  className="card shadow-lg border-0"
-                  style={{ borderRadius: "15px" }}
-                >
-                  <div className="card-body p-4">
-                    <div className="d-flex align-items-center mb-3">
-                      <h5 className="card-title mb-0 text-dark fw-bold">
-                        💻 Technologies
-                      </h5>
-                    </div>
-                    <p
-                      className="card-text text-muted"
-                      style={{ lineHeight: "1.6" }}
-                    >
-                      The frontend was built using modern React.js with Create
-                      React App as the foundation. The backend features a robust
-                      RESTful API developed with Node.js, Express framework, SQL
-                      database, and managed through Git/GitHub workflows.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-4">
-                <div
-                  className="card  shadow-lg border-0"
-                  style={{ borderRadius: "15px" }}
-                >
-                  <div className="card-body p-4">
-                    <div className="d-flex align-items-center mb-3">
-                      <h5 className="card-title mb-0 text-dark fw-bold">
-                        📋 Task Management
-                      </h5>
-                    </div>
-                    <p
-                      className="card-text text-muted"
-                      style={{ lineHeight: "1.6" }}
-                    >
-                      We utilized Asana boards for comprehensive project
-                      management and task allocation. This approach ensured
-                      seamless communication among team members while
-                      maintaining real-time visibility of project milestones and
-                      individual responsibilities.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="container">
+          <h1 className="fw-bold my-4">About this project</h1>
+          <p className="mx-auto about-description">
+            This e-commerce platform represents a collaborative effort by
+            students from Hack Academy's intensive Coding Bootcamp. Our
+            comprehensive full-time program spans 3 months, during which we
+            dedicated over 600 hours mastering cutting-edge technologies
+            including Node.js, Express, React.js, SQL, MongoDB, and Git
+            version control.
+          </p>
         </div>
       </div>
 
-      <section className="m-5">
-        <div className="row">
-          <div className="col-4">
+      <section className="container my-5">
+        <div className="row text-center">
+          {[
+            {
+              title: "⏳ Duration",
+              text: "This project was completed within 3 weeks during July/August 2025 using Agile methodology and sprints in Asana."
+            },
+            {
+              title: "💻 Technologies",
+              text: "Frontend built with React.js + CRA. Backend: Node.js, Express, SQL, and Git/GitHub."
+            },
+            {
+              title: "📋 Task Management",
+              text: "We used Asana to track milestones and manage team communication and task assignments."
+            }
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="col-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center"
+            >
+              <div className="card shadow-lg border-0 rounded-4 h-100 w-100">
+                <div className="card-body p-4">
+                  <h5 className="fw-bold mb-3">{item.title}</h5>
+                  <p className="text-muted" style={{ lineHeight: "1.6" }}>
+                    {item.text}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="row mt-5">
+          <div className="col-12 col-lg-4 mb-4">
             <div className="text-block">
               <h3>How we are</h3>
               <p>
@@ -139,7 +84,7 @@ export default function AboutUs() {
               </p>
             </div>
             <div className="text-block">
-              <h2>Commitment</h2>
+              <h3>Commitment</h3>
               <p>
                 We value transparency, collaboration, and continuous
                 improvement. This project taught us the importance of clear
@@ -149,107 +94,35 @@ export default function AboutUs() {
               </p>
             </div>
           </div>
-          <div className="col-8">
-            <div className="row">
-              <div className="col-4 d-flex justify-content-center align-items-center">
-                <div className="card">
-                  <img
-                    className="card-img-top img-fluid cardSize"
-                    src="src/img/avatar.avif"
-                    alt="Card image cap"
-                  />
-                  <div className="card-body">
-                    <h4 className="card-title">Martin Pravia</h4>
-                    <h5 className="card-subtitle my-2">Junior developer?</h5>
-                    <p className="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </p>
-                    <a href="https://www.linkedin.com/in/martin-pravia/">
-                      <i className="bi bi-linkedin"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-4 d-flex justify-content-center align-items-center">
-                <div className="card">
-                  <img
-                    className="card-img-top img-fluid cardSize"
-                    src="src/img/avatar.avif"
-                    alt="Card image cap"
-                  />
-                  <div className="card-body">
-                    <h4 className="card-title">Manuel Negrin</h4>
-                    <h5 className="card-subtitle my-2">Junior developer?</h5>
-                    <p className="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </p>
-                    <a href="#">
-                      <i className="bi bi-linkedin"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-4 d-flex justify-content-center align-items-center">
-                <div className="card">
-                  <img
-                    className="card-img-top img-fluid cardSize"
-                    src="src/img/avatar.avif"
-                    alt="Card image cap"
-                  />
-                  <div className="card-body">
-                    <h4 className="card-title">Alfonso Pavia</h4>
-                    <h5 className="card-subtitle my-2">Junior developer?</h5>
-                    <p className="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </p>
-                    <a href="#">
-                      <i className="bi bi-linkedin"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 d-flex justify-content-center mt-4 gap-4">
-                <div className="card ">
-                  <img
-                    className="card-img-top img-fluid cardSize"
-                    src="src/img/avatar.avif"
-                    alt="Card image cap"
-                  />
-                  <div className="card-body">
-                    <h4 className="card-title">Juan Pedro Diaz</h4>
-                    <h5 className="card-subtitle my-2">Junior developer?</h5>
-                    <p className="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </p>
-                    <a href="https://www.linkedin.com/in/juanpedrodiazlumaca/">
-                      <i className="bi bi-linkedin"></i>
-                    </a>
-                  </div>
-                </div>
 
-                <div className="card">
-                  <img
-                    className="card-img-top img-fluid cardSize"
-                    src="src/img/avatar.avif"
-                    alt="Card image cap"
-                  />
-                  <div className="card-body">
-                    <h4 className="card-title">Joaquin Reinante</h4>
-                    <h5 className="card-subtitle my-2">Junior developer?</h5>
-                    <p className="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </p>
-                    <a href="https://www.linkedin.com/in/joaquin-reinante-818007193/">
-                      <i className="bi bi-linkedin"></i>
-                    </a>
+          <div className="col-12 col-lg-8">
+            <div className="row">
+              {["Martin Pravia", "Manuel Negrin", "Alfonso Pavia", "Juan Pedro Diaz", "Joaquin Reinante"].map(
+                (name, index) => (
+                  <div
+                    key={index}
+                    className="col-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center"
+                  >
+                    <div className="card h-100 text-center">
+                      <img
+                        className="card-img-top img-fluid cardSize"
+                        src="src/img/avatar.avif"
+                        alt="Avatar"
+                      />
+                      <div className="card-body">
+                        <h4 className="card-title">{name}</h4>
+                        <h5 className="card-subtitle my-2">Junior Developer</h5>
+                        <p className="card-text">
+                          Some quick example text to build on the card title.
+                        </p>
+                        <a href="#">
+                          <i className="bi bi-linkedin"></i>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                )
+              )}
             </div>
           </div>
         </div>

@@ -9,7 +9,6 @@ export default function CheckoutPage() {
   return (
     <div className=" p-4">
       <div className="row">
-        <h2 className="text-center fw-bold">Cart Overview</h2>
         <div className="col-8">
           <Checkout cartItems={cartItems} />
         </div>
