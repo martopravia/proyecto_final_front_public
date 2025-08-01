@@ -67,7 +67,7 @@ const Footer = () => {
               <h6>ABOUT THIS PROYECT</h6>
               <ul className="list-unstyled">
                 <li>
-                  <Link to="/whoAreWe" className="nav-link text-dark">
+                  <Link to="/aboutus" className="nav-link text-dark">
                     Who are we?
                   </Link>
                 </li>
@@ -75,7 +75,7 @@ const Footer = () => {
               <h6 className="mt-4">TECHNOLOGIES</h6>
               <ul className="list-unstyled">
                 <li>
-                  <Link to="/technologies" className="nav-link text-dark">
+                  <Link to="/aboutus" className="nav-link text-dark">
                     Technologies used
                   </Link>
                 </li>
@@ -86,19 +86,19 @@ const Footer = () => {
               <ul className="list-unstyled">
                 <li>
                   {" "}
-                  <Link to="/sofas" className="nav-link text-dark">
+                  <Link to="/category/1" className="nav-link text-dark">
                     Sofas
                   </Link>
                 </li>
                 <li>
                   {" "}
-                  <Link to="/chairs" className="nav-link text-dark">
+                  <Link to="/category/3" className="nav-link text-dark">
                     Chairs
                   </Link>
                 </li>
                 <li>
                   {" "}
-                  <Link to="/tables" className="nav-link text-dark">
+                  <Link to="/category/2" className="nav-link text-dark">
                     Tables
                   </Link>
                 </li>
@@ -109,23 +109,23 @@ const Footer = () => {
               <ul className="list-unstyled">
                 <li>
                   {" "}
-                  <Link to="/faqs" className="nav-link text-dark">
+                  <Link to="/register" className="nav-link text-dark">
                     How to buy?
                   </Link>
                 </li>
                 <li>
-                  <Link to="/faqs" className="nav-link text-dark">
+                  <Link to="/register" className="nav-link text-dark">
                     Shipping
                   </Link>
                 </li>
                 <li>
-                  <Link to="/faqs" className="nav-link text-dark">
+                  <Link to="/register" className="nav-link text-dark">
                     Warranty
                   </Link>
                 </li>
 
                 <li>
-                  <Link to="/faqs" className="nav-link text-dark">
+                  <Link to="/register" className="nav-link text-dark">
                     Terms and conditions
                   </Link>
                 </li>
@@ -144,8 +144,14 @@ const Footer = () => {
                 every room.
               </p>
               <p>
-                <a href="#">studionora.com</a> or at any of our stores around
-                the world.
+                <a
+                  href="https://studionora.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  studionora.com
+                </a>{" "}
+                or at any of our stores around the world.
               </p>
             </div>
           </div>

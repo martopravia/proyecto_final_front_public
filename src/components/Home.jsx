@@ -24,12 +24,9 @@ function Home() {
   const chairs = getFirstProductByCategory(3);
 
   const handleClick = (categoryId) => {
-    navigate(`/products/${categoryId}`);
+    navigate(`/category/${categoryId}`);
   };
 
-  //   function capitalize(str) {
-  //   return str.charAt(0).toUpperCase() + str.slice(1);
-  // }
   const randomProducts = products
     .filter((product) => product.featured === true)
     .sort(() => 0.5 - Math.random())
@@ -48,35 +45,35 @@ function Home() {
 
       <div className="row m-5">
         <div
-          className="col-12 col-sm-6 col-lg-4 text-center mb-4 mt-5"
+          className="col-12 col-md-6 col-xl-4 text-center mb-4 mt-5"
           onClick={() => handleClick(1)}
         >
           <img
             src={sofas?.image || "src/img/sillon nordico.png"}
             className="img-fluid img-home interactive"
-            alt=""
+            alt="Sofa image"
           />
           <h4 className="mt-5">Heritage Sofas</h4>
         </div>
         <div
-          className="col-12 col-sm-6 col-lg-4 text-center mb-4 mt-5"
+          className="col-12 col-md-6 col-xl-4 text-center mb-4 mt-5"
           onClick={() => handleClick(3)}
         >
           <img
             src={chairs?.image || "src/img/sillon nordico.png"}
             className="img-fluid img-home interactive"
-            alt=""
+            alt="Chair image"
           />
           <h4 className="mt-5">Refined Seating</h4>
         </div>
         <div
-          className="col-12 col-sm-6 col-lg-4 text-center mb-4 mt-5"
+          className="col-12 col-md-6 col-xl-4 text-center mb-4 mt-5"
           onClick={() => handleClick(2)}
         >
           <img
             src={tables?.image || "src/img/sillon nordico.png"}
             className="img-fluid img-home interactive"
-            alt=""
+            alt="Table image"
           />
           <h4 className="mt-5">Artisan Tables</h4>
         </div>

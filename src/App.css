@@ -2,19 +2,16 @@
   max-width: 200px;
   max-height: 70px;
 }
-
-.logo-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-}
 .nav-content {
   width: 100%;
   padding: 0 2rem;
   margin: 0 auto;
   box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .footer-content {
   width: 100%;
   padding: 0 2rem;
