@@ -1,13 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { useCart } from "./CartState";
 import { nextStep, prevStep } from "../redux/checkoutSlice";
 
 function CheckoutSummary() {
   const dispatch = useDispatch();
   const step = useSelector((state) => state.checkout.step);
-  const { cartItems } = useCart();
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,

@@ -1,10 +1,9 @@
-import { useCart } from "./CartState";
 import Checkout from "./Checkout";
-import { useState } from "react";
+import { useSelector } from "react-redux";
 import CheckoutSummary from "./CheckoutSummary";
 
 export default function CheckoutPage() {
-  const { cartItems } = useCart();
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
   return (
     <div className="">

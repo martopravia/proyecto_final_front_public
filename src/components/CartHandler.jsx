@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { CartState, useCart } from "./CartState";
 import CartDrawer from "./CartDrawer";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function CartHandler() {
   const [cartOpen, setIsOpen] = useState(false);
-  const { cartState, updateQuantity } = useCart();
   const openCart = () => {
     setIsOpen(true);
   };
@@ -17,11 +16,7 @@ export default function CartHandler() {
         </button>
       )}
 
-      <CartDrawer
-        isOpen={cartOpen}
-        onQuantityChange={updateQuantity}
-        onClose={() => setIsOpen(false)}
-      />
+      <CartDrawer isOpen={cartOpen} onClose={() => setIsOpen(false)} />
     </>
   );
 }
