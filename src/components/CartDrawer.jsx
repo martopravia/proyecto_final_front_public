@@ -1,9 +1,18 @@
 import { Link } from "react-router";
-import { useCart } from "./CartState";
 import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
-  const { cartItems, clearCart } = useCart();
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const dispatch = useDispatch();
+
+  const handleQuantityChange = (id, quantity) => {
+    dispatch(updateQuantity({ id, quantity }));
+  };
+
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
 
   useEffect(() => {
     const esc = (e) => {
@@ -68,7 +77,7 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
                       min={1}
                       value={item.quantity}
                       onChange={(e) =>
-                        onQuantityChange(item.id, parseInt(e.target.value))
+                        handleQuantityChange(item.id, parseInt(e.target.value))
                       }
                     />
                     <span className="ms-auto fw-semibold">
@@ -104,7 +113,7 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
           </span>
         </div>
         <div className="d-flex flex-column gap-2">
-          <button className="btn btn-outline-danger" onClick={clearCart}>
+          <button className="btn btn-outline-danger" onClick={handleClearCart}>
             Empty cart
           </button>
           <Link to={"/checkout"}>
