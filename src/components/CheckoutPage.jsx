@@ -12,10 +12,7 @@ export default function CheckoutPage() {
           <Checkout cartItems={cartItems} />
         </div>
         <div className="col-md-4 col-sm-12">
-          <div
-            className="position-sticky"
-            style={{ top: "223px", marginBottom: "85px" }}
-          >
+          <div className="position-sticky" style={{ top: "223px" }}>
             <CheckoutSummary />
           </div>
         </div>

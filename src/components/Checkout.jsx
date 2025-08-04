@@ -52,7 +52,7 @@ export default function Checkout() {
     phone: "",
   });
 
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("creditCard");
   const handleShippingChange = (e) => {
     setShippingInfo({
       ...shippingInfo,
@@ -125,7 +125,6 @@ export default function Checkout() {
               </li>
             ))}
           </ul>
-          <hr />
         </>
       )}
 
@@ -295,26 +294,6 @@ export default function Checkout() {
             ))}
           </div>
 
-          {paymentMethod === "paypal" && (
-            <div className="mt-3 ">
-              <Link to={"https://www.paypal.com/uy/home"}>
-                <button className="btn btn-outline-secondary w-100">
-                  Continue with PayPal
-                </button>
-              </Link>
-            </div>
-          )}
-
-          {paymentMethod === "crypto" && (
-            <div className="mt-3">
-              <Link to={"https://accounts.binance.com/es/register"}>
-                <button className="btn btn-outline-secondary w-100">
-                  Continue with Binance
-                </button>
-              </Link>
-            </div>
-          )}
-
           {paymentMethod === "creditCard" && (
             <div className="mt-4">
               <h5>Card Details</h5>
@@ -356,6 +335,26 @@ export default function Checkout() {
                   />
                 </div>
               </div>
+            </div>
+          )}
+
+          {paymentMethod === "paypal" && (
+            <div className="mt-5 mb-4">
+              <Link to={"https://www.paypal.com/uy/home"}>
+                <button className="btn btn-outline-secondary w-100">
+                  Continue with PayPal
+                </button>
+              </Link>
+            </div>
+          )}
+
+          {paymentMethod === "crypto" && (
+            <div className="mt-5 mb-4">
+              <Link to={"https://accounts.binance.com/es/register"}>
+                <button className="btn btn-outline-secondary w-100">
+                  Continue with Binance
+                </button>
+              </Link>
             </div>
           )}
 
