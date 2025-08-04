@@ -1,3 +1,21 @@
+body {
+  /* font-family: "Playfair-display", sans-serif; */
+  font-family: "Cinzel", serif;
+  /* font-family: "Lora", sans-serif; */
+  /* font-family: "Cormorant-Garamond", 
+  /* font-family: 'Libre Baskerville', serif; */
+  /* font-family: 'Prata', serif; */
+  /* font-family: "Raleway", sans-serif; */
+  /* font-family: "Montserrat", sans-serif; */
+  /* font-family: "Quattrocento Sans", sans-serif; */
+  /* font-family: "Jost", sans-serif; */
+}
+/* buenas combinaciones: Cinzel y Lora // Jost y Prata // Work Sans y Playfair */
+
+h4,
+h5 {
+  font-family: "Lora", sans-serif;
+}
 .logoNavBar {
   max-width: 200px;
   max-height: 70px;
