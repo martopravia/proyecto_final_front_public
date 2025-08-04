@@ -20,7 +20,7 @@ export default function AppNavbar() {
         className="d-flex justify-content-between align-items-center w-100 px-3"
       >
         <div className="d-flex align-items-center">
-          <Navbar.Toggle aria-controls="main-navbar-nav" className="me-2"/>
+          <Navbar.Toggle aria-controls="main-navbar-nav" className="me-2" />
           <Navbar.Brand
             className="logo-center d-flex justify-content-center align-items-center "
             as={NavLink}
@@ -57,7 +57,7 @@ export default function AppNavbar() {
               Products
             </Nav.Link>
             <Nav.Link eventKey="3" as={NavLink} to="/aboutus">
-              About this Proyect
+              About this Project
             </Nav.Link>
             <Nav.Link
               eventKey="4"

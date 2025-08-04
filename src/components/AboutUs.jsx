@@ -2,6 +2,34 @@ import "../AboutUs.css";
 import CartHandler from "./CartHandler";
 
 export default function AboutUs() {
+  const developers = [
+    {
+      name: "Martin Pravia",
+      linkedin: "https://www.linkedin.com/in/martin-pravia/",
+      github: "https://github.com/martopravia",
+    },
+    {
+      name: "Manuel Negrin",
+      linkedin: "https://www.linkedin.com/in/manuelnegrin",
+      github: "https://github.com/ManuelNegrin",
+    },
+    {
+      name: "Alfonso Pavia",
+      linkedin: "https://www.linkedin.com/in/alfonsopavia",
+      github: "https://github.com/paiva92",
+    },
+    {
+      name: "Juan Pedro Diaz",
+      linkedin: "https://www.linkedin.com/in/juanpedrodiazlumaca/",
+      github: "https://github.com/juanpediaz",
+    },
+    {
+      name: "Joaquin Reinante",
+      linkedin: "https://www.linkedin.com/in/joaquin-reinante-818007193/",
+      github: "https://github.com/CatoReinante",
+    },
+  ];
+
   return (
     <>
       <div
@@ -98,13 +126,7 @@ export default function AboutUs() {
 
           <div className="col-12 col-lg-8">
             <div className="row">
-              {[
-                "Martin Pravia",
-                "Manuel Negrin",
-                "Alfonso Pavia",
-                "Juan Pedro Diaz",
-                "Joaquin Reinante",
-              ].map((name, index) => (
+              {developers.map((dev, index) => (
                 <div
                   key={index}
                   className="col-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center"
@@ -116,16 +138,16 @@ export default function AboutUs() {
                       alt="Avatar"
                     />
                     <div className="card-body">
-                      <h4 className="card-title">{name}</h4>
+                      <h4 className="card-title">{dev.name}</h4>
                       <h5 className="card-subtitle my-2">Junior Developer</h5>
                       <p className="card-text">
                         Some quick example text to build on the card title.
                       </p>
                       <div className="d-flex justify-content-center gap-3 flex-wrap">
-                        <a href="#">
+                        <a href={dev.linkedin}>
                           <i className="bi bi-linkedin"></i>
                         </a>
-                        <a href="#" style={{ color: "#000000" }}>
+                        <a href={dev.github}>
                           <i className="bi bi-github"></i>
                         </a>
                       </div>
