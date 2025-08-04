@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function CheckoutPage() {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const [paymentMethod, setPaymentMethod] = useState("creditCard");
+  const [paymentMethod, setPaymentMethod] = useState("");
   const [shippingInfo, setShippingInfo] = useState({
     name: "",
     address: "",
