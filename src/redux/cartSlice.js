@@ -19,14 +19,19 @@ const cartSlice = createSlice({
       }
     },
     removeFromCart: (state, action) => {
-      const id = action.payload;
-      state.cartItems = state.cartItems.filter((item) => item.id !== id);
+      const productId = action.payload;
+      state.cartItems = state.cartItems.filter((item) => item.id !== productId);
     },
     updateQuantity: (state, action) => {
-      const { id, quantity } = action.payload;
-      const item = state.cartItems.find((item) => item.id === id);
+      const { productId, delta } = action.payload;
+      const item = state.cartItems.find((item) => item.id === productId);
       if (item) {
-        item.quantity = quantity;
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+          state.cartItems = state.cartItems.filter(
+            (item) => item.id !== productId
+          );
+        }
       }
     },
     clearCart: (state) => {
