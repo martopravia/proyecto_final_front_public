@@ -7,6 +7,7 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import { resetStep } from "../redux/checkoutSlice";
+import { formatName } from "../utils/formatName";
 
 export default function Checkout({
   cartItems,
@@ -128,7 +129,7 @@ export default function Checkout({
                         />
                       </div>
                       <div className="col-12 col-md-8">
-                        <h4>{item.name}</h4>
+                        <h4>{formatName(item.name)}</h4>
                         <p>{item.description}</p>
                         <p>Quantity: {item.quantity}</p>
                         <p>Price per unit: ${item.price}</p>
