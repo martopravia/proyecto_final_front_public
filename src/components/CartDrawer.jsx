@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { updateQuantity } from "../redux/cartSlice";
 
 export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -71,15 +72,27 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
                     ${item.price} c/u
                   </div>
                   <div className="d-flex align-items-center mt-1">
-                    <input
-                      className="form-control form-control-sm w-25"
-                      type="number"
-                      min={1}
-                      value={item.quantity}
-                      onChange={(e) =>
-                        handleQuantityChange(item.id, parseInt(e.target.value))
+                    <icon
+                      className="border rounded shadowed"
+                      onClick={() =>
+                        dispatch(
+                          updateQuantity({ productId: item.id, delta: -1 })
+                        )
                       }
-                    />
+                    >
+                      -
+                    </icon>
+                    <span>QTY: {item.quantity}</span>
+                    <icon
+                      className="border rounded shadowed"
+                      onClick={() =>
+                        dispatch(
+                          updateQuantity({ productId: item.id, delta: 1 })
+                        )
+                      }
+                    >
+                      +
+                    </icon>
                     <span className="ms-auto fw-semibold">
                       ${item.price * item.quantity}
                     </span>
