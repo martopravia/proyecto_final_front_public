@@ -1,6 +1,11 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { closePrivacyModal } from "../redux/modalSlice";
 
 function PrivacyPolicy({ onClose }) {
+  const show = useSelector((state) => state.modal.showPrivacy);
+  const dispatch = useDispatch();
+  if (!show) return null;
   return (
     <div className="modal-backdrop ">
       <div className="modal-content">
@@ -91,7 +96,7 @@ function PrivacyPolicy({ onClose }) {
           Montevideo, Uruguay
         </p>
         <button
-          onClick={onClose}
+          onClick={() => dispatch(closePrivacyModal())}
           className="btn-outline-dark"
           aria-label="Close"
         >

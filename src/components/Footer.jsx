@@ -1,30 +1,40 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router";
+import { openTermsModal, openPrivacyModal } from "../redux/modalSlice";
 
 const Footer = () => {
+  const dispatch = useDispatch();
   return (
     <>
-      <footer className="bg-light border text-dark mt-5 pt-5 border-top">
-        {/* bg-light y border puestos para ver coom encajan */}
+      <footer className="text-dark mt-5 pt-5 border-top">
         <div className="container-fluid px-4 footer-content">
-          <div className="row">
-            <div className="col-md-6 mb-2 text-center">
-              <p className="fw-bold ">
-                {" "}
-                Subscribe to receive the latest updates by email
+          <div className="d-flex justify-content-evenly align-items-start w-100 px-4 py-3 flex-wrap gap-3">
+            <div
+              className="d-inline-block text-center"
+              style={{
+                minWidth: "300px",
+              }}
+            >
+              <p className="fw-bold mb-2">
+                Subscribe to receive the latest updates by email:
               </p>
-              <div className="d-inline-flex  gap-2 justify-content-center w-100">
+              <div
+                className="d-flex gap-2 justify-content-center"
+                style={{ width: "100%" }}
+              >
                 <input
                   type="email"
                   className="form-control"
                   placeholder="Enter your email... (lastname@domain.com)"
-                  style={{ maxWidth: "300px" }}
+                  style={{ flexGrow: 1 }}
                 />
                 <button className="btn btn-outline-dark">Subscribe</button>
               </div>
             </div>
-            <div className="col mb-3 ">
-              <p className="text-center ">Follow us on:</p>
+
+            <div style={{ minWidth: "300px", maxWidth: "400px" }}>
+              <p className="fw-bold text-center mb-2">Follow us on:</p>
               <div className="d-flex justify-content-center gap-2">
                 {[
                   {
@@ -53,6 +63,7 @@ const Footer = () => {
                     key={socialMediaName}
                     href={url}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="btn btn-outline-dark btn-sm rounded-circle"
                     title={socialMediaName}
                   >
@@ -62,6 +73,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
+
           <div className="row mt-5 mb-3">
             <div className="col-md-2">
               <h6>ABOUT THIS PROYECT</h6>
@@ -85,19 +97,16 @@ const Footer = () => {
               <h6>PRODUCTS</h6>
               <ul className="list-unstyled">
                 <li>
-                  {" "}
                   <Link to="/category/sofas" className="nav-link text-dark">
                     Sofas
                   </Link>
                 </li>
                 <li>
-                  {" "}
                   <Link to="/category/chairs" className="nav-link text-dark">
                     Chairs
                   </Link>
                 </li>
                 <li>
-                  {" "}
                   <Link to="/category/tables" className="nav-link text-dark">
                     Tables
                   </Link>
@@ -108,24 +117,34 @@ const Footer = () => {
               <h6>FAQs</h6>
               <ul className="list-unstyled">
                 <li>
-                  {" "}
-                  <Link to="/register" className="nav-link text-dark">
+                  <Link
+                    className="nav-link text-dark"
+                    onClick={() => dispatch(openTermsModal())}
+                  >
                     How to buy?
                   </Link>
                 </li>
                 <li>
-                  <Link to="/register" className="nav-link text-dark">
+                  <Link
+                    className="nav-link text-dark"
+                    onClick={() => dispatch(openTermsModal())}
+                  >
                     Shipping
                   </Link>
                 </li>
                 <li>
-                  <Link to="/register" className="nav-link text-dark">
+                  <Link
+                    className="nav-link text-dark"
+                    onClick={() => dispatch(openTermsModal())}
+                  >
                     Warranty
                   </Link>
                 </li>
-
                 <li>
-                  <Link to="/register" className="nav-link text-dark">
+                  <Link
+                    className="nav-link text-dark"
+                    onClick={() => dispatch(openTermsModal())}
+                  >
                     Terms and conditions
                   </Link>
                 </li>

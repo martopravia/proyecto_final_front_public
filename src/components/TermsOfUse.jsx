@@ -1,11 +1,16 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { closeTermsModal } from "../redux/modalSlice";
 
-function TermsOfUse({ onClose }) {
+function TermsOfUse() {
+  const dispatch = useDispatch();
+  const show = useSelector((state) => state.modal.showTerms);
+  if (!show) return null;
   return (
     <div className="modal-backdrop">
       <div className="modal-content ">
         <button
-          onClick={onClose}
+          onClick={() => dispatch(closeTermsModal())}
           className="btn-close"
           aria-label="Close"
           style={{ position: "absolute", top: "15px", right: "15px" }}
@@ -87,7 +92,7 @@ function TermsOfUse({ onClose }) {
           Montevideo, Uruguay
         </p>
         <button
-          onClick={onClose}
+          onClick={() => dispatch(closeTermsModal())}
           className="btn-outline-dark"
           aria-label="Close"
         >

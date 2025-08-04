@@ -13,6 +13,7 @@ import ProductPage from "./components/ProductPage";
 import CategoryPage from "./components/CategoryPage";
 import Home from "./components/Home";
 import ProductList from "./components/ProductList";
+import LegalModals from "./components/LegalModals";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="*" element={<p>There's nothing here: 404!</p>} />
         </Route>
       </Routes>
+      <LegalModals />
       <ToastContainer
         position="top-right"
         autoClose={5000}
