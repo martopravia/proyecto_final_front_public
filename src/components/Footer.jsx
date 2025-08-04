@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router";
-import { openTermsModal, openPrivacyModal } from "../redux/modalSlice";
+import { openTermsModal } from "../redux/modalSlice";
+import { toast } from "react-toastify";
 
 const Footer = () => {
   const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    const trimmedEmail = email.trim();
+
+    if (
+      !trimmedEmail ||
+      !trimmedEmail.includes("@") ||
+      !trimmedEmail.includes(".")
+    ) {
+      toast.warning("Please enter a valid email address");
+      return;
+    }
+    toast.success(
+      "You’ve successfully subscribed to receive the latest updates by email"
+    );
+    setEmail("");
+  };
+
   return (
     <>
       <footer className="text-dark mt-5 pt-5 border-top">
@@ -28,8 +48,16 @@ const Footer = () => {
                   className="form-control"
                   placeholder="Enter your email... (lastname@domain.com)"
                   style={{ flexGrow: 1 }}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
-                <button className="btn btn-outline-dark">Subscribe</button>
+                <button
+                  className="btn btn-outline-dark"
+                  type="button"
+                  onClick={handleSubscribe}
+                >
+                  Subscribe
+                </button>
               </div>
             </div>
 
