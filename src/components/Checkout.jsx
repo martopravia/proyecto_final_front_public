@@ -339,7 +339,7 @@ export default function Checkout() {
           )}
 
           {paymentMethod === "paypal" && (
-            <div className="mt-5 mb-4">
+            <div className="mt-5 mb-5">
               <Link to={"https://www.paypal.com/uy/home"}>
                 <button className="btn btn-outline-secondary w-100">
                   Continue with PayPal
@@ -349,7 +349,7 @@ export default function Checkout() {
           )}
 
           {paymentMethod === "crypto" && (
-            <div className="mt-5 mb-4">
+            <div className="mt-5 mb-5">
               <Link to={"https://accounts.binance.com/es/register"}>
                 <button className="btn btn-outline-secondary w-100">
                   Continue with Binance
