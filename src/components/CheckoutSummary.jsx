@@ -13,10 +13,7 @@ function CheckoutSummary() {
   );
 
   return (
-    <div
-      className="p-4 border rounded shadow mx-4 "
-      style={{ marginTop: "127px" }}
-    >
+    <div className="p-4 border rounded shadow mx-4 ">
       <h4>Order Summary</h4>
       <p>Total quantity: {cartItems.length}</p>
       <p>Subtotal: ${total.toFixed(2)}</p>

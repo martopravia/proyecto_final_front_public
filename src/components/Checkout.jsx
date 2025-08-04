@@ -95,15 +95,15 @@ export default function Checkout() {
                 className="align-items-left p-4 border rounded shadow mb-3"
               >
                 <div className="row">
-                  <div className="col">
+                  <div className="col-12 col-md-4 mb-3 mb-md-0">
                     <img
                       src="src\img\sillon nordico.png"
                       style={{ width: "500px", height: "auto" }}
-                      className="img-fluid me-4"
+                      className="img-fluid me-4 w-100"
                       alt=""
                     />
                   </div>
-                  <div className="col-8">
+                  <div className="col-12 col-md-8">
                     <h4>{item.name}</h4>
                     <p>
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -125,6 +125,7 @@ export default function Checkout() {
               </li>
             ))}
           </ul>
+          <hr />
         </>
       )}
 
