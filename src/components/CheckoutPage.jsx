@@ -26,7 +26,7 @@ export default function CheckoutPage() {
           />
         </div>
         <div className="col-md-4 col-sm-12">
-          <div className="position-sticky" style={{ top: "225px" }}>
+          <div className="position-sticky sticky-padding">
             <CheckoutSummary
               paymentMethod={paymentMethod}
               shippingInfo={shippingInfo}

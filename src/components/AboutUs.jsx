@@ -5,6 +5,7 @@ export default function AboutUs() {
   const developers = [
     {
       name: "Martin Pravia",
+      profileImg: "src/img/fotoPerfilMarto.jpeg",
       linkedin: "https://www.linkedin.com/in/martin-pravia/",
       github: "https://github.com/martopravia",
     },
@@ -15,16 +16,19 @@ export default function AboutUs() {
     },
     {
       name: "Alfonso Pavia",
-      linkedin: "https://www.linkedin.com/in/alfonsopavia",
+      profileImg: "src/img/fotoPerfilAlfo.jpg",
+      linkedin: "https://www.linkedin.com/in/alfonso-paiva-vázquez-03112a13b",
       github: "https://github.com/paiva92",
     },
     {
       name: "Juan Pedro Diaz",
+      profileImg: "src/img/fotoPerfilJuanPe.png",
       linkedin: "https://www.linkedin.com/in/juanpedrodiazlumaca/",
       github: "https://github.com/juanpediaz",
     },
     {
       name: "Joaquin Reinante",
+      profileImg: "src/img/fotoPerfilCato.jpg",
       linkedin: "https://www.linkedin.com/in/joaquin-reinante-818007193/",
       github: "https://github.com/CatoReinante",
     },
@@ -134,7 +138,7 @@ export default function AboutUs() {
                   <div className="card h-100 text-center">
                     <img
                       className="card-img-top img-fluid cardSize"
-                      src="src/img/avatar.avif"
+                      src={dev.profileImg}
                       alt="Avatar"
                     />
                     <div className="card-body">

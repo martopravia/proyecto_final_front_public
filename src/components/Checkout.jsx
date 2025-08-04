@@ -2,6 +2,12 @@ import { use, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart, removeFromCart } from "../redux/cartSlice";
 import { Link } from "react-router";
+import Box from "@mui/material/Box";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import { resetStep } from "../redux/checkoutSlice";
+import { formatName } from "../utils/formatName";
 
 export default function Checkout({
   cartItems,
@@ -12,6 +18,8 @@ export default function Checkout({
 }) {
   const dispatch = useDispatch();
   const step = useSelector((state) => state.checkout.step);
+
+  const steps = ["Order details", "Contact & Shipping", "Payment method"];
 
   const paymentOptions = [
     {
@@ -73,55 +81,79 @@ export default function Checkout({
 
   return (
     <div className="p-4 d-flex flex-column align-items-left">
+      <Box sx={{ width: "100%" }}>
+        <Stepper
+          activeStep={step - 1}
+          alternativeLabel
+          completed={{
+            0: step > 1, // Paso 1 completado
+            1: step > 2, // Paso 2 completado
+            2: step > 3, // Paso 3 completado (cuando estás en el 4)
+          }}
+        >
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Box>
+
       {step === 1 && (
         <>
-          <h3 className="mt-5 mb-4 text">Order details</h3>
-          <ul
-            className="p-0 align-items-left"
-            style={{ listStyleType: "none" }}
-          >
-            {cartItems.map((item) => (
-              <li
-                key={item.id}
-                className="align-items-left p-4 border rounded shadow mb-3"
+          {cartItems.length === 0 ? (
+            <div className="text-center" style={{ marginTop: "150px" }}>
+              <i className="bi bi-cart-x" style={{ fontSize: "50px" }}></i>
+              <h5 className="mt-3">Your cart is empty</h5>
+              <p className="lead">Please add some items before continuing.</p>
+            </div>
+          ) : (
+            <>
+              <h3 className="mt-5 mb-4">Order details</h3>
+              <ul
+                className="p-0 align-items-left"
+                style={{ listStyleType: "none" }}
               >
-                <div className="row">
-                  <div className="col-12 col-md-4 mb-3 mb-md-0">
-                    <img
-                      src="src\img\sillon nordico.png"
-                      style={{ width: "500px", height: "auto" }}
-                      className="img-fluid me-4 w-100"
-                      alt=""
-                    />
-                  </div>
-                  <div className="col-12 col-md-8">
-                    <h4>{item.name}</h4>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Repudiandae accusamus quas architecto a, maxime
-                      consequatur?
-                    </p>
-                    <p>Quantity: {item.quantity}</p>
-                    <p>Price per unit: ${item.price}</p>
-                    <p>Subtotal: ${item.price * item.quantity}</p>
-                    <div className="d-flex justify-content-end">
-                      <i
-                        className="bi bi-trash3"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => dispatch(removeFromCart(item.id))}
-                      ></i>
+                {cartItems.map((item) => (
+                  <li
+                    key={item.id}
+                    className="align-items-left p-4 border rounded shadow mb-3"
+                  >
+                    <div className="row">
+                      <div className="col-12 col-md-4 mb-3 mb-md-0">
+                        <img
+                          src={item.image}
+                          style={{ width: "500px", height: "auto" }}
+                          className="img-fluid me-4 w-100"
+                          alt=""
+                        />
+                      </div>
+                      <div className="col-12 col-md-8">
+                        <h4>{formatName(item.name)}</h4>
+                        <p>{item.description}</p>
+                        <p>Quantity: {item.quantity}</p>
+                        <p>Price per unit: ${item.price}</p>
+                        <p>Subtotal: ${item.price * item.quantity}</p>
+                        <div className="d-flex justify-content-end">
+                          <i
+                            className="bi bi-trash3"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => dispatch(removeFromCart(item.id))}
+                          ></i>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </>
       )}
 
       {step === 2 && (
         <>
-          <h3 className="mt-5 mb-4"> Contact & Shipping info</h3>
+          <h3 className="mt-5 mb-4"> Contact & Shipping info </h3>
           {/* {!LoggedUser ? (
       <div>
         <h4>To continue, please log in or register</h4>
@@ -354,6 +386,22 @@ export default function Checkout({
               </Link>
             </div>
           )}
+        </>
+      )}
+      {step === 4 && (
+        <>
+          <div className="text-center" style={{ marginTop: "180px" }}>
+            <h2> Thanks for shopping with us!</h2>
+            <p className="lead">A confirmation email has been sent to you.</p>
+            <Link to={"/"}>
+              <button
+                className="btn btn-outline-secondary"
+                onClick={() => dispatch(resetStep())}
+              >
+                Back home
+              </button>
+            </Link>
+          </div>
         </>
       )}
     </div>

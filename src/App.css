@@ -82,6 +82,16 @@ h5 {
   object-fit: cover;
   border-radius: 8px;
 }
+.sticky-padding {
+  padding-top: 0;
+  top: -100px;
+}
+
+@media (min-width: 768px) {
+  .sticky-padding {
+    padding-top: 190px;
+  }
+}
 
 .scroll-container {
   display: flex;
