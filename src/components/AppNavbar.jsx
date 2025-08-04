@@ -34,8 +34,8 @@ export default function AppNavbar() {
           </Navbar.Brand>
         </div>
 
-        <div className="d-none d-sm-flex gap-2 align-items-center">
-          <Nav.Link as={NavLink} to="/login" className="text-dark">
+        <div className="d-flex gap-2 align-items-center">
+          <Nav.Link as={NavLink} to="/login" className="text-dark d-none d-sm-inline">
             Login
           </Nav.Link>
           <CartHandler />
