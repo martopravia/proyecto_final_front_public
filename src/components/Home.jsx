@@ -39,7 +39,7 @@ function Home() {
 
       <div className="row m-5">
         <div
-          className="col-12 col-md-6 col-xl-4 text-center mb-4 mt-5"
+          className="col-12 col-md-6 col-xl-4 mb-4 mt-5 d-flex flex-column justify-content-end align-items-center text-center"
           onClick={() => handleClick("sofas")}
         >
           <img
@@ -47,10 +47,10 @@ function Home() {
             className="img-fluid img-home interactive"
             alt="Sofa image"
           />
-          <h4 className="mt-5">Heritage Sofas</h4>
+          <h4 className="mt-5  ">Heritage Sofas</h4>
         </div>
         <div
-          className="col-12 col-md-6 col-xl-4 text-center mb-4 mt-5"
+          className="col-12 col-md-6 col-xl-4  mb-4 mt-5 d-flex flex-column justify-content-end align-items-center text-center"
           onClick={() => handleClick("chairs")}
         >
           <img
@@ -58,10 +58,10 @@ function Home() {
             className="img-fluid img-home interactive"
             alt="Chair image"
           />
-          <h4 className="mt-5">Refined Seating</h4>
+          <h4 className="mt-5 ">Refined Seating</h4>
         </div>
         <div
-          className="col-12 col-md-6 col-xl-4 text-center mb-4 mt-5"
+          className="col-12 col-md-6 col-xl-4  mb-4 mt-5 d-flex flex-column justify-content-end align-items-center text-center"
           onClick={() => handleClick("tables")}
         >
           <img
@@ -69,7 +69,7 @@ function Home() {
             className="img-fluid img-home interactive"
             alt="Table image"
           />
-          <h4 className="mt-5">Artisan Tables</h4>
+          <h4 className="mt-5 ">Artisan Tables</h4>
         </div>
       </div>
       <hr />
@@ -81,7 +81,7 @@ function Home() {
           {randomProducts.map((product) => (
             <div
               key={product.id}
-              className="scroll-item interactive text-center col-6 col-sm-4 col-md-3 col-lg-2"
+              className="scroll-item interactive text-center col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column justify-content-end align-items-center text-center"
               style={{
                 maxWidth: "300px",
               }}
