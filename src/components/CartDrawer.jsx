@@ -1,19 +1,13 @@
 import { Link } from "react-router";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateQuantity } from "../redux/cartSlice";
+import { clearCart, updateQuantity } from "../redux/cartSlice";
+import { formatName } from "../utils/formatName";
+import { toast } from "react-toastify";
 
 export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
-
-  const handleQuantityChange = (id, quantity) => {
-    dispatch(updateQuantity({ id, quantity }));
-  };
-
-  const handleClearCart = () => {
-    dispatch(clearCart());
-  };
 
   useEffect(() => {
     const esc = (e) => {
@@ -67,32 +61,45 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
                   }}
                 />
                 <div className="flex-grow-1">
-                  <div className="fw-semibold">{item.name}</div>
+                  <div className="fw-semibold">{formatName(item.name)}</div>
                   <div className="text-muted" style={{ fontSize: "0.85rem" }}>
                     ${item.price} c/u
                   </div>
-                  <div className="d-flex align-items-center mt-1">
-                    <icon
-                      className="border rounded shadowed"
+                  <div className="d-flex align-items-center mt-2 gap-2">
+                    <span style={{ fontSize: "1rem" }}>
+                      Quantity: {item.quantity}
+                    </span>
+                    <button
+                      className="btn btn-outline-secondary border-1 border-light-subtle rounded p-1 d-flex align-items-center justify-content-center btn-sm px-2"
+                      style={{
+                        width: "28px",
+                        height: "28px",
+                        fontSize: "0.75rem",
+                      }}
                       onClick={() =>
                         dispatch(
                           updateQuantity({ productId: item.id, delta: -1 })
                         )
                       }
                     >
-                      -
-                    </icon>
-                    <span>QTY: {item.quantity}</span>
-                    <icon
-                      className="border rounded shadowed"
+                      <i className="bi bi-dash"></i>
+                    </button>
+                    <button
+                      className="btn btn-outline-secondary border-1 border-light-subtle rounded p-1 d-flex align-items-center justify-content-center btn-sm px-2"
+                      style={{
+                        width: "28px",
+                        height: "28px",
+                        fontSize: "0.75rem",
+                      }}
                       onClick={() =>
                         dispatch(
                           updateQuantity({ productId: item.id, delta: 1 })
                         )
                       }
                     >
-                      +
-                    </icon>
+                      <i className="bi bi-plus"></i>
+                    </button>
+
                     <span className="ms-auto fw-semibold">
                       ${item.price * item.quantity}
                     </span>
@@ -126,11 +133,51 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
           </span>
         </div>
         <div className="d-flex flex-column gap-2">
-          <button className="btn btn-outline-danger" onClick={handleClearCart}>
+          {/* boton de vaciar carrito con toastify */}
+          <button
+            className="btn btn-outline-danger"
+            onClick={() => {
+              toast.info(
+                ({ closeToast }) => (
+                  <div>
+                    <p>Are you sure you want to empty the cart?</p>
+                    <div className="d-flex justify-content-end gap-2 mt-2">
+                      <button
+                        className="btn btn-outline-danger"
+                        onClick={() => {
+                          dispatch(clearCart());
+                          closeToast();
+                          toast.success("Cart emptied successfully!");
+                        }}
+                      >
+                        Accept
+                      </button>
+                      <button
+                        className="btn btn-sm btn-secondary"
+                        onClick={closeToast}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                ),
+                {
+                  position: "bottom-right",
+                  autoClose: false,
+                  closeOnClick: false,
+                  closeButton: false,
+                  draggable: false,
+                  pauseOnHover: true,
+                }
+              );
+            }}
+          >
             Empty cart
           </button>
           <Link to={"/checkout"}>
-            <button className="btn btn-dark w-100">Proceed to checkout</button>
+            <button className="btn btn-dark w-100" onClick={onClose}>
+              Proceed to checkout
+            </button>
           </Link>
         </div>
       </div>

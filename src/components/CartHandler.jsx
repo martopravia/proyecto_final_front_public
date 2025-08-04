@@ -15,7 +15,9 @@ export default function CartHandler() {
           🛒 Cart
         </button>
       )}
-
+      {cartOpen && (
+        <div className="cart-open" on onClick={() => setIsOpen(false)}></div>
+      )}
       <CartDrawer isOpen={cartOpen} onClose={() => setIsOpen(false)} />
     </>
   );
