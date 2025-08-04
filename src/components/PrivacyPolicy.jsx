@@ -92,6 +92,7 @@ function PrivacyPolicy({ onClose }) {
             📍 <span className="fw-bold">Address</span>: Calle Ficticia 1234,
             Montevideo, Uruguay
           </p>
+          <hr />
           <button
             onClick={onClose}
             className="btn btn-outline-dark w-100 "
