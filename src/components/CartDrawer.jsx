@@ -50,7 +50,7 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
                 className="d-flex align-items-center gap-3 border-bottom pb-2"
               >
                 <img
-                  src={item.imageUrl}
+                  src={item.image}
                   alt={item.name}
                   style={{
                     width: "60px",
