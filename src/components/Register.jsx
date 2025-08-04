@@ -30,7 +30,7 @@ function Register() {
         <form action="" onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
-              * Name
+              * First Name
             </label>
             <input
               type="text"
@@ -54,7 +54,7 @@ function Register() {
           </div>
           <div className="mb-3">
             <label htmlFor="cellPhone" className="form-label">
-              * Cell Phone Number
+              * Phone Number
             </label>
             <input
               type="text"

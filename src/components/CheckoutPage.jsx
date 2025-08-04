@@ -7,9 +7,9 @@ export default function CheckoutPage() {
   const { cartItems } = useCart();
 
   return (
-    <div className=" p-4">
+    <div className="">
       <div className="row">
-        <div className="col-md-8 col-sm-12 ">
+        <div className="col-md-8 col-sm-12">
           <Checkout cartItems={cartItems} />
         </div>
         <div className="col-md-4 col-sm-12">
