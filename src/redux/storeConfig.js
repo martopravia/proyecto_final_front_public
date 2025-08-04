@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
 import productsReducer from "./productsSlice";
 import checkoutReducer from "./checkoutSlice";
+import modalReducer from "./modalSlice";
 import {
   persistStore,
   persistReducer,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   products: productsReducer,
   checkout: checkoutReducer,
+  modal: modalReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
