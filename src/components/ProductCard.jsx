@@ -1,13 +1,8 @@
 import { useNavigate } from "react-router";
 import { formatName } from "../utils/formatName";
+import WishlistButton from "./WishlistButton";
 
-export default function ProductCard({
-  id,
-  name,
-
-  price,
-  image,
-}) {
+export default function ProductCard({ id, name, price, image, featured }) {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/products/${id}`);
@@ -15,14 +10,23 @@ export default function ProductCard({
 
   return (
     <div
-      className="interactive card h-100 w-100 d-flex flex-column border rounded shadow"
+      className="interactive card h-100 w-100 d-flex flex-column border rounded shadow overflow-hidden"
       onClick={handleClick}
     >
+      {featured && <div className="corner-ribbon">FEATURED</div>}
       <img
         src={image}
         alt={name}
-        className="card-img-top img-fluid"
-        style={{ height: "350px", objectFit: "cover" }}
+        className="card-img-top img-fluid object-fit-contain"
+        style={{ height: "300px" }}
+      />
+      <WishlistButton
+        className={"fs-5"}
+        style={{
+          position: "absolute",
+          top: "20px",
+          right: "20px",
+        }}
       />
       <div className="card-body d-flex flex-column justify-content-between flex-grow-1">
         <div>
