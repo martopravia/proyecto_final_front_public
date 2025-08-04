@@ -12,7 +12,7 @@ export default function CartHandler() {
     <>
       {!cartOpen && (
         <button className="btn border-0 bg-dark text-light" onClick={openCart}>
-          🛒 Cart
+          🛒 
         </button>
       )}
 

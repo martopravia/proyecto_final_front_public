@@ -18,9 +18,10 @@ export default function AboutUs() {
             This e-commerce platform represents a collaborative effort by
             students from Hack Academy's intensive Coding Bootcamp. Our
             comprehensive full-time program spans 3 months, during which we
-            dedicated over 600 hours mastering cutting-edge technologies
-            including Node.js, Express, React.js, SQL, MongoDB, and Git version
-            control.
+            dedicated over 600+ hours of code, 112 cups of coffee (yes, we
+            counted), and only 3 emotional breakdowns mastering cutting-edge
+            technologies including Node.js, Express, React.js, SQL, MongoDB, and
+            Git version control.
           </p>
         </div>
       </div>
@@ -120,9 +121,14 @@ export default function AboutUs() {
                       <p className="card-text">
                         Some quick example text to build on the card title.
                       </p>
-                      <a href="#">
-                        <i className="bi bi-linkedin"></i>
-                      </a>
+                      <div className="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="#">
+                          <i className="bi bi-linkedin"></i>
+                        </a>
+                        <a href="#" style={{ color: "#000000" }}>
+                          <i className="bi bi-github"></i>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>

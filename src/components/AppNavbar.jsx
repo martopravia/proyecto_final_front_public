@@ -17,22 +17,24 @@ export default function AppNavbar() {
     >
       <Container
         fluid
-        className="nav-content d-flex justify-content-between align-items-center fs-5 w-100"
+        className="d-flex justify-content-between align-items-center w-100 px-3"
       >
-        <Navbar.Toggle aria-controls="main-navbar-nav" />
-        <Navbar.Brand
-          className="logo-center d-flex justify-content-center align-items-center "
-          as={NavLink}
-          to="/"
-        >
-          <img
-            className="img-fluid logoNavBar"
-            src="src\img\sutdio_nora_logo.png"
-            alt="Studio Nora Logo"
-          />
-        </Navbar.Brand>
+        <div className="d-flex align-items-center">
+          <Navbar.Toggle aria-controls="main-navbar-nav" className="me-2"/>
+          <Navbar.Brand
+            className="logo-center d-flex justify-content-center align-items-center "
+            as={NavLink}
+            to="/"
+          >
+            <img
+              className="img-fluid logoNavBar"
+              src="src\img\sutdio_nora_logo.png"
+              alt="Studio Nora Logo"
+            />
+          </Navbar.Brand>
+        </div>
 
-        <div className="d-flex gap-2 justify-content-between align-items-center">
+        <div className="d-none d-sm-flex gap-2 align-items-center">
           <Nav.Link as={NavLink} to="/login" className="text-dark">
             Login
           </Nav.Link>
@@ -45,7 +47,7 @@ export default function AppNavbar() {
         </div>
         <Navbar.Collapse id="main-navbar-nav">
           <Nav
-            className="flex-column text-dark"
+            className="flex-column text-dark ps-3"
             onSelect={() => setExpanded(false)}
           >
             <Nav.Link eventKey="1" as={NavLink} to="/" end>
@@ -55,7 +57,15 @@ export default function AppNavbar() {
               Products
             </Nav.Link>
             <Nav.Link eventKey="3" as={NavLink} to="/aboutus">
-              About Us
+              About this Proyect
+            </Nav.Link>
+            <Nav.Link
+              eventKey="4"
+              as={NavLink}
+              to="/login"
+              className="d-sm-none mt-2"
+            >
+              Login
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
