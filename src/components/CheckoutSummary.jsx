@@ -46,7 +46,7 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
       <p className="fw-bold">Total: ${(total + 5 + total * 0.21).toFixed(2)}</p>
 
       <div className="d-flex flex-column justify-content-between flex-lg-row gap-2 mt-3">
-        {step >= 2 && (
+        {(step === 2 || step === 3) && (
           <button
             className="btn btn-secondary"
             onClick={() => dispatch(prevStep())}
