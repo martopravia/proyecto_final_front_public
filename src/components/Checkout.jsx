@@ -100,55 +100,52 @@ export default function Checkout({
 
       {step === 1 && (
         <>
-          <h3 className="mt-5 mb-4">Order details</h3>
-
           {cartItems.length === 0 ? (
-            <div className="text-center text-muted my-5">
-              <i className="bi bi-cart-x" style={{ fontSize: "3rem" }}></i>
+            <div className="text-center" style={{ marginTop: "150px" }}>
+              <i className="bi bi-cart-x" style={{ fontSize: "50px" }}></i>
               <h5 className="mt-3">Your cart is empty</h5>
               <p className="lead">Please add some items before continuing.</p>
             </div>
           ) : (
-            <ul
-              className="p-0 align-items-left"
-              style={{ listStyleType: "none" }}
-            >
-              {cartItems.map((item) => (
-                <li
-                  key={item.id}
-                  className="align-items-left p-4 border rounded shadow mb-3"
-                >
-                  <div className="row">
-                    <div className="col-12 col-md-4 mb-3 mb-md-0">
-                      <img
-                        src="src\\img\\sillon nordico.png"
-                        style={{ width: "500px", height: "auto" }}
-                        className="img-fluid me-4 w-100"
-                        alt=""
-                      />
-                    </div>
-                    <div className="col-12 col-md-8">
-                      <h4>{item.name}</h4>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Repudiandae accusamus quas architecto a, maxime
-                        consequatur?
-                      </p>
-                      <p>Quantity: {item.quantity}</p>
-                      <p>Price per unit: ${item.price}</p>
-                      <p>Subtotal: ${item.price * item.quantity}</p>
-                      <div className="d-flex justify-content-end">
-                        <i
-                          className="bi bi-trash3"
-                          style={{ cursor: "pointer" }}
-                          onClick={() => dispatch(removeFromCart(item.id))}
-                        ></i>
+            <>
+              <h3 className="mt-5 mb-4">Order details</h3>
+              <ul
+                className="p-0 align-items-left"
+                style={{ listStyleType: "none" }}
+              >
+                {cartItems.map((item) => (
+                  <li
+                    key={item.id}
+                    className="align-items-left p-4 border rounded shadow mb-3"
+                  >
+                    <div className="row">
+                      <div className="col-12 col-md-4 mb-3 mb-md-0">
+                        <img
+                          src={item.image}
+                          style={{ width: "500px", height: "auto" }}
+                          className="img-fluid me-4 w-100"
+                          alt=""
+                        />
+                      </div>
+                      <div className="col-12 col-md-8">
+                        <h4>{item.name}</h4>
+                        <p>{item.description}</p>
+                        <p>Quantity: {item.quantity}</p>
+                        <p>Price per unit: ${item.price}</p>
+                        <p>Subtotal: ${item.price * item.quantity}</p>
+                        <div className="d-flex justify-content-end">
+                          <i
+                            className="bi bi-trash3"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => dispatch(removeFromCart(item.id))}
+                          ></i>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
+                  </li>
+                ))}
+              </ul>
+            </>
           )}
         </>
       )}

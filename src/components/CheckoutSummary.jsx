@@ -34,11 +34,15 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
       toast.success("Order confirmed! Thank you for your purchase.");
     }, 1500);
   };
+  console.log(cartItems);
 
   return (
     <div className="p-4 border rounded shadow mx-4">
       <h4>Order Summary</h4>
-      <p>Total quantity: {cartItems.length}</p>
+      <p>
+        Total quantity:{" "}
+        {cartItems.reduce((sum, item) => sum + item.quantity, 0)}
+      </p>
       <p>Subtotal: ${total.toFixed(2)}</p>
       <p>Taxes: ${(total * 0.21).toFixed(2)}</p>
       <p>Shipping: $5.00</p>
