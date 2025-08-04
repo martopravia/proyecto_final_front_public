@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function CheckoutPage() {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("creditCard");
   const [shippingInfo, setShippingInfo] = useState({
     name: "",
     address: "",
@@ -26,7 +26,7 @@ export default function CheckoutPage() {
           />
         </div>
         <div className="col-md-4 col-sm-12">
-          <div className="position-sticky" style={{ top: "223px" }}>
+          <div className="position-sticky" style={{ top: "225px" }}>
             <CheckoutSummary
               paymentMethod={paymentMethod}
               shippingInfo={shippingInfo}
