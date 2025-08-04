@@ -3,14 +3,17 @@ import { Link } from "react-router";
 import { toast } from "react-toastify";
 import PrivacyPolicy from "./PrivacyPolicy";
 import TermsOfUse from "./TermsOfUse";
+import { useDispatch } from "react-redux";
+import { openPrivacyModal, openTermsModal } from "../redux/modalSlice";
 
 function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [modalPrivacy, setModalPrivacy] = useState(false);
-  const [modalTerms, setModalTerms] = useState(false);
+  // const [modalPrivacy, setModalPrivacy] = useState(false);
+  // const [modalTerms, setModalTerms] = useState(false);
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -140,7 +143,7 @@ function Register() {
               <span
                 role="button"
                 className="text-primary"
-                onClick={() => setModalTerms(true)}
+                onClick={() => dispatch(openTermsModal())}
               >
                 Terms of use
               </span>{" "}
@@ -148,7 +151,7 @@ function Register() {
               <span
                 role="button"
                 className="text-primary"
-                onClick={() => setModalPrivacy(true)}
+                onClick={() => dispatch(openPrivacyModal())}
               >
                 Privacy Policy
               </span>
@@ -170,15 +173,8 @@ function Register() {
           Already have an account? Log in
         </Link>
       </div>
-      {modalPrivacy && (
-        <PrivacyPolicy
-          show={modalPrivacy}
-          onClose={() => setModalPrivacy(false)}
-        />
-      )}
-      {modalTerms && (
-        <TermsOfUse show={modalTerms} onClose={() => setModalTerms(false)} />
-      )}
+      <PrivacyPolicy />
+      <TermsOfUse />
     </div>
   );
 }
