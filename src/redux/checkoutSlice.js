@@ -7,7 +7,7 @@ export const checkoutSlice = createSlice({
   },
   reducers: {
     nextStep: (state) => {
-      if (state.step < 3) state.step += 1;
+      if (state.step < 4) state.step += 1;
     },
     prevStep: (state) => {
       if (state.step > 1) state.step -= 1;
