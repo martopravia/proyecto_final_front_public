@@ -1,19 +1,17 @@
 import { use, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart, removeFromCart } from "../redux/cartSlice";
-import { Link, useNavigate } from "react-router";
-import { toast } from "react-toastify";
+import { Link } from "react-router";
 
-export default function Checkout() {
-  const cartItems = useSelector((state) => state.cart.cartItems);
+export default function Checkout({
+  cartItems,
+  paymentMethod,
+  setPaymentMethod,
+  shippingInfo,
+  setShippingInfo,
+}) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const step = useSelector((state) => state.checkout.step);
-  const [selectedShippingOption, setSelectedShippingOption] = useState("saved");
-  const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
 
   const paymentOptions = [
     {
@@ -45,39 +43,32 @@ export default function Checkout() {
     },
   ];
 
-  const [shippingInfo, setShippingInfo] = useState({
-    name: "",
-    address: "",
-    email: "",
-    phone: "",
-  });
+  const [selectedShippingOption, setSelectedShippingOption] = useState("saved");
 
-  const [paymentMethod, setPaymentMethod] = useState("creditCard");
   const handleShippingChange = (e) => {
     setShippingInfo({
       ...shippingInfo,
       [e.target.name]: e.target.value,
     });
   };
+  const handleShippingOptionChange = (option) => {
+    setSelectedShippingOption(option);
 
-  const handleConfirm = () => {
-    const orderPayload = {
-      userId: 1,
-      products: cartItems.map(({ id, quantity }) => ({
-        productId: id,
-        quantity,
-      })),
-      shippingInfo,
-      paymentMethod,
-      totalPrice,
-    };
-    console.log("Order confirmed:", orderPayload); //cambia por enviar order a la API
-    dispatch(clearCart());
-    toast.success("Order confirmed! Thank you for your purchase.");
-
-    setTimeout(() => {
-      navigate("/");
-    }, 3000);
+    if (option === "saved") {
+      setShippingInfo({
+        name: "Matias Fernandez",
+        address: "123 calle, Montevideo",
+        email: "matias@example.com",
+        phone: "+598 1234 5678",
+      });
+    } else {
+      setShippingInfo({
+        name: "",
+        address: "",
+        email: "",
+        phone: "",
+      });
+    }
   };
 
   return (
@@ -148,7 +139,7 @@ export default function Checkout() {
                 selectedShippingOption === "saved" ? "border-black" : ""
               }`}
               style={{ cursor: "pointer" }}
-              onClick={() => setSelectedShippingOption("saved")}
+              onClick={() => handleShippingOptionChange("saved")}
             >
               <div className="d-flex align-items-start mb-3">
                 <input
@@ -208,7 +199,7 @@ export default function Checkout() {
                 selectedShippingOption === "manual" ? "border-black" : ""
               }`}
               style={{ cursor: "pointer" }}
-              onClick={() => setSelectedShippingOption("manual")}
+              onClick={() => handleShippingOptionChange("manual")}
             >
               <input
                 className="form-check-input me-3"
@@ -357,17 +348,6 @@ export default function Checkout() {
               </Link>
             </div>
           )}
-
-          <div className="d-flex justify-content-center">
-            <button
-              className="btn btn-success mt-4"
-              style={{ width: "200px" }}
-              onClick={handleConfirm}
-              disabled={!paymentMethod}
-            >
-              Cambiarlo al summary
-            </button>
-          </div>
         </>
       )}
     </div>

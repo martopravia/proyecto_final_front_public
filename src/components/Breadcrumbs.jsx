@@ -5,7 +5,6 @@ export default function Breadcrumbs() {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter(Boolean);
   const products = useSelector((state) => state.products.items);
-  console.log("products:", products);
 
   return (
     <nav aria-label="breadcrumb">

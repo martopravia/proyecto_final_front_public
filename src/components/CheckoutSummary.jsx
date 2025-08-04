@@ -1,16 +1,39 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { nextStep, prevStep } from "../redux/checkoutSlice";
+import { useNavigate } from "react-router";
+import { clearCart } from "../redux/cartSlice";
+import { toast } from "react-toastify";
 
-function CheckoutSummary() {
+function CheckoutSummary({ paymentMethod, shippingInfo }) {
   const dispatch = useDispatch();
   const step = useSelector((state) => state.checkout.step);
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const navigate = useNavigate();
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+  const handleConfirm = () => {
+    const orderPayload = {
+      userId: 1,
+      products: cartItems.map(({ id, quantity }) => ({
+        productId: id,
+        quantity,
+      })),
+      shippingInfo,
+      paymentMethod,
+      totalPrice: total,
+    };
+    console.log("Order confirmed:", orderPayload);
+    dispatch(clearCart());
+    toast.success("Order confirmed! Thank you for your purchase.");
+
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
+  };
 
   return (
     <div className="p-4 border rounded shadow mx-4 ">
@@ -37,6 +60,15 @@ function CheckoutSummary() {
             onClick={() => dispatch(nextStep())}
           >
             Next
+          </button>
+        )}
+        {step === 3 && (
+          <button
+            className="btn btn-success ms-auto"
+            onClick={handleConfirm}
+            disabled={!paymentMethod}
+          >
+            Confirm Order
           </button>
         )}
       </div>
