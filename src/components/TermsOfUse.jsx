@@ -18,7 +18,10 @@ function TermsOfUse() {
         <h3>
           📄 Terms of Use – <span className="fw-bold">STUDIO NÖRA</span>
         </h3>
-        <p>
+
+          <hr />
+        <div className="p-2">
+          <p>
           These Terms of Use ("Terms") govern your access to and use of the
           website operated by <span className="fw-bold">STUDIO NÖRA</span>{" "}
           (referred to as "we", "us", or "our"). By using our website, you agree
@@ -91,6 +94,7 @@ function TermsOfUse() {
           📍 <span className="fw-bold">Address</span>: Calle Ficticia 1234,
           Montevideo, Uruguay
         </p>
+    <hr />
         <button
           onClick={() => dispatch(closeTermsModal())}
           className="btn-outline-dark"
@@ -98,6 +102,8 @@ function TermsOfUse() {
         >
           Close
         </button>
+    </div>
+
       </div>
     </div>
   );

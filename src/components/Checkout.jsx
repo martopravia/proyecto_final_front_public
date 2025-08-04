@@ -18,17 +18,29 @@ export default function Checkout() {
   const paymentOptions = [
     {
       id: "creditCard",
-      label: "Credit/Debit Card",
+      label: (
+        <>
+          Credit/Debit Card <i className="bi bi-credit-card-fill"></i>
+        </>
+      ),
       description: "Pay securely with your card.",
     },
     {
       id: "paypal",
-      label: "PayPal",
+      label: (
+        <>
+          PayPal <i className="bi bi-paypal me-2"></i>
+        </>
+      ),
       description: "Pay easily with your PayPal account.",
     },
     {
       id: "crypto",
-      label: "Crypto Wallet",
+      label: (
+        <>
+          Crypto Wallet <i className="bi bi-currency-bitcoin"></i>
+        </>
+      ),
       description: "Pay with Bitcoin or other supported wallets.",
     },
   ];
@@ -40,7 +52,7 @@ export default function Checkout() {
     phone: "",
   });
 
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("creditCard");
   const handleShippingChange = (e) => {
     setShippingInfo({
       ...shippingInfo,
@@ -83,15 +95,15 @@ export default function Checkout() {
                 className="align-items-left p-4 border rounded shadow mb-3"
               >
                 <div className="row">
-                  <div className="col">
+                  <div className="col-12 col-md-4 mb-3 mb-md-0">
                     <img
                       src="src\img\sillon nordico.png"
                       style={{ width: "500px", height: "auto" }}
-                      className="img-fluid me-4"
+                      className="img-fluid me-4 w-100"
                       alt=""
                     />
                   </div>
-                  <div className="col-8">
+                  <div className="col-12 col-md-8">
                     <h4>{item.name}</h4>
                     <p>
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -255,9 +267,9 @@ export default function Checkout() {
           <h3 className="mt-5 mb-4">Payment method</h3>
           <div className="row">
             {paymentOptions.map(({ id, label, description }) => (
-              <div className="col-md-4 mb-3" key={id}>
+              <div className="col-lg-4 col-md-12 mb-3" key={id}>
                 <div
-                  className={`card p-3 h-100 border rounded shadow ${
+                  className={`p-3 h-100 border rounded shadow ${
                     paymentMethod === id ? "border-primary" : ""
                   }`}
                   onClick={() => setPaymentMethod(id)}
@@ -282,28 +294,8 @@ export default function Checkout() {
             ))}
           </div>
 
-          {paymentMethod === "paypal" && (
-            <div className="mt-3 ms-3">
-              <Link to={"https://www.paypal.com/uy/home"}>
-                <button className="btn btn-outline-secondary" disabled>
-                  Continue with PayPal
-                </button>
-              </Link>
-            </div>
-          )}
-
-          {paymentMethod === "crypto" && (
-            <div className="mt-3 ms-3">
-              <Link to={"https://accounts.binance.com/es/register"}>
-                <button className="btn btn-outline-secondary" disabled>
-                  Continue with Binance
-                </button>
-              </Link>
-            </div>
-          )}
-
           {paymentMethod === "creditCard" && (
-            <div className="mt-4 ms-3">
+            <div className="mt-4">
               <h5>Card Details</h5>
               <div className="row">
                 <div className="col-md-6 mb-3">
@@ -346,6 +338,26 @@ export default function Checkout() {
             </div>
           )}
 
+          {paymentMethod === "paypal" && (
+            <div className="mt-5 mb-5">
+              <Link to={"https://www.paypal.com/uy/home"}>
+                <button className="btn btn-outline-secondary w-100">
+                  Continue with PayPal
+                </button>
+              </Link>
+            </div>
+          )}
+
+          {paymentMethod === "crypto" && (
+            <div className="mt-5 mb-5">
+              <Link to={"https://accounts.binance.com/es/register"}>
+                <button className="btn btn-outline-secondary w-100">
+                  Continue with Binance
+                </button>
+              </Link>
+            </div>
+          )}
+
           <div className="d-flex justify-content-center">
             <button
               className="btn btn-success mt-4"
@@ -353,7 +365,7 @@ export default function Checkout() {
               onClick={handleConfirm}
               disabled={!paymentMethod}
             >
-              ✅ Confirm Order
+              Cambiarlo al summary
             </button>
           </div>
         </>

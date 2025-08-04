@@ -18,7 +18,10 @@ function PrivacyPolicy({ onClose }) {
         <h3>
           🔒 Privacy Policy – <strong>STUDIO NÖRA</strong>
         </h3>
-        <p>
+
+        <hr />
+        <div className="p-2">
+         <p>
           At <span className="fw-bold">STUDIO NÖRA</span>, we take your privacy
           seriously. This policy explains how we collect, use, and protect your
           personal information.
@@ -95,6 +98,7 @@ function PrivacyPolicy({ onClose }) {
           📍 <span className="fw-bold">Address</span>: Calle Ficticia 1234,
           Montevideo, Uruguay
         </p>
+    <hr />
         <button
           onClick={() => dispatch(closePrivacyModal())}
           className="btn-outline-dark"
@@ -102,6 +106,8 @@ function PrivacyPolicy({ onClose }) {
         >
           Close
         </button>
+  </div>
+
       </div>
     </div>
   );
