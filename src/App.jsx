@@ -14,6 +14,8 @@ import CategoryPage from "./components/CategoryPage";
 import Home from "./components/Home";
 import ProductList from "./components/ProductList";
 import LegalModals from "./components/LegalModals";
+import Profile from "./components/Profile";
+import EditProfile from "./components/EditProfile";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
           <Route path="/products/:productId" element={<ProductPage />} />
           {/* <Route path="/profile/:username" element={<Profile />} /> */}
           {<Route path="/aboutus" element={<AboutUs />} />}
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/edit" element={<EditProfile />} />
           <Route path="*" element={<p>There's nothing here: 404!</p>} />
         </Route>
       </Routes>
