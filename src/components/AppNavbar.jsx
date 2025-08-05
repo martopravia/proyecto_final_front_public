@@ -2,9 +2,21 @@ import { NavLink } from "react-router";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import CartHandler from "./CartHandler";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../redux/userSlice";
+import { toast } from "react-toastify";
 
 export default function AppNavbar() {
   const [expanded, setExpanded] = useState(false);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+
+  const handleLogout = () => {
+    setTimeout(() => {
+      toast.info("You have been logged out.");
+      dispatch(logout());
+    }, 1000);
+  };
 
   return (
     <Navbar
@@ -35,9 +47,24 @@ export default function AppNavbar() {
         </div>
 
         <div className="d-flex gap-2 align-items-center">
-          <Nav.Link as={NavLink} to="/login" className="text-dark d-none d-sm-inline">
-            Login
-          </Nav.Link>
+          {user ? (
+            <Nav.Link
+              as="button"
+              onClick={handleLogout}
+              className="text-dark d-none d-sm-inline"
+            >
+              Logout
+            </Nav.Link>
+          ) : (
+            <Nav.Link
+              eventKey="4"
+              as={NavLink}
+              to="/login"
+              className="text-dark d-none d-sm-inline"
+            >
+              Login
+            </Nav.Link>
+          )}
           <CartHandler />
           {/* <Nav.Link
             as={NavLink}
@@ -58,14 +85,6 @@ export default function AppNavbar() {
             </Nav.Link>
             <Nav.Link eventKey="3" as={NavLink} to="/aboutus">
               About this Project
-            </Nav.Link>
-            <Nav.Link
-              eventKey="4"
-              as={NavLink}
-              to="/login"
-              className="d-sm-none mt-2"
-            >
-              Login
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

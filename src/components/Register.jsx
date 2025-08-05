@@ -68,8 +68,20 @@ function Register() {
             />
           </div>
           <div className="mb-3">
+            <label htmlFor="shippingAddress" className="form-label">
+              * Shipping Address
+            </label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              className="form-control"
+              required
+            />
+          </div>
+          <div className="mb-3">
             <label htmlFor="email" className="form-label">
-              * Email Address
+              * Email
             </label>
             <input
               type="email"

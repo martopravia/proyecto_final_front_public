@@ -5,10 +5,12 @@ const userSlice = createSlice({
   initialState: { user: null, token: "" },
   reducers: {
     login: (state, action) => {
-      return action.payload;
+      state.user = action.payload.user;
+      state.token = action.payload.token;
     },
     logout: (state) => {
       state.token = "";
+      state.user = null;
     },
   },
 });
