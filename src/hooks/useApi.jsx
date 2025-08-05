@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
 import { useMemo } from "react";
 import { setProducts } from "../redux/productsSlice";
+import { toast } from "react-toastify";
 
 export const useApi = () => {
   const dispatch = useDispatch();
@@ -19,16 +20,18 @@ export const useApi = () => {
     try {
       const {
         data: { user, token },
-      } = await api.post("/tokens", data, {
+      } = await api.post("/tokens/login", data, {
         headers: {
           "Content-Type": "application/json",
         },
       });
       dispatch(login({ user, token }));
-      toast.success("Login successful!");
+      console.log("User logged in:", user, "to token:", token);
+
       return token;
     } catch (error) {
       console.error("Error:", error);
+      toast.error("Login failed. Please check your credentials.");
     }
   };
 

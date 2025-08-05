@@ -19,8 +19,12 @@ export default function ProductPage() {
   return (
     <div className="container-fluid">
       <div className="row flex-column flex-md-row">
-        <div className="col-md-6">
-          <img className="img-fluid border-0" src={image} alt={name} />
+        <div className="col-md-6 d-flex justify-content-center">
+          <img
+            className="img-fluid border-0 object-fit-contain"
+            src={image}
+            alt={name}
+          />
         </div>
         <div className="col-md-6 d-flex">
           <div className="container p-5 d-flex flex-column justify-content-center align-content-center">

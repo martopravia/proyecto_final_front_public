@@ -18,6 +18,7 @@ export default function Checkout({
 }) {
   const dispatch = useDispatch();
   const step = useSelector((state) => state.checkout.step);
+  const { user } = useSelector((state) => state.user);
 
   const steps = ["Order details", "Contact & Shipping", "Payment method"];
 
@@ -154,135 +155,141 @@ export default function Checkout({
       {step === 2 && (
         <>
           <h3 className="mt-5 mb-4"> Contact & Shipping info </h3>
-          {/* {!LoggedUser ? (
-      <div>
-        <h4>To continue, please log in or register</h4>
-        <button className="btn btn-outline-dark mt-3">
-          Log in
-        </button>
-        <button className="btn btn-outline-dark mt-3">
-          Register
-        </button>
-      </div>
-    ) : ( */}
-          <div className="p-0 align-items-left d-flex">
-            <div
-              className={`border rounded shadow p-4 w-100 d-flex flex-column ${
-                selectedShippingOption === "saved" ? "border-black" : ""
-              }`}
-              style={{ cursor: "pointer" }}
-              onClick={() => handleShippingOptionChange("saved")}
-            >
-              <div className="d-flex align-items-start mb-3">
-                <input
-                  className="form-check-input me-3 mt-1"
-                  type="radio"
-                  name="shippingOption"
-                  checked={selectedShippingOption === "saved"}
-                  onChange={() => setSelectedShippingOption("saved")}
-                />
-                <label className="fw-bold">Use saved shipping info</label>
+
+          {!user ? (
+            <div className="text-center mb-4">
+              <h4>To continue, please log in or register</h4>
+              <Link to="/login">
+                <button className="btn btn-outline-dark mt-3 me-2">
+                  Log in
+                </button>
+              </Link>
+              <Link to="/register">
+                <button className="btn btn-outline-dark mt-3">Register</button>
+              </Link>
+            </div>
+          ) : (
+            <>
+              <div className="p-0 align-items-left d-flex">
+                <div
+                  className={`border rounded shadow p-4 w-100 d-flex flex-column ${
+                    selectedShippingOption === "saved" ? "border-black" : ""
+                  }`}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleShippingOptionChange("saved")}
+                >
+                  <div className="d-flex align-items-start mb-3">
+                    <input
+                      className="form-check-input me-3 mt-1"
+                      type="radio"
+                      name="shippingOption"
+                      checked={selectedShippingOption === "saved"}
+                      onChange={() => setSelectedShippingOption("saved")}
+                    />
+                    <label className="fw-bold">Use saved shipping info</label>
+                  </div>
+
+                  <div className="row">
+                    <div className="col-md-6 mb-2">
+                      <label className="form-label">Name</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={`${user.firstname} ${user.lastname}`}
+                        disabled
+                      />
+                    </div>
+                    <div className="col-md-6 mb-2">
+                      <label className="form-label">Address</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={user.address}
+                        disabled
+                      />
+                    </div>
+                    <div className="col-md-6 mb-2">
+                      <label className="form-label">Email</label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        value={user.email}
+                        disabled
+                      />
+                    </div>
+                    <div className="col-md-6 mb-2">
+                      <label className="form-label">Phone</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={user.phone}
+                        disabled
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="row">
-                <div className="col-md-6 mb-2">
-                  <label className="form-label">Name</label>
+              <div className="mt-5 p-0 align-items-left d-flex">
+                <div
+                  className={`border rounded shadow p-4 w-100 ${
+                    selectedShippingOption === "manual" ? "border-black" : ""
+                  }`}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleShippingOptionChange("manual")}
+                >
                   <input
-                    type="text"
-                    className="form-control"
-                    value="Matias Fernandez"
-                    disabled
+                    className="form-check-input me-3"
+                    type="radio"
+                    name="shippingOption"
+                    checked={selectedShippingOption === "manual"}
+                    onChange={() => setSelectedShippingOption("manual")}
                   />
-                </div>
-                <div className="col-md-6 mb-2">
-                  <label className="form-label">Address</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value="123 calle, Montevideo"
-                    disabled
-                  />
-                </div>
-                <div className="col-md-6 mb-2">
-                  <label className="form-label">Email</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    value="matias@example.com"
-                    disabled
-                  />
-                </div>
-                <div className="col-md-6 mb-2">
-                  <label className="form-label">Phone</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value="+598 1234 5678"
-                    disabled
-                  />
+                  <label className="fw-bold">Add new shipping info</label>
+                  {selectedShippingOption === "manual" && (
+                    <>
+                      <div className="p-2 mt-2 d-flex">
+                        <input
+                          className="form-control mb-2 me-2"
+                          type="text"
+                          name="name"
+                          placeholder="Name"
+                          value={shippingInfo.name}
+                          onChange={handleShippingChange}
+                        />
+                        <input
+                          className="form-control mb-2"
+                          type="email"
+                          name="email"
+                          placeholder="Email"
+                          value={shippingInfo.email}
+                          onChange={handleShippingChange}
+                        />
+                      </div>
+                      <div className="p-2 d-flex">
+                        <input
+                          className="form-control mb-2 me-2"
+                          type="text"
+                          name="address"
+                          placeholder="Address"
+                          value={shippingInfo.address}
+                          onChange={handleShippingChange}
+                        />
+                        <input
+                          className="form-control mb-2"
+                          type="text"
+                          name="phone"
+                          placeholder="Phone"
+                          value={shippingInfo.phone}
+                          onChange={handleShippingChange}
+                        />
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div className="mt-5 p-0 align-items-left d-flex">
-            <div
-              className={`border rounded shadow p-4 w-100 ${
-                selectedShippingOption === "manual" ? "border-black" : ""
-              }`}
-              style={{ cursor: "pointer" }}
-              onClick={() => handleShippingOptionChange("manual")}
-            >
-              <input
-                className="form-check-input me-3"
-                type="radio"
-                name="shippingOption"
-                checked={selectedShippingOption === "manual"}
-                onChange={() => setSelectedShippingOption("manual")}
-              />
-              <label className="fw-bold">Add new shipping info</label>
-              {selectedShippingOption === "manual" && (
-                <>
-                  <div className="p-2 mt-2 d-flex">
-                    <input
-                      className="form-control mb-2 me-2"
-                      type="text"
-                      name="name"
-                      placeholder="Name"
-                      value={shippingInfo.name}
-                      onChange={handleShippingChange}
-                    />
-                    <input
-                      className="form-control mb-2"
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      value={shippingInfo.email}
-                      onChange={handleShippingChange}
-                    />
-                  </div>
-                  <div className="p-2 d-flex">
-                    <input
-                      className="form-control mb-2 me-2"
-                      type="text"
-                      name="address"
-                      placeholder="Address"
-                      value={shippingInfo.address}
-                      onChange={handleShippingChange}
-                    />
-                    <input
-                      className="form-control mb-2"
-                      type="text"
-                      name="phone"
-                      placeholder="Phone"
-                      value={shippingInfo.phone}
-                      onChange={handleShippingChange}
-                    />
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
+            </>
+          )}
         </>
       )}
       {step === 3 && (
