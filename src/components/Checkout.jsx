@@ -80,10 +80,15 @@ export default function Checkout({
         {step === 1 && (
           <>
             {cartItems.length === 0 ? (
-              <div className="text-center" style={{ marginTop: "150px" }}>
+              <div className="text-center">
                 <i className="bi bi-cart-x" style={{ fontSize: "50px" }}></i>
                 <h5 className="mt-3">Your cart is empty</h5>
                 <p className="lead">Please add some items before continuing.</p>
+                <Link to="/">
+                  <button className="btn btn-secondary">
+                    Continue Shopping
+                  </button>
+                </Link>
               </div>
             ) : (
               <>

@@ -49,8 +49,12 @@ export default function CheckoutPage() {
           ))}
         </Stepper>
       </Box>
-      <div className="row">
-        <div className="col-md-8 col-sm-12">
+      {cartItems.length === 0 ? (
+        // Si el carrito está vacío, no mostrar columnas ni resumen
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ minHeight: "50vh" }}
+        >
           <Checkout
             cartItems={cartItems}
             paymentMethod={paymentMethod}
@@ -59,15 +63,28 @@ export default function CheckoutPage() {
             setShippingInfo={setShippingInfo}
           />
         </div>
-        <div className="col-md-4 col-sm-12">
-          <div className="position-sticky sticky-padding">
-            <CheckoutSummary
+      ) : (
+        // Si hay productos, mostrar las dos columnas
+        <div className="row">
+          <div className="col-md-8 col-sm-12">
+            <Checkout
+              cartItems={cartItems}
               paymentMethod={paymentMethod}
+              setPaymentMethod={setPaymentMethod}
               shippingInfo={shippingInfo}
+              setShippingInfo={setShippingInfo}
             />
           </div>
+          <div className="col-md-4 col-sm-12">
+            <div className="position-sticky sticky-padding">
+              <CheckoutSummary
+                paymentMethod={paymentMethod}
+                shippingInfo={shippingInfo}
+              />
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
