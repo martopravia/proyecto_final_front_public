@@ -18,7 +18,11 @@ export default function CartHandler() {
           style={{ borderRadius: "12px", width: "50px", height: "50px" }}
         >
           <div style={{ position: "relative" }}>
-            <span role="img" aria-label="carrito" style={{ width: "24px", height: "24px" }}>
+            <span
+              role="img"
+              aria-label="carrito"
+              style={{ width: "24px", height: "24px" }}
+            >
               🛒
             </span>
             {totalItems > 0 && (
@@ -38,7 +42,7 @@ export default function CartHandler() {
         </button>
       )}
       {cartOpen && (
-        <div className="cart-open" on onClick={() => setIsOpen(false)}></div>
+        <div className="cart-open" onClick={() => setIsOpen(false)}></div>
       )}
       <CartDrawer isOpen={cartOpen} onClose={() => setIsOpen(false)} />
     </>
