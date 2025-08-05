@@ -1,20 +1,23 @@
 body {
   /* font-family: "Playfair-display", sans-serif; */
-  font-family: "Cinzel", serif;
+  /* font-family: "Cinzel", serif; */
   /* font-family: "Lora", sans-serif; */
   /* font-family: "Cormorant-Garamond", 
   /* font-family: 'Libre Baskerville', serif; */
   /* font-family: 'Prata', serif; */
   /* font-family: "Raleway", sans-serif; */
-  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Montserrat", sans-serif;
   /* font-family: "Quattrocento Sans", sans-serif; */
   /* font-family: "Jost", sans-serif; */
 }
 /* buenas combinaciones: Cinzel y Lora // Jost y Prata // Work Sans y Playfair */
 
+h1,
+h2,
+h3,
 h4,
 h5 {
-  font-family: "Lora", sans-serif;
+  font-family: "Cinzel", serif;
 }
 .logoNavBar {
   max-width: 200px;
@@ -123,6 +126,7 @@ h5 {
 }
 
 .interactive {
+  display: inline-block;
   cursor: pointer;
   transition: transform 0.3s ease;
   &:hover {
@@ -210,4 +214,19 @@ h5 {
 
 .scroll-container::-webkit-scrollbar-thumb:hover {
   background: #999;
+}
+
+.corner-ribbon {
+  width: 150px;
+  background: #d85663;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding: 3px 0;
+  position: absolute;
+  top: 20px;
+  left: -40px;
+  transform: rotate(-45deg);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  font-size: 0.8rem;
 }

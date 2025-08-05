@@ -99,7 +99,7 @@ function Home() {
                   className="w-100 h-100 object-fit-contain d-block image-test"
                 />
               </div>
-              <h5 className="mt-3">{formatName(product.name)}</h5>
+              <span className="mt-3 fs-4">{formatName(product.name)}</span>
             </div>
           ))}
         </div>
