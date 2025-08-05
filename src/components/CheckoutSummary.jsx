@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 function CheckoutSummary({ paymentMethod, shippingInfo }) {
   const dispatch = useDispatch();
   const step = useSelector((state) => state.checkout.step);
+  const { user } = useSelector((state) => state.user);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const navigate = useNavigate();
 
@@ -51,21 +52,27 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
 
       <div className="d-flex flex-column justify-content-between flex-lg-row gap-2 mt-3">
         {(step === 2 || step === 3) && (
-          <button
-            className="btn btn-secondary"
-            onClick={() => dispatch(prevStep())}
-          >
-            Back
-          </button>
+          <div>
+            <button
+              className="btn btn-secondary"
+              onClick={() => dispatch(prevStep())}
+            >
+              Back
+            </button>
+          </div>
         )}
+
         {step < 3 && (
           <button
             className="btn btn-primary"
             onClick={() => {
               if (step === 1 && cartItems.length === 0) return;
+              if (step === 2 && !user) return;
               dispatch(nextStep());
             }}
-            disabled={step === 1 && cartItems.length === 0}
+            disabled={
+              (step === 1 && cartItems.length === 0) || (step === 2 && !user)
+            }
           >
             Next
           </button>
@@ -73,8 +80,9 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
         {step === 3 && (
           <button
             className="btn btn-success"
-            onClick={handleConfirm}
-            disabled={!paymentMethod}
+            onClick={() => {
+              handleConfirm();
+            }}
           >
             Confirm Order
           </button>

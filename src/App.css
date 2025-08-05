@@ -87,11 +87,11 @@ h5 {
 }
 .sticky-padding {
   padding-top: 0;
-  top: -100px;
 }
 
 @media (min-width: 768px) {
   .sticky-padding {
+    margin-top: -105px;
     padding-top: 190px;
   }
 }
