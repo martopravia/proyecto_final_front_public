@@ -57,9 +57,50 @@ export const useApi = () => {
     }
   };
 
+  const getOrdersByUser = async (userId) => {
+    try {
+      const response = await api.get(`/orders/user/${userId}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching user orders:", error);
+    }
+  };
+
+  const getUserById = async (userId, token) => {
+    try {
+      const response = await api.get(`/users/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching user:", error);
+    }
+  };
+
+  const updateUser = async (userId, updatedData, token) => {
+    try {
+      const response = await api.patch(`/users/${userId}`, updatedData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error updating user:", error);
+      throw error;
+    }
+  };
+  
+  
+
   return {
     loginUser,
     registerUser,
     getProducts,
+    getOrdersByUser,
+    getUserById,
+    updateUser,
   };
 };

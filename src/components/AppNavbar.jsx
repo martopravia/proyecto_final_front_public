@@ -48,13 +48,24 @@ export default function AppNavbar() {
 
         <div className="d-flex gap-2 align-items-center">
           {user ? (
-            <Nav.Link
-              as="button"
-              onClick={handleLogout}
-              className="text-dark d-none d-sm-inline"
-            >
-              Logout
-            </Nav.Link>
+            <>
+              <Nav.Link
+                as="button"
+                onClick={handleLogout}
+                className="text-dark d-none d-sm-inline"
+              >
+                Logout
+              </Nav.Link>
+
+              <Nav.Link
+                as={NavLink}
+                to="/profile"
+                className="d-none d-sm-inline"
+                title="Perfil"
+              >
+                <i className="bi bi-person-circle fs-4 text-dark"></i>
+              </Nav.Link>
+            </>
           ) : (
             <Nav.Link
               eventKey="4"

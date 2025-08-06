@@ -1,13 +1,22 @@
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useApi } from "../hooks/useApi";
+import { useNavigate } from "react-router";
 
 export default function EditProfile() {
+  const navigate = useNavigate();
+
+  const { updateUser, getUserById } = useApi();
+
+  const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
+
   const [formData, setFormData] = useState({
-    gender: "Señor",
-    firstname: "juan",
-    lastname: "peres",
-    email: "juan@reverdito.com",
-    phone: "098449331",
+    firstname: "",
+    lastname: "",
+    email: "",
+    phone: "",
     passwordCurrent: "",
     passwordNew: "",
     passwordConfirm: "",
@@ -20,6 +29,24 @@ export default function EditProfile() {
       brandNews: false,
     },
   });
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (user?.id) {
+        const userData = await getUserById(user.id, token);
+        if (userData) {
+          setFormData((prev) => ({
+            ...prev,
+            firstname: userData.firstname || "",
+            lastname: userData.lastname || "",
+            email: userData.email || "",
+            phone: userData.phone || "",
+          }));
+        }
+      }
+    };
+    fetchUser();
+  }, [user?.id]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,9 +64,15 @@ export default function EditProfile() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Datos enviados:", formData);
+    try {
+      await updateUser(user.id, formData, token);
+      navigate("/profile");
+      alert("Your information was updated successfully.");
+    } catch (error) {
+      alert("There was an error updating your information.");
+    }
   };
 
   return (
@@ -50,23 +83,10 @@ export default function EditProfile() {
           {/* DATOS DE CONTACTO */}
           <Col md={6}>
             <Card className="p-4 mb-4">
-              <h5 className="mb-3">MODIFICAR MIS DATOS DE CONTACTO</h5>
+              <h5 className="mb-3">EDIT CONTACT INFORMATION</h5>
 
               <Form.Group className="mb-3">
-                <Form.Label>* Estado civil</Form.Label>
-                <Form.Select
-                  name="gender"
-                  value={formData.gender}
-                  onChange={handleInputChange}
-                >
-                  <option>Señor</option>
-                  <option>Señora</option>
-                  <option>Otro</option>
-                </Form.Select>
-              </Form.Group>
-
-              <Form.Group className="mb-3">
-                <Form.Label>* Nombre</Form.Label>
+                <Form.Label>* First Name</Form.Label>
                 <Form.Control
                   type="text"
                   name="firstname"
@@ -76,7 +96,7 @@ export default function EditProfile() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>* Apellidos</Form.Label>
+                <Form.Label>* Last Name</Form.Label>
                 <Form.Control
                   type="text"
                   name="lastname"
@@ -97,7 +117,7 @@ export default function EditProfile() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>* Móvil</Form.Label>
+                <Form.Label>* Mobile</Form.Label>
                 <Form.Control
                   type="text"
                   name="phone"
@@ -146,7 +166,7 @@ export default function EditProfile() {
 
               <div className="mt-4">
                 <Button type="submit" variant="dark" className="w-100">
-                  ACTUALIZAR INFORMACIONES
+                  UPDATE INFORMATION
                 </Button>
               </div>
             </Card>
@@ -156,7 +176,7 @@ export default function EditProfile() {
           <Col md={6}>
             <Card className="p-4 mb-4">
               <Form.Group className="mb-3">
-                <Form.Label>* Introduzca su contraseña actual</Form.Label>
+                <Form.Label>* Current password</Form.Label>
                 <Form.Control
                   type="password"
                   name="passwordCurrent"
@@ -166,7 +186,7 @@ export default function EditProfile() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>* Introduzca su nueva contraseña</Form.Label>
+                <Form.Label>* New password</Form.Label>
                 <Form.Control
                   type="password"
                   name="passwordNew"
@@ -176,7 +196,7 @@ export default function EditProfile() {
               </Form.Group>
 
               <Form.Group className="mb-4">
-                <Form.Label>* Confirmar la nueva contraseña</Form.Label>
+                <Form.Label>* Confirm new password</Form.Label>
                 <Form.Control
                   type="password"
                   name="passwordConfirm"
@@ -186,7 +206,7 @@ export default function EditProfile() {
               </Form.Group>
 
               <Button variant="dark" className="w-100">
-                MODIFICAR MI CONTRASEÑA
+                CHANGE PASSWORD
               </Button>
             </Card>
           </Col>
