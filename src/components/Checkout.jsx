@@ -374,7 +374,7 @@ export default function Checkout({
         )}
         {step === 4 && (
           <>
-            <div className="text-center" style={{ marginTop: "140px" }}>
+            <div className="text-center">
               <h2> Thanks for shopping with us!</h2>
               <p className="lead">A confirmation email has been sent to you.</p>
               <Link to={"/"}>
