@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/userSlice";
 import { useMemo } from "react";
 import { setProducts } from "../redux/productsSlice";
@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 export const useApi = () => {
   const dispatch = useDispatch();
-
+  const token = useSelector((state) => state.user.token);
   const api = useMemo(
     () =>
       axios.create({
@@ -40,6 +40,22 @@ export const useApi = () => {
       await api.post("/users/register", data, {});
     } catch (error) {
       console.error("Error:", error);
+    }
+  };
+
+  const confirmOrder = async (orderData) => {
+    try {
+      const response = await api.post("/orders", orderData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("token sent:", token);
+      return response.data;
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Order confirmation failed. Please try again.");
     }
   };
 
@@ -94,6 +110,7 @@ export const useApi = () => {
   return {
     loginUser,
     registerUser,
+    confirmOrder,
     getProducts,
     getOrdersByUser,
     getUserById,
