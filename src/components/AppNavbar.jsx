@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import CartHandler from "./CartHandler";
 import { useState } from "react";
@@ -9,11 +9,13 @@ import { toast } from "react-toastify";
 export default function AppNavbar() {
   const [expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
 
   const handleLogout = () => {
     setTimeout(() => {
       toast.info("You have been logged out.");
+      navigate("/");
       dispatch(logout());
     }, 1000);
   };
@@ -48,13 +50,24 @@ export default function AppNavbar() {
 
         <div className="d-flex gap-2 align-items-center">
           {user ? (
-            <Nav.Link
-              as="button"
-              onClick={handleLogout}
-              className="text-dark d-none d-sm-inline"
-            >
-              Logout
-            </Nav.Link>
+            <>
+              <Nav.Link
+                as="button"
+                onClick={handleLogout}
+                className="text-dark d-none d-sm-inline"
+              >
+                Logout
+              </Nav.Link>
+
+              <Nav.Link
+                as={NavLink}
+                to="/profile"
+                className="d-none d-sm-inline"
+                title="Perfil"
+              >
+                <i className="bi bi-person-circle fs-4 text-dark"></i>
+              </Nav.Link>
+            </>
           ) : (
             <Nav.Link
               eventKey="4"
@@ -72,7 +85,7 @@ export default function AppNavbar() {
             className="text-light"
           ></Nav.Link> */}
         </div>
-        <Navbar.Collapse id="main-navbar-nav">
+        <Navbar.Collapse id="main-navbar-nav" className="custom-collapse">
           <Nav
             className="flex-column text-dark ps-3"
             onSelect={() => setExpanded(false)}

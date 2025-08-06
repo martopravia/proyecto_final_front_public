@@ -13,17 +13,13 @@ export default function CartHandler() {
     <>
       {!cartOpen && (
         <button
-          className="btn border-0  text-light p-2 d-flex align-items-center justify-content-center"
+          className="btn border-0 p-2 d-flex align-items-center justify-content-center"
           onClick={openCart}
-          style={{ borderRadius: "12px", width: "50px", height: "50px" }}
+          style={{ borderRadius: "12px", width: "50px", height: "50px", position: "relative" }}
         >
           <div style={{ position: "relative" }}>
-            <span
-              role="img"
-              aria-label="carrito"
-              style={{ width: "24px", height: "24px" }}
-            >
-              🛒
+            <span role="img" aria-label="carrito" style={{ width: "24px", height: "24px" }}>
+            <i className="bi bi-bag-fill  fs-4"></i>
             </span>
             {totalItems > 0 && (
               <span

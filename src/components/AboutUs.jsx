@@ -58,7 +58,7 @@ export default function AboutUs() {
         </div>
       </div>
 
-      <section className="container my-5">
+      <section className="mx-5 my-5">
         <div className="row text-center">
           {[
             {
@@ -128,12 +128,13 @@ export default function AboutUs() {
             </div>
           </div>
 
-          <div className="col-12 col-lg-8">
+          <div className="col-12 col-lg-8 mx-auto">
             <div className="row">
-              {developers.map((dev, index) => (
+              {/* Primera fila: 3 developers */}
+              {developers.slice(0, 3).map((dev, index) => (
                 <div
                   key={index}
-                  className="col-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center"
+                  className="col-12 col-md-4 mb-4 d-flex justify-content-center"
                 >
                   <div className="card h-100 text-center">
                     <img
@@ -159,6 +160,39 @@ export default function AboutUs() {
                   </div>
                 </div>
               ))}
+
+              {/* Segunda fila: 2 developers centrados */}
+              <div className="d-flex justify-content-center flex-wrap">
+                {developers.slice(3).map((dev, index) => (
+                  <div
+                    key={index}
+                    className="col-12 col-md-4 mb-4 d-flex justify-content-center"
+                  >
+                    <div className="card h-100 text-center">
+                      <img
+                        className="card-img-top img-fluid cardSize"
+                        src={dev.profileImg}
+                        alt="Avatar"
+                      />
+                      <div className="card-body">
+                        <h4 className="card-title">{dev.name}</h4>
+                        <h5 className="card-subtitle my-2">Junior Developer</h5>
+                        <p className="card-text">
+                          Some quick example text to build on the card title.
+                        </p>
+                        <div className="d-flex justify-content-center gap-3 flex-wrap">
+                          <a href={dev.linkedin}>
+                            <i className="bi bi-linkedin"></i>
+                          </a>
+                          <a href={dev.github}>
+                            <i className="bi bi-github"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

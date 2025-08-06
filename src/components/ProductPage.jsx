@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
 import { formatName } from "../utils/formatName";
+import { toast } from "react-toastify";
 
 export default function ProductPage() {
   const { productId } = useParams();
@@ -13,6 +14,7 @@ export default function ProductPage() {
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));
+    toast.success(`${product.name} added to cart!`);
   };
 
   const { name, description, price, image } = product;

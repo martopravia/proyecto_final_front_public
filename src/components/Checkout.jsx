@@ -59,10 +59,10 @@ export default function Checkout({
 
     if (option === "saved") {
       setShippingInfo({
-        name: "Matias Fernandez",
-        address: "123 calle, Montevideo",
-        email: "matias@example.com",
-        phone: "+598 1234 5678",
+        name: `${user.firstname} ${user.lastname}`,
+        address: `${user.address}`,
+        email: `${user.email}`,
+        phone: `${user.phone}`,
       });
     } else {
       setShippingInfo({
@@ -106,8 +106,8 @@ export default function Checkout({
                         <div className="col-12 col-md-4 mb-3 mb-md-0">
                           <img
                             src={item.image}
-                            style={{ width: "500px", height: "auto" }}
-                            className="img-fluid me-4 w-100"
+                            style={{ width: "auto", height: "300px" }}
+                            className="img-fluid me-3 w-100"
                             alt=""
                           />
                         </div>
@@ -374,7 +374,7 @@ export default function Checkout({
         )}
         {step === 4 && (
           <>
-            <div className="text-center" style={{ marginTop: "140px" }}>
+            <div className="text-center">
               <h2> Thanks for shopping with us!</h2>
               <p className="lead">A confirmation email has been sent to you.</p>
               <Link to={"/"}>
