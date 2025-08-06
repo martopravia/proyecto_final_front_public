@@ -4,7 +4,7 @@ import { useApi } from "./useApi";
 
 const STALE_TIME = 5 * 60 * 1000;
 
-export const useCategoryProducts = ({ category }) => {
+export const useCategoryProducts = ({ category } = {}) => {
   const { getProducts } = useApi();
   const dispatch = useDispatch();
 
@@ -19,7 +19,7 @@ export const useCategoryProducts = ({ category }) => {
 
   useEffect(() => {
     if (!items.length || isStale) {
-      getProducts();
+      getProducts({ limit: 50 });
     }
   }, []);
 
