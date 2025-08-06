@@ -35,13 +35,9 @@ export const useApi = () => {
     }
   };
 
-  const registerUser = async (formData) => {
+  const registerUser = async (data) => {
     try {
-      await api.post("/users", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await api.post("/users/register", data, {});
     } catch (error) {
       console.error("Error:", error);
     }
