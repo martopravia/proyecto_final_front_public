@@ -1,25 +1,54 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, Navigate } from "react-router";
 import { toast } from "react-toastify";
 import PrivacyPolicy from "./PrivacyPolicy";
 import TermsOfUse from "./TermsOfUse";
 import { useDispatch } from "react-redux";
 import { openPrivacyModal, openTermsModal } from "../redux/modalSlice";
+import { useApi } from "../hooks/useApi";
+import { useNavigate } from "react-router";
 
 function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  // const [modalPrivacy, setModalPrivacy] = useState(false);
-  // const [modalTerms, setModalTerms] = useState(false);
+  const { registerUser } = useApi();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
       return;
+    }
+    const data = {
+      firstname,
+      lastname,
+      email,
+      phone: phoneNumber,
+      address,
+      password,
+    };
+    try {
+      await registerUser(data);
+
+      console.log("User registered:", data);
+      setTimeout(() => {
+        toast.success("Registration successful! Please log in.");
+        navigate("/login");
+      }, 1500);
+    } catch (error) {
+      const message =
+        error.response?.data?.message ||
+        "Registration failed. Please try again.";
+      toast.error(message);
     }
   };
 
@@ -40,6 +69,8 @@ function Register() {
               id="name"
               name="name"
               className="form-control"
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
               required
             />
           </div>
@@ -52,30 +83,36 @@ function Register() {
               id="lastName"
               name="lastName"
               className="form-control"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
               required
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="cellPhone" className="form-label">
+            <label htmlFor="phoneNumber" className="form-label">
               * Phone Number
             </label>
             <input
               type="text"
-              id="cellPhone"
-              name="cellPhone"
+              id="phoneNumber"
+              name="phoneNumber"
               className="form-control"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
               required
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="shippingAddress" className="form-label">
-              * Shipping Address
+            <label htmlFor="address" className="form-label">
+              * Address
             </label>
             <input
               type="text"
               id="address"
               name="address"
               className="form-control"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
               required
             />
           </div>
@@ -88,6 +125,8 @@ function Register() {
               id="email"
               name="email"
               className="form-control"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>

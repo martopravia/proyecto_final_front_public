@@ -28,6 +28,7 @@ function App() {
           {/* <Route path="/cart" element={<Checkout />} /> */}
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/products" element={<CategoryPage />} />
+          <Route path="/category" element={<Home />} />
           <Route path="/category/:category" element={<CategoryPage />} />
           <Route path="/products/:productId" element={<ProductPage />} />
           {/* <Route path="/profile/:username" element={<Profile />} /> */}
@@ -39,7 +40,7 @@ function App() {
       </Routes>
       <LegalModals />
       <ToastContainer
-        position="top-right"
+        position="bottom-right"
         autoClose={5000}
         hideProgressBar
         newestOnTop={false}
