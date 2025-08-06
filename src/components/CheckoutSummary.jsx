@@ -4,6 +4,7 @@ import { nextStep, prevStep, resetStep } from "../redux/checkoutSlice";
 import { useNavigate } from "react-router";
 import { clearCart } from "../redux/cartSlice";
 import { toast } from "react-toastify";
+import { useApi } from "../hooks/useApi";
 
 function CheckoutSummary({ paymentMethod, shippingInfo }) {
   const dispatch = useDispatch();
@@ -11,14 +12,15 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
   const { user } = useSelector((state) => state.user);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const navigate = useNavigate();
-
+  const { confirmOrder } = useApi();
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  const handleConfirm = () => {
+
+  const handleConfirm = async () => {
     const orderPayload = {
-      userId: 1,
+      userId: user.id,
       products: cartItems.map(({ id, quantity }) => ({
         productId: id,
         quantity,
@@ -27,14 +29,25 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
       paymentMethod,
       totalPrice: total,
     };
+    try {
+      await confirmOrder(orderPayload);
+      setTimeout(() => {
+        dispatch(clearCart());
+        dispatch(nextStep());
+        toast.success("Order confirmed! Thank you for your purchase.");
+      }, 1500);
+    } catch (error) {
+      console.error("Error confirming order:", error);
+    }
     console.log("Order confirmed:", orderPayload);
 
-    setTimeout(() => {
-      dispatch(clearCart());
-      dispatch(nextStep());
-      toast.success("Order confirmed! Thank you for your purchase.");
-    }, 1500);
+    // setTimeout(() => {
+    //   dispatch(clearCart());
+    //   dispatch(nextStep());
+    //   toast.success("Order confirmed! Thank you for your purchase.");
+    // }, 1500);
   };
+
   console.log(cartItems);
 
   return (
