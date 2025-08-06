@@ -1,28 +1,21 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { formatName } from "../utils/formatName";
+import { useCategoryProducts } from "../hooks/useCategoryProducts";
 
 function Home() {
-  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/products")
-      .then((response) => setProducts(response.data))
-      .catch((error) => console.error("fetching error", error));
-  }, []);
+  const { products } = useCategoryProducts();
 
   if (products.length === 0) {
     return <div>Loading...</div>;
   }
-  const getFirstProductByCategory = (categoryId) =>
-    products.find((product) => product.categoryId === categoryId);
+  const getFirstProductByCategory = (category) =>
+    products.find((product) => product.category.name === category);
 
-  const sofas = getFirstProductByCategory(1);
-  const tables = getFirstProductByCategory(2);
-  const chairs = getFirstProductByCategory(3);
+  const sofas = getFirstProductByCategory("sofas");
+  const tables = getFirstProductByCategory("tables");
+  const chairs = getFirstProductByCategory("chairs");
 
   const handleClick = (categoryId) => {
     navigate(`/category/${categoryId}`);
