@@ -71,7 +71,7 @@ function Login() {
                   }}
                 ></i>
                 <p>
-                  <a href="">Forgot your password?</a>
+                  <Link to="/forgot-password">Forgot your password?</Link>
                 </p>
               </div>
               <button type="submit" className="btn btn-dark w-100 mt-3">
