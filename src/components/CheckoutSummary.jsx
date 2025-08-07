@@ -52,6 +52,11 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
       console.error("Order failed:", error);
     }
   };
+  const isShippingIncomplete =
+    !shippingInfo.name?.trim() ||
+    !shippingInfo.address?.trim() ||
+    !shippingInfo.email?.trim() ||
+    !shippingInfo.phone?.trim();
 
   return (
     <div className="p-4 border rounded shadow mx-4">
@@ -99,11 +104,18 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
             onClick={() => {
               handleConfirm();
             }}
+            disabled={isShippingIncomplete}
           >
             Confirm Order
           </button>
         )}
       </div>
+      {step === 3 && isShippingIncomplete && (
+        <p className="text-danger mt-4">
+          Please complete all Contact & Shipping information before confirming
+          your order.
+        </p>
+      )}
     </div>
   );
 }

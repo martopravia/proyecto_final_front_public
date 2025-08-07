@@ -286,6 +286,7 @@ export default function Checkout({
                             placeholder="Address"
                             value={shippingInfo.address}
                             onChange={handleShippingChange}
+                            required
                           />
                           <input
                             className="form-control mb-2"
