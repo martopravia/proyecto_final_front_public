@@ -51,11 +51,10 @@ export const useApi = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("token sent:", token);
       return response.data;
     } catch (error) {
       console.error("Error:", error);
-      toast.error("Order confirmation failed. Please try again.");
+      throw error;
     }
   };
 

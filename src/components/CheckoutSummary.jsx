@@ -30,25 +30,27 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
       totalPrice: total,
     };
     try {
-      await confirmOrder(orderPayload);
+      await toast.promise(confirmOrder(orderPayload), {
+        pending: "Confirming your order...",
+        success: "Order confirmed! Thank you for your purchase.",
+        error: "Order failed, please try again later.",
+      });
+      dispatch(nextStep());
+      dispatch(clearCart());
+      toast.info("You will be redirected to the homepage...", {
+        autoClose: 4500,
+        hideProgressBar: false,
+        pauseOnHover: false,
+        pauseOnFocusLoss: false,
+      });
       setTimeout(() => {
-        dispatch(clearCart());
-        dispatch(nextStep());
-        toast.success("Order confirmed! Thank you for your purchase.");
-      }, 1500);
+        navigate("/");
+        dispatch(resetStep());
+      }, 5000);
     } catch (error) {
-      console.error("Error confirming order:", error);
+      console.error("Order failed:", error);
     }
-    console.log("Order confirmed:", orderPayload);
-
-    // setTimeout(() => {
-    //   dispatch(clearCart());
-    //   dispatch(nextStep());
-    //   toast.success("Order confirmed! Thank you for your purchase.");
-    // }, 1500);
   };
-
-  console.log(cartItems);
 
   return (
     <div className="p-4 border rounded shadow mx-4">
