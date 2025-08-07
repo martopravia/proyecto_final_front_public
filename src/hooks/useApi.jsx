@@ -37,7 +37,7 @@ export const useApi = () => {
 
   const registerUser = async (data) => {
     try {
-      await api.post("/users/register", data, {});
+      await api.post("/users", data, {});
     } catch (error) {
       console.error("Error:", error);
     }
@@ -104,8 +104,6 @@ export const useApi = () => {
       throw error;
     }
   };
-  
-  
 
   return {
     loginUser,
