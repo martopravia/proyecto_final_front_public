@@ -1,16 +1,18 @@
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useApi } from "../hooks/useApi";
 import { useNavigate } from "react-router";
+import { setUser } from "../redux/userSlice";
+import { toast } from "react-toastify";
 
 export default function EditProfile() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { updateUser, getUserById } = useApi();
+  const { updateUser, getUser } = useApi();
 
   const user = useSelector((state) => state.user.user);
-  const token = useSelector((state) => state.user.token);
 
   const [formData, setFormData] = useState({
     firstname: "",
@@ -33,7 +35,7 @@ export default function EditProfile() {
   useEffect(() => {
     const fetchUser = async () => {
       if (user?.id) {
-        const userData = await getUserById(user.id, token);
+        const userData = await getUser(user.id);
         if (userData) {
           setFormData((prev) => ({
             ...prev,
@@ -67,17 +69,17 @@ export default function EditProfile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await updateUser(user.id, formData, token);
+      dispatch(setUser(formData));
+      await updateUser(user.id, formData);
       navigate("/profile");
-      alert("Your information was updated successfully.");
+      toast.success("Your information was updated successfully.");
     } catch (error) {
-      alert("There was an error updating your information.");
+      toast.warning("There was an error updating your information.");
     }
   };
 
   return (
     <Container className="my-5">
-      <h2 className="mb-4">CUENTA REVERDITO</h2>
       <Form onSubmit={handleSubmit}>
         <Row>
           {/* DATOS DE CONTACTO */}
@@ -106,7 +108,7 @@ export default function EditProfile() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>* Email (nombre@dominio.com)</Form.Label>
+                <Form.Label>* Email</Form.Label>
                 <Form.Control
                   type="email"
                   name="email"
@@ -117,7 +119,7 @@ export default function EditProfile() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>* Mobile</Form.Label>
+                <Form.Label>* Phone</Form.Label>
                 <Form.Control
                   type="text"
                   name="phone"
@@ -128,39 +130,9 @@ export default function EditProfile() {
 
               {/* Checkboxes */}
               <Form.Check
-                label="Acepto recibir correos electrónicos promocionales"
+                label="I agree to receive promotional emails"
                 name="emailPromo"
                 checked={formData.options.emailPromo}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                label="Acepto que mis datos de contacto sean compartidos con socios"
-                name="shareData"
-                checked={formData.options.shareData}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                label="Acepto recibir SMS promocionales"
-                name="smsPromo"
-                checked={formData.options.smsPromo}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                label="Acepto recibir correo postal"
-                name="mail"
-                checked={formData.options.mail}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                label="Acepto recibir llamadas comerciales"
-                name="calls"
-                checked={formData.options.calls}
-                onChange={handleCheckboxChange}
-              />
-              <Form.Check
-                label="Acepto recibir noticias de la marca"
-                name="brandNews"
-                checked={formData.options.brandNews}
                 onChange={handleCheckboxChange}
               />
 

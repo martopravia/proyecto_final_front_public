@@ -10,13 +10,14 @@ export default function Profile() {
   const [loadingOrders, setLoadingOrders] = useState(true);
   const [errorOrders, setErrorOrders] = useState(null);
 
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
-  const { getOrdersByUser } = useApi();
+  const { getOrders } = useApi();
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const fetchedOrders = await getOrdersByUser(user.id);
+        const fetchedOrders = await getOrders({ userId: user.id });
         setOrders(fetchedOrders || []);
       } catch (err) {
         setErrorOrders("Error al obtener órdenes");
@@ -35,7 +36,7 @@ export default function Profile() {
       <Container className="mt-5">
         <h2>You are not logged in</h2>
         <Button variant="primary" onClick={() => navigate("/login")}>
-        Go to login
+          Go to login
         </Button>
       </Container>
     );

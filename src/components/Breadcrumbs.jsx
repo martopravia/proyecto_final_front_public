@@ -27,6 +27,8 @@ export default function Breadcrumbs() {
             ? matchedProduct.name
             : decodeURIComponent(name);
 
+          if (displayName.length > 20) return;
+
           return isLast ? (
             <li
               key={name}

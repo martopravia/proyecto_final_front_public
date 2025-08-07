@@ -69,16 +69,21 @@ export const useApi = () => {
     }
   };
 
-  const getOrdersByUser = async (userId) => {
+  const getOrders = async (params) => {
     try {
-      const response = await api.get(`/orders/user/${userId}`);
+      const response = await api.get("/orders", {
+        params,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data;
     } catch (error) {
       console.error("Error fetching user orders:", error);
     }
   };
 
-  const getUserById = async (userId, token) => {
+  const getUser = async (userId) => {
     try {
       const response = await api.get(`/users/${userId}`, {
         headers: {
@@ -91,7 +96,7 @@ export const useApi = () => {
     }
   };
 
-  const updateUser = async (userId, updatedData, token) => {
+  const updateUser = async (userId, updatedData) => {
     try {
       const response = await api.patch(`/users/${userId}`, updatedData, {
         headers: {
@@ -110,8 +115,8 @@ export const useApi = () => {
     registerUser,
     confirmOrder,
     getProducts,
-    getOrdersByUser,
-    getUserById,
+    getOrders,
+    getUser,
     updateUser,
   };
 };

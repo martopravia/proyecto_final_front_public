@@ -136,9 +136,9 @@ export default function AboutUs() {
                   key={index}
                   className="col-12 col-md-4 mb-4 d-flex justify-content-center"
                 >
-                  <div className="card h-100 text-center">
+                  <div className="card text-center card-profile">
                     <img
-                      className="card-img-top img-fluid cardSize"
+                      className="card-img-top"
                       src={dev.profileImg}
                       alt="Avatar"
                     />
@@ -168,9 +168,9 @@ export default function AboutUs() {
                     key={index}
                     className="col-12 col-md-4 mb-4 d-flex justify-content-center"
                   >
-                    <div className="card h-100 text-center">
+                    <div className="card text-center card-profile">
                       <img
-                        className="card-img-top img-fluid cardSize"
+                        className="card-img-top"
                         src={dev.profileImg}
                         alt="Avatar"
                       />

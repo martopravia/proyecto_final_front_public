@@ -42,7 +42,7 @@ export default function AppNavbar() {
           >
             <img
               className="img-fluid logoNavBar"
-              src="src\img\sutdio_nora_logo.png"
+              src="https://ubmbvouzxyajisbnmzeu.supabase.co/storage/v1/object/public/products/Logo/sutdio_nora_logo.png"
               alt="Studio Nora Logo"
             />
           </Navbar.Brand>

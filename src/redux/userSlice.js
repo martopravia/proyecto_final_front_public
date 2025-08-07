@@ -12,9 +12,12 @@ const userSlice = createSlice({
       state.token = "";
       state.user = null;
     },
+    setUser: (state, action) => {
+      state.user = { ...state.user, ...action.payload };
+    },
   },
 });
 
 const { actions, reducer } = userSlice;
-export const { login, logout } = actions;
+export const { login, logout, setUser } = actions;
 export default reducer;
