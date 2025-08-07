@@ -4,24 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearCart, updateQuantity } from "../redux/cartSlice";
 import { formatName } from "../utils/formatName";
 import { toast } from "react-toastify";
+import { useKeyDown } from "../hooks/useKeyDown";
 
 export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const esc = (e) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
-
-    window.addEventListener("keydown", esc);
-
-    return () => {
-      window.removeEventListener("keydown", esc);
-    };
-  }, [onClose]);
+  useKeyDown("Escape", onClose);
 
   if (!Array.isArray(cartItems)) {
     console.error("cartItems is not an array:", cartItems);
@@ -39,7 +28,7 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
         ></i>
       </div>
 
-      <div className="flex-grow-1">
+      <div className="flex-grow-1 overflow-auto">
         {cartItems.length === 0 ? (
           <p className="text-muted">Your cart is empty.</p>
         ) : (
@@ -105,17 +94,6 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
                     </span>
                   </div>
                 </div>
-                {/* <span>{item.name}</span> */}
-                {/* <input
-                  className="form-control form-control-sm w-25 mx-2"
-                  type="number"
-                  value={item.quantity}
-                  min={1}
-                  onChange={(num) =>
-                    onQuantityChange(item.id, parseInt(num.target.value))
-                  }
-                /> */}
-                {/* <span>${item.price * item.quantity}</span> */}
               </div>
             ))}
           </div>

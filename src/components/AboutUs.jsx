@@ -1,5 +1,4 @@
 import "../AboutUs.css";
-import CartHandler from "./CartHandler";
 
 export default function AboutUs() {
   const developers = [
