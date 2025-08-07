@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../redux/cartSlice";
+import { removeFromCart, updateQuantity } from "../redux/cartSlice";
 import { Link } from "react-router";
 import { resetStep } from "../redux/checkoutSlice";
 import { formatName } from "../utils/formatName";
@@ -65,12 +65,6 @@ export default function Checkout({
         phone: `${user.phone}`,
       });
     } else {
-      setShippingInfo({
-        name: "",
-        address: "",
-        email: "",
-        phone: "",
-      });
     }
   };
 
@@ -114,7 +108,45 @@ export default function Checkout({
                         <div className="col-12 col-md-8">
                           <h4>{formatName(item.name)}</h4>
                           <p>{item.description}</p>
-                          <p>Quantity: {item.quantity}</p>
+                          <div className="d-flex align-items-center my-3 gap-2">
+                            <span>Quantity: {item.quantity}</span>
+                            <button
+                              className="btn btn-outline-secondary border-1 border-light-subtle rounded p-1 d-flex align-items-center justify-content-center btn-sm px-2"
+                              style={{
+                                width: "28px",
+                                height: "28px",
+                                fontSize: "0.75rem",
+                              }}
+                              onClick={() =>
+                                dispatch(
+                                  updateQuantity({
+                                    productId: item.id,
+                                    delta: -1,
+                                  })
+                                )
+                              }
+                            >
+                              <i className="bi bi-dash"></i>
+                            </button>
+                            <button
+                              className="btn btn-outline-secondary border-1 border-light-subtle rounded p-1 d-flex align-items-center justify-content-center btn-sm px-2"
+                              style={{
+                                width: "28px",
+                                height: "28px",
+                                fontSize: "0.75rem",
+                              }}
+                              onClick={() =>
+                                dispatch(
+                                  updateQuantity({
+                                    productId: item.id,
+                                    delta: 1,
+                                  })
+                                )
+                              }
+                            >
+                              <i className="bi bi-plus"></i>
+                            </button>
+                          </div>
                           <p>Price per unit: ${item.price}</p>
                           <p>Subtotal: ${item.price * item.quantity}</p>
                           <div className="d-flex justify-content-end">

@@ -27,8 +27,9 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
       })),
       shippingInfo,
       paymentMethod,
-      totalPrice: total,
+      totalAmount: total,
     };
+    console.log("Order payload:", orderPayload);
     try {
       await toast.promise(confirmOrder(orderPayload), {
         pending: "Confirming your order...",
