@@ -38,14 +38,14 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
       });
       dispatch(nextStep());
       dispatch(clearCart());
-      toast.info("You will be redirected to the homepage...", {
+      toast.info("You will be redirected to your order history...", {
         autoClose: 4500,
         hideProgressBar: false,
         pauseOnHover: false,
         pauseOnFocusLoss: false,
       });
       setTimeout(() => {
-        navigate("/");
+        navigate("/profile");
         dispatch(resetStep());
       }, 5000);
     } catch (error) {
