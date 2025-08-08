@@ -108,6 +108,23 @@ export const useApi = () => {
       throw error;
     }
   };
+  const changePassword = async (userId, data) => {
+    try {
+      const response = await api.patch(
+        `/users/${userId}/change-password`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error changing password:", error);
+      throw error.response?.data?.message || "Error";
+    }
+  };
 
   return {
     loginUser,
@@ -117,5 +134,6 @@ export const useApi = () => {
     getOrders,
     getUser,
     updateUser,
+    changePassword,
   };
 };

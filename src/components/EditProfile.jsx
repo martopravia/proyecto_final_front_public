@@ -10,7 +10,7 @@ export default function EditProfile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { updateUser, getUser } = useApi();
+  const { updateUser, getUser, changePassword } = useApi();
 
   const user = useSelector((state) => state.user.user);
 
@@ -31,6 +31,41 @@ export default function EditProfile() {
       brandNews: false,
     },
   });
+
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
+    const { passwordCurrent, passwordNew, passwordConfirm } = formData;
+
+    if (!passwordCurrent || !passwordNew || !passwordConfirm) {
+      toast.warning("Please fill in all password fields.");
+      return;
+    }
+    if (passwordNew.length < 6) {
+      toast.warning("New password must be at least 6 characters long.");
+      return;
+    }
+    if (passwordNew !== passwordConfirm) {
+      toast.warning("New password and confirmation do not match.");
+      return;
+    }
+    try {
+      await changePassword(user.id, {
+        passwordCurrent,
+        passwordNew,
+        passwordConfirm,
+      });
+
+      toast.success("Password changed successfully.");
+      setFormData((prev) => ({
+        ...prev,
+        passwordCurrent: "",
+        passwordNew: "",
+        passwordConfirm: "",
+      }));
+    } catch (error) {
+      toast.error("Error changing password.");
+    }
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -177,7 +212,11 @@ export default function EditProfile() {
                 />
               </Form.Group>
 
-              <Button variant="dark" className="w-100">
+              <Button
+                variant="dark"
+                className="w-100"
+                onClick={handleChangePassword}
+              >
                 CHANGE PASSWORD
               </Button>
             </Card>

@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import CartHandler from "./CartHandler";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/userSlice";
 import { toast } from "react-toastify";
@@ -11,6 +11,7 @@ export default function AppNavbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
+  const collapseRef = useRef();
 
   const handleLogout = () => {
     setTimeout(() => {
@@ -19,6 +20,20 @@ export default function AppNavbar() {
       dispatch(logout());
     }, 1000);
   };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        expanded &&
+        collapseRef.current &&
+        !collapseRef.current.contains(event.target)
+      ) {
+        setExpanded(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [expanded]);
 
   return (
     <Navbar
@@ -85,7 +100,11 @@ export default function AppNavbar() {
             className="text-light"
           ></Nav.Link> */}
         </div>
-        <Navbar.Collapse id="main-navbar-nav" className="custom-collapse">
+        <Navbar.Collapse
+          id="main-navbar-nav"
+          className="custom-collapse"
+          ref={collapseRef}
+        >
           <Nav
             className="flex-column text-dark ps-3"
             onSelect={() => setExpanded(false)}
@@ -99,6 +118,15 @@ export default function AppNavbar() {
             <Nav.Link eventKey="3" as={NavLink} to="/aboutus">
               About this Project
             </Nav.Link>
+            {user && user.role === "admin" && (
+              <Nav.Link
+                as={NavLink}
+                to="http://localhost:5175/admin"
+                className="text-dark"
+              >
+                Admin Panel
+              </Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
