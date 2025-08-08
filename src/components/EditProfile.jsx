@@ -77,113 +77,223 @@ export default function EditProfile() {
       toast.warning("There was an error updating your information.");
     }
   };
-
   return (
-    <Container className="my-5">
+    <Container fluid="md" className="my-5 px-3">
       <Form onSubmit={handleSubmit}>
-        <Row>
-          {/* DATOS DE CONTACTO */}
-          <Col md={6}>
-            <Card className="p-4 mb-4">
-              <h5 className="mb-3">EDIT CONTACT INFORMATION</h5>
+        <div
+          className="d-flex flex-wrap justify-content-center gap-4 mx-auto"
+          style={{ maxWidth: "960px" }}
+        >
+          {/* CONTACT INFO */}
+          <Card
+            className="p-4 shadow-sm flex-grow-1"
+            style={{ minWidth: "300px", maxWidth: "450px" }}
+          >
+            <h5 className="mb-3">EDIT CONTACT INFORMATION</h5>
 
-              <Form.Group className="mb-3">
-                <Form.Label>* First Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="firstname"
-                  value={formData.firstname}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3">
-                <Form.Label>* Last Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="lastname"
-                  value={formData.lastname}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3">
-                <Form.Label>* Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  disabled
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3">
-                <Form.Label>* Phone</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-
-              {/* Checkboxes */}
-              <Form.Check
-                label="I agree to receive promotional emails"
-                name="emailPromo"
-                checked={formData.options.emailPromo}
-                onChange={handleCheckboxChange}
+            <Form.Group className="mb-3">
+              <Form.Label>* First Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="firstname"
+                value={formData.firstname}
+                onChange={handleInputChange}
               />
+            </Form.Group>
 
-              <div className="mt-4">
-                <Button type="submit" variant="dark" className="w-100">
-                  UPDATE INFORMATION
-                </Button>
-              </div>
-            </Card>
-          </Col>
+            <Form.Group className="mb-3">
+              <Form.Label>* Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="lastname"
+                value={formData.lastname}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
 
-          {/* CAMBIO DE CONTRASEÑA */}
-          <Col md={6}>
-            <Card className="p-4 mb-4">
-              <Form.Group className="mb-3">
-                <Form.Label>* Current password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="passwordCurrent"
-                  value={formData.passwordCurrent}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>* Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                disabled
+              />
+            </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Label>* New password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="passwordNew"
-                  value={formData.passwordNew}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>* Phone</Form.Label>
+              <Form.Control
+                type="text"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
 
-              <Form.Group className="mb-4">
-                <Form.Label>* Confirm new password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="passwordConfirm"
-                  value={formData.passwordConfirm}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
+            <Form.Check
+              label="I agree to receive promotional emails"
+              name="emailPromo"
+              checked={formData.options.emailPromo}
+              onChange={handleCheckboxChange}
+            />
 
-              <Button variant="dark" className="w-100">
-                CHANGE PASSWORD
+            <div className="mt-4">
+              <Button type="submit" variant="dark" className="w-100">
+                UPDATE INFORMATION
               </Button>
-            </Card>
-          </Col>
-        </Row>
+            </div>
+          </Card>
+
+          {/* PASSWORD */}
+          <Card
+            className="p-4 shadow-sm flex-grow-1"
+            style={{ minWidth: "300px", maxWidth: "450px" }}
+          >
+            <h5 className="mb-3">CHANGE PASSWORD</h5>
+
+            <Form.Group className="mb-3">
+              <Form.Label>* Current password</Form.Label>
+              <Form.Control
+                type="password"
+                name="passwordCurrent"
+                value={formData.passwordCurrent}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>* New password</Form.Label>
+              <Form.Control
+                type="password"
+                name="passwordNew"
+                value={formData.passwordNew}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label>* Confirm new password</Form.Label>
+              <Form.Control
+                type="password"
+                name="passwordConfirm"
+                value={formData.passwordConfirm}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
+            <Button type="submit" variant="dark" className="w-100">
+              CHANGE PASSWORD
+            </Button>
+          </Card>
+        </div>
       </Form>
     </Container>
   );
+
+  //   return (
+  //     <Container className="my-5  px-3" style={{ maxWidth: "1200px" }}>
+  //       <Form onSubmit={handleSubmit}>
+  //         <div>
+  //           <Card>
+  //               {/* DATOS DE CONTACTO */}
+  //               <Col md={6}>
+  //                 <Card className="p-4 mb-4">
+  //                   <h5 className="mb-3">EDIT CONTACT INFORMATION</h5>
+  //                   <Form.Group className="mb-3">
+  //                     <Form.Label>* First Name</Form.Label>
+  //                     <Form.Control
+  //                       type="text"
+  //                       name="firstname"
+  //                       value={formData.firstname}
+  //                       onChange={handleInputChange}
+  //                     />
+  //                   </Form.Group>
+  //                   <Form.Group className="mb-3">
+  //                     <Form.Label>* Last Name</Form.Label>
+  //                     <Form.Control
+  //                       type="text"
+  //                       name="lastname"
+  //                       value={formData.lastname}
+  //                       onChange={handleInputChange}
+  //                     />
+  //                   </Form.Group>
+  //                   <Form.Group className="mb-3">
+  //                     <Form.Label>* Email</Form.Label>
+  //                     <Form.Control
+  //                       type="email"
+  //                       name="email"
+  //                       value={formData.email}
+  //                       onChange={handleInputChange}
+  //                       disabled
+  //                     />
+  //                   </Form.Group>
+  //                   <Form.Group className="mb-3">
+  //                     <Form.Label>* Phone</Form.Label>
+  //                     <Form.Control
+  //                       type="text"
+  //                       name="phone"
+  //                       value={formData.phone}
+  //                       onChange={handleInputChange}
+  //                     />
+  //                   </Form.Group>
+  //                   {/* Checkboxes */}
+  //                   <Form.Check
+  //                     label="I agree to receive promotional emails"
+  //                     name="emailPromo"
+  //                     checked={formData.options.emailPromo}
+  //                     onChange={handleCheckboxChange}
+  //                   />
+  //                   <div className="mt-4">
+  //                     <Button type="submit" variant="dark" className="w-100">
+  //                       UPDATE INFORMATION
+  //                     </Button>
+  //                   </div>
+  //                 </Card>
+  //               </Col>
+  //           </Card>
+
+  //           {/* CAMBIO DE CONTRASEÑA */}
+  //           <Col md={6}>
+  //             <Card className="p-4 mb-4">
+  //               <Form.Group className="mb-3">
+  //                 <Form.Label>* Current password</Form.Label>
+  //                 <Form.Control
+  //                   type="password"
+  //                   name="passwordCurrent"
+  //                   value={formData.passwordCurrent}
+  //                   onChange={handleInputChange}
+  //                 />
+  //               </Form.Group>
+
+  //               <Form.Group className="mb-3">
+  //                 <Form.Label>* New password</Form.Label>
+  //                 <Form.Control
+  //                   type="password"
+  //                   name="passwordNew"
+  //                   value={formData.passwordNew}
+  //                   onChange={handleInputChange}
+  //                 />
+  //               </Form.Group>
+
+  //               <Form.Group className="mb-4">
+  //                 <Form.Label>* Confirm new password</Form.Label>
+  //                 <Form.Control
+  //                   type="password"
+  //                   name="passwordConfirm"
+  //                   value={formData.passwordConfirm}
+  //                   onChange={handleInputChange}
+  //                 />
+  //               </Form.Group>
+
+  //               <Button variant="dark" className="w-100">
+  //                 CHANGE PASSWORD
+  //               </Button>
+  //             </Card>
+  //           </Col>
+  //         </div>
+  //       </Form>
+  //     </Container>
+  //   );
 }

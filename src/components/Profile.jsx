@@ -43,65 +43,81 @@ export default function Profile() {
   }
 
   return (
-    <Container className="my-5">
-      <h2 className="mb-4">Account of {user.firstname}</h2>
+    <Container className="my-5 px-3" style={{ maxWidth: "1200px" }}>
+      <h2 className="mb-5 text-center">
+        ACCOUNT OF {user.firstname.toUpperCase()}
+      </h2>
 
-      <Row>
-        <Col md={4}>
-          <Card className="p-3 mb-4">
-            <h5 className="mb-3">Personal Information</h5>
-            <p>
-              <strong>First Name:</strong> {user.firstname}
-            </p>
-            <p>
-              <strong>Last Name:</strong> {user.lastname}
-            </p>
-            <p>
-              <strong>Email:</strong> {user.email}
-            </p>
-            <Link to="/profile/edit">
-              <Button variant="dark">View / Edit</Button>
-            </Link>
-          </Card>
-        </Col>
+      <div className="d-flex flex-wrap justify-content-center align-items-start gap-4">
+        {/* Personal Info */}
+        <Card
+          className="p-4 shadow-sm flex-grow-1"
+          style={{ minWidth: "300px", maxWidth: "450px" }}
+        >
+          <h5 className="mb-3">PERSONAL INFORMATION</h5>
+          <p>
+            <strong>First name:</strong> {user.firstname}
+          </p>
+          <p>
+            <strong>Last name:</strong> {user.lastname}
+          </p>
+          <p>
+            <strong>Email:</strong> {user.email}
+          </p>
+          <Link to="/profile/edit">
+            <Button variant="dark" className="w-100 mt-3">
+              VIEW / EDIT
+            </Button>
+          </Link>
+        </Card>
 
-        <Col md={8}>
-          <Card className="p-3">
-            <h5 className="mb-3">Wishlist</h5>
-            <div className="d-flex flex-wrap gap-3">
-              <img src="/img1.png" alt="Producto 1" width={60} height={60} />
-              <img src="/img2.png" alt="Producto 2" width={60} height={60} />
-              <img src="/img3.png" alt="Producto 3" width={60} height={60} />
-              <img src="/img4.png" alt="Producto 4" width={60} height={60} />
-            </div>
-            <p className="mt-3">4 productos</p>
-          </Card>
+        {/* Order History */}
+        <Card
+          className="p-4 shadow-sm flex-grow-1"
+          style={{ minWidth: "300px", maxWidth: "650px" }}
+        >
+          <h5 className="mb-3">ORDER HISTORY</h5>
 
-          <Card className="p-3 mt-4">
-            <h5 className="mb-3">Order History</h5>
+          {loadingOrders && <p>Loading orders...</p>}
+          {errorOrders && <p className="text-danger">{errorOrders}</p>}
+          {!loadingOrders && orders.length === 0 && <p>No orders found.</p>}
 
-            {loadingOrders && <p>Cargando órdenes...</p>}
-            {errorOrders && <p className="text-danger">{errorOrders}</p>}
-
-            {!loadingOrders && orders.length === 0 && (
-              <p>You have no recorded orders.</p>
-            )}
-
-            {!loadingOrders && orders.length > 0 && (
-              <ul className="list-group">
-                {orders.map((order) => (
-                  <li key={order.id} className="list-group-item">
-                    <strong>ID:</strong> {order.id} | <strong>Total:</strong> $
-                    {order.totalAmount} | <strong>Status:</strong>{" "}
-                    {order.status} | <strong>Date:</strong>{" "}
+          {!loadingOrders && orders.length > 0 && (
+            <div className="d-flex flex-column gap-3 w-100">
+              {orders.map((order) => (
+                <Card className="p-3 bg-light border-0 w-100" style={{ maxWidth: "100%" }} key={order.id}>
+                  <h6 className="mb-2">Order #{order.id}</h6>
+                  <p className="mb-1">
+                    <strong>Status:</strong> {order.status}
+                  </p>
+                  <p className="mb-2">
+                    <strong>Date:</strong>{" "}
                     {new Date(order.createdAt).toLocaleDateString()}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </Card>
-        </Col>
-      </Row>
+                  </p>
+
+                  {order.orderDetails?.map((item) => (
+                    <div
+                      key={item.id}
+                      className="d-flex justify-content-between align-items-center border-bottom pb-1 mb-2"
+                    >
+                      <span>
+                        <strong>{item.name}</strong> x{item.quantity}
+                      </span>
+                      <span>
+                        ${(item.unitPrice * item.quantity).toFixed(2)}
+                      </span>
+                    </div>
+                  ))}
+
+                  <div className="text-end fw-bold">
+                    Total: ${order.totalAmount}
+                  </div>
+                </Card>
+              ))}
+            </div>
+          )}
+        </Card>
+      </div>
     </Container>
   );
 }
