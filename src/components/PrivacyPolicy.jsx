@@ -6,8 +6,13 @@ function PrivacyPolicy({ onClose }) {
   const show = useSelector((state) => state.modal.showPrivacy);
   const dispatch = useDispatch();
   if (!show) return null;
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      dispatch(closePrivacyModal());
+    }
+  };
   return (
-    <div className="modal-backdrop ">
+    <div className="modal-backdrop" onClick={handleBackdropClick}>
       <div className="modal-content">
         <button
           onClick={onClose}

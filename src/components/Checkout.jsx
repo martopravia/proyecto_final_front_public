@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, updateQuantity } from "../redux/cartSlice";
 import { Link } from "react-router";
@@ -47,6 +47,17 @@ export default function Checkout({
   ];
 
   const [selectedShippingOption, setSelectedShippingOption] = useState("saved");
+
+  useEffect(() => {
+    if (step === 2 && selectedShippingOption === "saved" && user) {
+      setShippingInfo({
+        name: `${user.firstname} ${user.lastname}`,
+        address: `${user.address}`,
+        email: `${user.email}`,
+        phone: `${user.phone}`,
+      });
+    }
+  }, [step, selectedShippingOption, user]);
 
   const handleShippingChange = (e) => {
     setShippingInfo({
@@ -270,16 +281,6 @@ export default function Checkout({
                             onChange={handleShippingChange}
                           />
                           <input
-                            className="form-control mb-2"
-                            type="email"
-                            name="email"
-                            placeholder="Email"
-                            value={shippingInfo.email}
-                            onChange={handleShippingChange}
-                          />
-                        </div>
-                        <div className="p-2 d-flex">
-                          <input
                             className="form-control mb-2 me-2"
                             type="text"
                             name="address"
@@ -287,6 +288,16 @@ export default function Checkout({
                             value={shippingInfo.address}
                             onChange={handleShippingChange}
                             required
+                          />
+                        </div>
+                        <div className="p-2 d-flex">
+                          <input
+                            className="form-control mb-2"
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            value={shippingInfo.email}
+                            onChange={handleShippingChange}
                           />
                           <input
                             className="form-control mb-2"

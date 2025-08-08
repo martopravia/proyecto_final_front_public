@@ -6,8 +6,13 @@ function TermsOfUse() {
   const dispatch = useDispatch();
   const show = useSelector((state) => state.modal.showTerms);
   if (!show) return null;
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      dispatch(closeTermsModal());
+    }
+  };
   return (
-    <div className="modal-backdrop">
+    <div className="modal-backdrop" onClick={handleBackdropClick}>
       <div className="modal-content ">
         <button
           onClick={() => dispatch(closeTermsModal())}
