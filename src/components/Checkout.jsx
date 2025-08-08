@@ -16,6 +16,13 @@ export default function Checkout({
   const step = useSelector((state) => state.checkout.step);
   const { user } = useSelector((state) => state.user);
 
+  const inputFields = [
+    { name: "name", label: "Name", type: "text" },
+    { name: "address", label: "Address", type: "text" },
+    { name: "email", label: "Email", type: "email" },
+    { name: "phone", label: "Phone", type: "text" },
+  ];
+
   const paymentOptions = [
     {
       id: "creditCard",
@@ -214,42 +221,21 @@ export default function Checkout({
                       <label className="fw-bold">Use saved shipping info</label>
                     </div>
                     <div className="row">
-                      <div className="col-md-6 mb-2">
-                        <label className="form-label">Name</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          value={`${user.firstname} ${user.lastname}`}
-                          disabled
-                        />
-                      </div>
-                      <div className="col-md-6 mb-2">
-                        <label className="form-label">Address</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          value={user.address}
-                          disabled
-                        />
-                      </div>
-                      <div className="col-md-6 mb-2">
-                        <label className="form-label">Email</label>
-                        <input
-                          type="email"
-                          className="form-control"
-                          value={user.email}
-                          disabled
-                        />
-                      </div>
-                      <div className="col-md-6 mb-2">
-                        <label className="form-label">Phone</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          value={user.phone}
-                          disabled
-                        />
-                      </div>
+                      {inputFields.map((field, index) => (
+                        <div className="col-md-6 mb-2" key={index}>
+                          <label className="form-label">{field.label}</label>
+                          <input
+                            type={field.type}
+                            className="form-control"
+                            value={
+                              field.name === "name"
+                                ? `${user.firstname} ${user.lastname}`
+                                : user[field.name]
+                            }
+                            disabled
+                          />
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -269,46 +255,27 @@ export default function Checkout({
                       onChange={() => setSelectedShippingOption("manual")}
                     />
                     <label className="fw-bold">Add new shipping info</label>
+
                     {selectedShippingOption === "manual" && (
-                      <>
-                        <div className="p-2 mt-2 d-flex">
-                          <input
-                            className="form-control mb-2 me-2"
-                            type="text"
-                            name="name"
-                            placeholder="Name"
-                            value={shippingInfo.name}
-                            onChange={handleShippingChange}
-                          />
-                          <input
-                            className="form-control mb-2 me-2"
-                            type="text"
-                            name="address"
-                            placeholder="Address"
-                            value={shippingInfo.address}
-                            onChange={handleShippingChange}
-                            required
-                          />
-                        </div>
-                        <div className="p-2 d-flex">
-                          <input
-                            className="form-control mb-2"
-                            type="email"
-                            name="email"
-                            placeholder="Email"
-                            value={shippingInfo.email}
-                            onChange={handleShippingChange}
-                          />
-                          <input
-                            className="form-control mb-2"
-                            type="text"
-                            name="phone"
-                            placeholder="Phone"
-                            value={shippingInfo.phone}
-                            onChange={handleShippingChange}
-                          />
-                        </div>
-                      </>
+                      <div className="p-2 mt-2 d-flex flex-wrap">
+                        {inputFields.map((field, index) => (
+                          <div
+                            className="me-2 mb-2"
+                            style={{ flex: "1 1 45%" }}
+                            key={index}
+                          >
+                            <input
+                              className="form-control mb-2"
+                              type={field.type}
+                              name={field.name}
+                              placeholder={field.label}
+                              value={shippingInfo[field.name]}
+                              onChange={handleShippingChange}
+                              required={field.name === "address"}
+                            />
+                          </div>
+                        ))}
+                      </div>
                     )}
                   </div>
                 </div>
@@ -351,42 +318,22 @@ export default function Checkout({
               <div className="mt-4">
                 <h5>Card Details</h5>
                 <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Cardholder Name"
-                      autoComplete="off"
-                      required
-                    />
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Card Number"
-                      autoComplete="off"
-                      required
-                    />
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="MM/YY"
-                      autoComplete="off"
-                      required
-                    />
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="CVV"
-                      autoComplete="off"
-                      required
-                    />
-                  </div>
+                  {[
+                    { placeholder: "Cardholder Name", type: "text" },
+                    { placeholder: "Card Number", type: "text" },
+                    { placeholder: "MM/YY", type: "text" },
+                    { placeholder: "CVV", type: "text" },
+                  ].map((field, i) => (
+                    <div className="col-md-6 mb-3" key={i}>
+                      <input
+                        type={field.type}
+                        className="form-control"
+                        placeholder={field.placeholder}
+                        autoComplete="off"
+                        required
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
             )}
