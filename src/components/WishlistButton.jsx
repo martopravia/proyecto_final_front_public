@@ -1,17 +1,24 @@
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { useApi } from "../hooks/useApi";
+import { toggleFavorites } from "../redux/wishlistSlice";
 
 export default function WishlistButton({ productId, className, style }) {
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.wishlist.favorites);
+  const { toggleFavorite } = useApi();
+  const isFavorite = favorites.includes(productId);
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.stopPropagation();
-    console.log("WishlistButton", { productId });
+    dispatch(toggleFavorites(productId));
+    await toggleFavorite(productId);
   };
+
   return (
     <i
       className={`interactive bi bi-suit-heart${
-        false ? "-fill" : " text-secondary"
+        isFavorite ? "-fill" : " text-secondary"
       } ${className}`}
       onClick={handleClick}
       style={style}

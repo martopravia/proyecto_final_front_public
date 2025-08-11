@@ -4,10 +4,12 @@ import { login } from "../redux/userSlice";
 import { useMemo } from "react";
 import { setProducts } from "../redux/productsSlice";
 import { toast } from "react-toastify";
+import { setFavorites } from "../redux/wishlistSlice";
 
 export const useApi = () => {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.user.token);
+  const { token, user } = useSelector((state) => state.user);
+
   const api = useMemo(
     () =>
       axios.create({
@@ -26,7 +28,7 @@ export const useApi = () => {
         },
       });
       dispatch(login({ user, token }));
-      console.log("User logged in:", user, "to token:", token);
+      dispatch(setFavorites(user.favorites));
 
       return token;
     } catch (error) {
@@ -126,6 +128,23 @@ export const useApi = () => {
     }
   };
 
+  const toggleFavorite = async (productId) => {
+    try {
+      const response = await api.patch(
+        `users/${user.id}/favorites`,
+        { productId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error toggling favorite product:", error);
+    }
+  };
+
   return {
     loginUser,
     registerUser,
@@ -135,5 +154,6 @@ export const useApi = () => {
     getUser,
     updateUser,
     changePassword,
+    toggleFavorite,
   };
 };

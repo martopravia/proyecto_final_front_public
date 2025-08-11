@@ -4,6 +4,7 @@ import { addToCart } from "../redux/cartSlice";
 import { formatName } from "../utils/formatName";
 import { toast } from "react-toastify";
 import { resetStep } from "../redux/checkoutSlice";
+import WishlistButton from "./WishlistButton";
 
 export default function ProductPage() {
   const { productId } = useParams();
@@ -19,7 +20,7 @@ export default function ProductPage() {
     toast.success(`${product.name} added to cart!`);
   };
 
-  const { name, description, price, image } = product;
+  const { id, name, description, price, image } = product;
   return (
     <div className="container-fluid">
       <div className="row flex-column flex-md-row">
@@ -43,6 +44,7 @@ export default function ProductPage() {
             >
               Add to cart
             </button>
+            <WishlistButton productId={id} />
           </div>
         </div>
       </div>

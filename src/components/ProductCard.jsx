@@ -54,6 +54,7 @@ export default function ProductCard({
         style={{ height: "300px" }}
       />
       <WishlistButton
+        productId={id}
         className={"fs-5"}
         style={{
           position: "absolute",
