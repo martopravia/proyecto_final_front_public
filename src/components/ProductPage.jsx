@@ -35,7 +35,7 @@ export default function ProductPage() {
             <h2>{formatName(name)}</h2>
             <p>{description}</p>
             <hr />
-            <p className="fs-4">USD {Number(price).toLocaleString("de-DE")}</p>
+            <p className="fs-4">U$S {Number(price).toLocaleString("de-DE")}</p>
             <p>Price without shipping</p>
             <button
               className="btn btn-dark rounded-pill w-100"

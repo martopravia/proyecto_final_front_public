@@ -166,20 +166,13 @@ export default function Checkout({
                             </button>
                           </div>
                           <p>
-                            Price per unit: $
-                            {Number(item.price).toLocaleString("de-DE", {
-                              minimumFractionDigits: 2,
-                              maximumFractionDigits: 2,
-                            })}{" "}
+                            Price per unit: U$S{" "}
+                            {Number(item.price).toLocaleString("de-DE")}{" "}
                           </p>
                           <p>
-                            Subtotal: $
+                            Subtotal: U$S{" "}
                             {(item.price * item.quantity).toLocaleString(
-                              "de-DE",
-                              {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2,
-                              }
+                              "de-DE"
                             )}
                           </p>
                           <div className="d-flex justify-content-end">
