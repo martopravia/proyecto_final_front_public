@@ -92,7 +92,7 @@ export default function ProductPage() {
               </div>
             </div>
             <button
-              className="btn btn-dark rounded-pill w-100"
+              className="btn btn-dark rounded-pill w-100 mt-2"
               onClick={handleAddToCart}
             >
               Add to cart
