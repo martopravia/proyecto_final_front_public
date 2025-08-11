@@ -68,7 +68,9 @@ export default function ProductCard({
               {formatName(categoryName.slice(0, -1))}
             </span>
             <span className="d-block fs-4">{formatName(name)}</span>
-            <span className="text-muted">USD {Number(price).toFixed(0)}</span>
+            <span className="text-muted">
+              USD {Number(price).toLocaleString("de-DE")}
+            </span>
           </div>
           <div className="col mb-0 text-end align-content-end">
             <div className="d-flex justify-content-end gap-2 mb-2">

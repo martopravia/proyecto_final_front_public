@@ -165,8 +165,23 @@ export default function Checkout({
                               <i className="bi bi-plus"></i>
                             </button>
                           </div>
-                          <p>Price per unit: ${item.price}</p>
-                          <p>Subtotal: ${item.price * item.quantity}</p>
+                          <p>
+                            Price per unit: $
+                            {Number(item.price).toLocaleString("de-DE", {
+                              minimumFractionDigits: 2,
+                              maximumFractionDigits: 2,
+                            })}{" "}
+                          </p>
+                          <p>
+                            Subtotal: $
+                            {(item.price * item.quantity).toLocaleString(
+                              "de-DE",
+                              {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                              }
+                            )}
+                          </p>
                           <div className="d-flex justify-content-end">
                             <i
                               className="bi bi-trash3"

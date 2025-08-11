@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
 import { formatName } from "../utils/formatName";
@@ -35,7 +35,7 @@ export default function ProductPage() {
             <h2>{formatName(name)}</h2>
             <p>{description}</p>
             <hr />
-            <p className="fs-4">{price} USD</p>
+            <p className="fs-4">USD {Number(price).toLocaleString("de-DE")}</p>
             <p>Price without shipping</p>
             <button
               className="btn btn-dark rounded-pill w-100"
@@ -43,6 +43,12 @@ export default function ProductPage() {
             >
               Add to cart
             </button>
+            <Link
+              to="/products"
+              className="btn btn-outline-dark rounded-pill w-100 my-2"
+            >
+              Continue Shopping...
+            </Link>
           </div>
         </div>
       </div>
