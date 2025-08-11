@@ -11,7 +11,7 @@ function Home() {
     return <div>Loading...</div>;
   }
   const getFirstProductByCategory = (category) =>
-    products.find((product) => product.category.name === category);
+    products.find((product) => product.category?.name === category);
 
   const sofas = getFirstProductByCategory("sofas");
   const tables = getFirstProductByCategory("tables");
