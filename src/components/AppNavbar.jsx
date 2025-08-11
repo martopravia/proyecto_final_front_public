@@ -121,7 +121,7 @@ export default function AppNavbar() {
             {user && user.role === "admin" && (
               <Nav.Link
                 as={NavLink}
-                to="http://localhost:5175/admin"
+                to="http://localhost:5174/admin"
                 className="text-dark"
               >
                 Admin Panel
