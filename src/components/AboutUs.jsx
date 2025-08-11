@@ -43,14 +43,18 @@ export default function AboutUs() {
         <div className="about-hero d-flex flex-column justify-content-center align-items-center text-center">
           <div className="container">
             <h1 className="fw-bold my-4">About this project</h1>
-            <p className="mx-auto about-description ">
+            <p className="mx-auto about-description">
               This e-commerce platform represents a collaborative effort by
               students from Hack Academy's intensive Coding Bootcamp. Our
               comprehensive full-time program spans 3 months, during which we
               dedicated over 600+ hours of code, 112 cups of coffee (yes, we
               counted), and only 3 emotional breakdowns mastering cutting-edge
-              technologies including Node.js, Express, React.js, SQL, MongoDB,
-              and Git version control.
+              technologies including{" "}
+              <span className="fw-bold">
+                Node.js, Express, React.js, SQL, MongoDB, and Git version
+                control
+              </span>
+              .
             </p>
           </div>
         </div>
@@ -63,7 +67,7 @@ export default function AboutUs() {
               },
               {
                 title: "💻 Technologies",
-                text: "Frontend built with React.js + CRA. Backend: Node.js, Express, SQL, and Git/GitHub.",
+                text: "Frontend built with React.js + CRA and Backend with Node.js, Express, SQL, and Git/GitHub.",
               },
               {
                 title: "📋 Task Management",
@@ -137,7 +141,7 @@ export default function AboutUs() {
             </div>
           </div>
           <h3 className="fw-bold text-center">Meet the team</h3>
-          <div className="row justify-content-xxl-between justify-content-center mt-5">
+          <div className="row justify-content-xxl-between justify-content-center mt-5 mx-3">
             {developers.map((dev, index) => (
               <div
                 key={index}
