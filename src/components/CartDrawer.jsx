@@ -52,7 +52,7 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
                 <div className="flex-grow-1">
                   <div className="fw-semibold">{formatName(item.name)}</div>
                   <div className="text-muted" style={{ fontSize: "0.85rem" }}>
-                    ${Number(item.price).toLocaleString("de-DE")} ea.
+                    U$S {Number(item.price).toLocaleString("de-DE")} ea.
                   </div>
                   <div className="d-flex align-items-center mt-2 gap-2">
                     <span style={{ fontSize: "1rem" }}>
