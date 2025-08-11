@@ -65,24 +65,18 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
         Total quantity:{" "}
         {cartItems.reduce((sum, item) => sum + item.quantity, 0)}
       </p>
+      <p>Subtotal: U$S {Number(total).toLocaleString("de-DE")} </p>
       <p>
-        Subtotal: $
-        {Number(total).toLocaleString("de-DE", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}{" "}
-      </p>
-      <p>
-        Taxes: $
+        Taxes: U$S{" "}
         {(total * 0.21).toLocaleString("de-DE", {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         })}
       </p>
-      <p>Shipping: $5,00</p>
+      <p>Shipping: U$S 5,00</p>
       <hr />
       <p className="fw-bold">
-        Total: $
+        Total: U$S{" "}
         {(total + 5 + total * 0.21).toLocaleString("de-DE", {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,

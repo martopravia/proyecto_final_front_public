@@ -69,7 +69,7 @@ export default function ProductCard({
             </span>
             <span className="d-block fs-4">{formatName(name)}</span>
             <span className="text-muted">
-              USD {Number(price).toLocaleString("de-DE")}
+              U$S {Number(price).toLocaleString("de-DE")}
             </span>
           </div>
           <div className="col mb-0 text-end align-content-end">
