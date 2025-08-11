@@ -90,7 +90,7 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
                     </button>
 
                     <span className="ms-auto fw-semibold">
-                      $
+                      U$S{" "}
                       {Number(item.price * item.quantity).toLocaleString(
                         "de-DE"
                       )}
@@ -107,7 +107,7 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
           <span className="fw-semibold fs-5">Total</span>
           <span className="fw-bold fs-5">
             <span className="fw-bold fs-5">
-              $
+              U$S{" "}
               {cartItems
                 .reduce((total, item) => total + item.price * item.quantity, 0)
                 .toLocaleString("de-DE")}
