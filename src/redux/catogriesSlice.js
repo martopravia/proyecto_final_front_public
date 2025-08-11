@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const productsSlice = createSlice({
-  name: "products",
+const categoriesSlice = createSlice({
+  name: "categories",
   initialState: {
     items: [],
     loading: false,
@@ -9,26 +9,27 @@ const productsSlice = createSlice({
     lastFetched: 0,
   },
   reducers: {
-    productsRequested(state) {
+    categoriesRequested(state) {
       state.loading = true;
       state.error = null;
     },
-    productsReceived(state, action) {
+    categoriesReceived(state, action) {
       state.loading = false;
       state.items = action.payload;
+      state.lastFetched = Date.now();
     },
-    productsRequestFailed(state, action) {
+    categoriesRequestFailed(state, action) {
       state.loading = false;
       state.error = action.payload;
     },
   },
 });
 
-const { actions, reducer } = productsSlice;
+const { actions, reducer } = categoriesSlice;
 export const {
-  setProducts,
-  productsRequested,
-  productsReceived,
-  productsRequestFailed,
+  setCategories,
+  categoriesRequested,
+  categoriesReceived,
+  categoriesRequestFailed,
 } = actions;
 export default reducer;

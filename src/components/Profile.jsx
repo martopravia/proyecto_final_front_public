@@ -85,7 +85,11 @@ export default function Profile() {
           {!loadingOrders && orders.length > 0 && (
             <div className="d-flex flex-column gap-3 w-100">
               {orders.map((order) => (
-                <Card className="p-3 bg-light border-0 w-100" style={{ maxWidth: "100%" }} key={order.id}>
+                <Card
+                  className="p-3 bg-light border-0 w-100"
+                  style={{ maxWidth: "100%" }}
+                  key={order.id}
+                >
                   <h6 className="mb-2">Order #{order.id}</h6>
                   <p className="mb-1">
                     <strong>Status:</strong> {order.status}
@@ -104,13 +108,21 @@ export default function Profile() {
                         <strong>{item.name}</strong> x{item.quantity}
                       </span>
                       <span>
-                        ${(item.unitPrice * item.quantity).toFixed(2)}
+                        U$S{" "}
+                        {(item.unitPrice * item.quantity).toLocaleString(
+                          "de-DE",
+                          { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+                        )}
                       </span>
                     </div>
                   ))}
 
                   <div className="text-end fw-bold">
-                    Total: ${order.totalAmount}
+                    Total: U$S{" "}
+                    {Number(order.totalAmount).toLocaleString("de-DE", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
                   </div>
                 </Card>
               ))}

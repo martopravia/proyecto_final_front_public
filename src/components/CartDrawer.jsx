@@ -52,7 +52,7 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
                 <div className="flex-grow-1">
                   <div className="fw-semibold">{formatName(item.name)}</div>
                   <div className="text-muted" style={{ fontSize: "0.85rem" }}>
-                    ${item.price} c/u
+                    U$S {Number(item.price).toLocaleString("de-DE")} ea.
                   </div>
                   <div className="d-flex align-items-center mt-2 gap-2">
                     <span style={{ fontSize: "1rem" }}>
@@ -90,7 +90,10 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
                     </button>
 
                     <span className="ms-auto fw-semibold">
-                      ${item.price * item.quantity}
+                      $
+                      {Number(item.price * item.quantity).toLocaleString(
+                        "de-DE"
+                      )}
                     </span>
                   </div>
                 </div>
@@ -103,11 +106,12 @@ export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
         <div className="d-flex justify-content-between align-items-center mb-3">
           <span className="fw-semibold fs-5">Total</span>
           <span className="fw-bold fs-5">
-            $
-            {cartItems.reduce(
-              (total, item) => total + item.price * item.quantity,
-              0
-            )}
+            <span className="fw-bold fs-5">
+              $
+              {cartItems
+                .reduce((total, item) => total + item.price * item.quantity, 0)
+                .toLocaleString("de-DE")}
+            </span>
           </span>
         </div>
         <div className="d-flex flex-column gap-2">

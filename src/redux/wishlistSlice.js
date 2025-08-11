@@ -1,5 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { setFavorite } from "./productsSlice";
+import { createSlice } from "@reduxjs/toolkit";
 
 const wishlistSlice = createSlice({
   name: "wishlist",

@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
+import { Link } from "react-router";
 
 export default function CheckoutPage() {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -82,6 +83,14 @@ export default function CheckoutPage() {
                 shippingInfo={shippingInfo}
               />
             </div>
+          </div>
+          <div className="col-md-8 col-sm-12 d-flex justify-content-center">
+            <Link
+              to="/products"
+              className="btn btn-outline-dark rounded-pill w-100 mx-4 text-center my-2"
+            >
+              Continue Shopping...
+            </Link>
           </div>
         </div>
       )}

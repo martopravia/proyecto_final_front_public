@@ -15,19 +15,19 @@
   color: white;
   position: relative;
 }
-
 .card-profile {
+  min-height: 480px !important;
+  min-width: 250px !important;
   max-width: 250px !important;
-
-  img {
-    max-width: 250px !important;
-    max-height: 250px !important;
-    object-fit: cover;
-  }
 }
 
-.card {
-  max-width: 23rem;
+.card-profile img {
+  min-width: 250px !important;
+  max-width: 250px !important;
+  height: 250px !important;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
 }
 
 .values-section::before {

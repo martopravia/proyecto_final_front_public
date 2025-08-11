@@ -35,6 +35,10 @@ export default function AppNavbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [expanded]);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <Navbar
       expand="{false}"
@@ -51,6 +55,7 @@ export default function AppNavbar() {
         <div className="d-flex align-items-center">
           <Navbar.Toggle aria-controls="main-navbar-nav" className="me-2" />
           <Navbar.Brand
+            onClick={scrollToTop}
             className="logo-center d-flex justify-content-center align-items-center "
             as={NavLink}
             to="/"
@@ -94,11 +99,6 @@ export default function AppNavbar() {
             </Nav.Link>
           )}
           <CartHandler />
-          {/* <Nav.Link
-            as={NavLink}
-            to="/carrito"
-            className="text-light"
-          ></Nav.Link> */}
         </div>
         <Navbar.Collapse
           id="main-navbar-nav"
@@ -121,7 +121,7 @@ export default function AppNavbar() {
             {user && user.role === "admin" && (
               <Nav.Link
                 as={NavLink}
-                to="http://localhost:5175/admin"
+                to="http://localhost:5174/admin"
                 className="text-dark"
               >
                 Admin Panel
