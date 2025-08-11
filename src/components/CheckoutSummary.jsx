@@ -65,11 +65,29 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
         Total quantity:{" "}
         {cartItems.reduce((sum, item) => sum + item.quantity, 0)}
       </p>
-      <p>Subtotal: ${total.toFixed(2)}</p>
-      <p>Taxes: ${(total * 0.21).toFixed(2)}</p>
-      <p>Shipping: $5.00</p>
+      <p>
+        Subtotal: $
+        {Number(total).toLocaleString("de-DE", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })}{" "}
+      </p>
+      <p>
+        Taxes: $
+        {(total * 0.21).toLocaleString("de-DE", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })}
+      </p>
+      <p>Shipping: $5,00</p>
       <hr />
-      <p className="fw-bold">Total: ${(total + 5 + total * 0.21).toFixed(2)}</p>
+      <p className="fw-bold">
+        Total: $
+        {(total + 5 + total * 0.21).toLocaleString("de-DE", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })}
+      </p>
 
       <div className="d-flex flex-column justify-content-between flex-lg-row gap-2 mt-3">
         {(step === 2 || step === 3) && (
