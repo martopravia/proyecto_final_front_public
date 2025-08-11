@@ -16,7 +16,6 @@ const productsSlice = createSlice({
     productsReceived(state, action) {
       state.loading = false;
       state.items = action.payload;
-      state.lastFetched = Date.now();
     },
     productsRequestFailed(state, action) {
       state.loading = false;
