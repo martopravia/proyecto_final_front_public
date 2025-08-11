@@ -1,24 +1,20 @@
 import { useNavigate } from "react-router";
 import { formatName } from "../utils/formatName";
 import { useCategoryProducts } from "../hooks/useCategoryProducts";
+import { useCategories } from "../hooks/useCategories";
 
 function Home() {
   const navigate = useNavigate();
 
-  const { products } = useCategoryProducts();
+  const { products, loadingProducts } = useCategoryProducts();
+  const { categories, loadingCategories } = useCategories();
 
-  if (products.length === 0) {
+  if (loadingProducts || loadingCategories) {
     return <div>Loading...</div>;
   }
-  const getFirstProductByCategory = (category) =>
-    products.find((product) => product.category?.name === category);
 
-  const sofas = getFirstProductByCategory("sofas");
-  const tables = getFirstProductByCategory("tables");
-  const chairs = getFirstProductByCategory("chairs");
-
-  const handleClick = (categoryId) => {
-    navigate(`/category/${categoryId}`);
+  const handleClick = (categoryName) => {
+    navigate(`/category/${categoryName}`);
   };
 
   const randomProducts = products
@@ -30,66 +26,50 @@ function Home() {
     <div className="my-5">
       <h1 className="text-center my-5">Choose your signature piece</h1>
 
-      <div className="row m-5">
-        <div
-          className="col-12 col-md-6 col-xl-4 mb-4 mt-5 d-flex flex-column justify-content-end align-items-center text-center"
-          onClick={() => handleClick("sofas")}
-        >
-          <img
-            src={sofas?.image || "src/img/sillon nordico.png"}
-            className="img-fluid img-home interactive"
-            alt="Sofa image"
-          />
-          <h4 className="mt-5  ">Heritage Sofas</h4>
-        </div>
-        <div
-          className="col-12 col-md-6 col-xl-4  mb-4 mt-5 d-flex flex-column justify-content-end align-items-center text-center"
-          onClick={() => handleClick("chairs")}
-        >
-          <img
-            src={chairs?.image || "src/img/sillon nordico.png"}
-            className="img-fluid img-home interactive"
-            alt="Chair image"
-          />
-          <h4 className="mt-5 ">Refined Seating</h4>
-        </div>
-        <div
-          className="col-12 col-md-6 col-xl-4  mb-4 mt-5 d-flex flex-column justify-content-end align-items-center text-center"
-          onClick={() => handleClick("tables")}
-        >
-          <img
-            src={tables?.image || "src/img/sillon nordico.png"}
-            className="img-fluid img-home interactive"
-            alt="Table image"
-          />
-          <h4 className="mt-5 ">Artisan Tables</h4>
-        </div>
+      <div className="row d-flex justify-content-center m-5">
+        {categories.map((category) => (
+          <div
+            key={category.id}
+            className="col-12 col-md-6 col-xl-4 mb-4 mt-5 d-flex flex-column"
+            onClick={() => handleClick(category.name)}
+          >
+            <div className="flex-grow-1 d-flex justify-content-center align-items-center">
+              <img
+                src={category.image}
+                className="img-fluid img-home interactive"
+                alt={category.alias}
+              />
+            </div>
+            <h4 className="mt-3 text-center">{category.alias}</h4>
+          </div>
+        ))}
       </div>
       <hr />
       <h2 className="text-center my-5">
         Curated designs for distinguished spaces
       </h2>
       <div className="row m-4">
-        <div className="scroll-container px-4 d-flex overflow-x-auto overflow-y-hidden gap-5 pb-5">
+        <div className="col-12 scroll-container d-flex overflow-y-hidden d-flex gap-5 pb-5">
           {randomProducts.map((product) => (
             <div
               key={product.id}
-              className="scroll-item interactive text-center col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column justify-content-end align-items-center text-center"
+              className="scroll-item interactive text-center col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column justify-content-center"
               style={{
                 maxWidth: "300px",
+                minWidth: "200px",
               }}
               onClick={() => navigate(`/products/${product.id}`)}
             >
               <div
                 className="scroll-image-card w-100 overflow-y-hidden rounded mx-auto"
                 style={{
-                  height: "500px",
+                  height: "300px",
                 }}
               >
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-100 h-100 object-fit-contain d-block image-test"
+                  className="w-100 h-100 object-fit-contain"
                 />
               </div>
               <span className="mt-3 fs-4">{formatName(product.name)}</span>

@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router";
+import { formatName } from "../utils/formatName";
 
 export default function Breadcrumbs() {
   const location = useLocation();
@@ -11,7 +12,7 @@ export default function Breadcrumbs() {
       <ol className="breadcrumb m-2 justify-content-center">
         <li className="breadcrumb-item">
           <Link className="text-dark" to="/">
-            home
+            Home
           </Link>
         </li>
         {pathnames.map((name, index) => {
@@ -35,12 +36,12 @@ export default function Breadcrumbs() {
               className="breadcrumb-item active"
               aria-current="page"
             >
-              {displayName}
+              {formatName(displayName)}
             </li>
           ) : (
             <li key={name} className="breadcrumb-item">
               <Link className="text-dark" to={routeTo}>
-                {displayName}
+                {formatName(displayName)}
               </Link>
             </li>
           );

@@ -2,8 +2,17 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/userSlice";
 import { useMemo } from "react";
-import { setProducts } from "../redux/productsSlice";
+import {
+  productsReceived,
+  productsRequested,
+  productsRequestFailed,
+} from "../redux/productsSlice";
 import { toast } from "react-toastify";
+import {
+  categoriesReceived,
+  categoriesRequested,
+  categoriesRequestFailed,
+} from "../redux/catogriesSlice";
 
 export const useApi = () => {
   const dispatch = useDispatch();
@@ -58,12 +67,26 @@ export const useApi = () => {
     }
   };
 
-  const getProducts = async (params) => {
+  const getCategories = async (params) => {
+    dispatch(categoriesRequested());
     try {
-      const response = await api.get("/products", { params });
-      dispatch(setProducts(response.data));
+      const response = await api.get("/categories", { params });
+      dispatch(categoriesReceived(response.data));
       return response.data;
     } catch (error) {
+      dispatch(categoriesRequestFailed(error.message));
+      console.error("Error:", error);
+    }
+  };
+
+  const getProducts = async (params) => {
+    dispatch(productsRequested());
+    try {
+      const response = await api.get("/products", { params });
+      dispatch(productsReceived(response.data));
+      return response.data;
+    } catch (error) {
+      dispatch(productsRequestFailed(error.message));
       console.error("Error:", error);
     }
   };
@@ -130,6 +153,7 @@ export const useApi = () => {
     loginUser,
     registerUser,
     confirmOrder,
+    getCategories,
     getProducts,
     getOrders,
     getUser,
