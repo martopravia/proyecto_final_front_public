@@ -5,12 +5,17 @@ import { formatName } from "../utils/formatName";
 import { toast } from "react-toastify";
 import { resetStep } from "../redux/checkoutSlice";
 import WishlistButton from "./WishlistButton";
+import { useCategoryProducts } from "../hooks/useCategoryProducts";
 
 export default function ProductPage() {
   const { productId } = useParams();
   const dispatch = useDispatch();
 
-  const products = useSelector((state) => state.products.items);
+  const { products, loadingProducts } = useCategoryProducts();
+
+  if (loadingProducts) {
+    return <div>Loading...</div>;
+  }
 
   const product = products.find((product) => product.id === Number(productId));
 
