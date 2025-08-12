@@ -36,7 +36,8 @@ export default function AboutUs() {
       profileImg: "src/img/fotoPerfilCato.jpg",
       linkedin: "https://www.linkedin.com/in/joaquin-reinante-818007193/",
       github: "https://github.com/CatoReinante",
-      description: "Some quick example text to build on the card title",
+      description:
+        "Full Stack Developer with a Bachelor’s in Business Administration, blending analytical thinking with a passion for technology. Skilled in React, Node.js, Express, MySQL, and MongoDB, I craft dynamic, user-centric applications and embrace every project as an opportunity to learn, innovate, and deliver impact.",
     },
   ];
 
