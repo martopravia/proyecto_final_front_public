@@ -30,7 +30,6 @@ const categoriesSlice = createSlice({
 
 const { actions, reducer } = categoriesSlice;
 export const {
-  setCategories,
   categoriesRequested,
   categoriesReceived,
   categoriesRequestFailed,

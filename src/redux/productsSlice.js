@@ -25,12 +25,15 @@ const productsSlice = createSlice({
     resetProductsLastFetched(state) {
       state.lastFetched = 0;
     },
+    finishLoading(state) {
+      state.loading = false;
+    },
   },
 });
 
 const { actions, reducer } = productsSlice;
 export const {
-  setProducts,
+  finishLoading,
   productsRequested,
   productsReceived,
   productsRequestFailed,

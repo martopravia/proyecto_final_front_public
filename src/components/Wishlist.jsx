@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useApi } from "../hooks/useApi";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router";
+import { finishLoading } from "../redux/productsSlice";
 
 export default function Wishlist() {
   const { products, favorites } = useSelector((state) => state.wishlist);
@@ -17,7 +18,7 @@ export default function Wishlist() {
     } else {
       dispatch(setWishlistProducts([]));
     }
-    console.log(products);
+    dispatch(finishLoading());
   }, [favorites, dispatch]);
 
   if (favorites.length === 0) {
