@@ -23,15 +23,15 @@ export default function Wishlist() {
   if (favorites.length === 0) {
     return (
       <div className="w-100">
-        <h5 className="mb-3">FAVORITOS</h5>
-        <p>No tienes productos en tu lista de favoritos.</p>
+        <h5 className="mb-3">FAVOURITES</h5>
+        <p>You dont have any products in your favourites list.</p>
       </div>
     );
   }
 
   return (
     <div className="w-100">
-      <h5 className="mb-3">FAVORITOS</h5>
+      <h5 className="mb-3">FAVOURITES</h5>
       {products.map((product) => (
         <Card className="p-3 mb-3 bg-light border-0" key={product.id}>
           <div className="d-flex align-items-center gap-3">
@@ -46,7 +46,7 @@ export default function Wishlist() {
               <h6 className="mb-1">{product.name}</h6>
               <p className="mb-0">U$S {Number(product.price).toFixed(2)}</p>
             </div>
-            <Link to={`/product/${product.id}`}>
+            <Link to={`/products/${product.id}`}>
               <Button variant="dark" size="sm">
                 Ver
               </Button>
