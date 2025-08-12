@@ -73,7 +73,6 @@ export const useApi = () => {
     dispatch(categoriesRequested());
     try {
       const response = await api.get("/categories", { params });
-      dispatch(categoriesReceived(response.data));
       return response.data;
     } catch (error) {
       dispatch(categoriesRequestFailed(error.message));
@@ -85,7 +84,6 @@ export const useApi = () => {
     dispatch(productsRequested());
     try {
       const response = await api.get("/products", { params });
-      dispatch(productsReceived(response.data));
       return response.data;
     } catch (error) {
       dispatch(productsRequestFailed(error.message));
