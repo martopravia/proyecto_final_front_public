@@ -7,30 +7,36 @@ export default function AboutUs() {
       profileImg: "src/img/fotoPerfilMarto.jpeg",
       linkedin: "https://www.linkedin.com/in/martin-pravia/",
       github: "https://github.com/martopravia",
+      description:
+        "Full Stack Developer skilled in Node.js, Express, React.js, SQL, and MongoDB. Driven by curiosity and a passion for building impactful web applications, I’m committed to delivering clean, efficient, and scalable solutions while continuously pushing my limits to stand out in the tech field.",
     },
     {
       name: "Manuel Negrin",
       profileImg: "src/img/fotoPerfilManu.jpeg",
       linkedin: "https://www.linkedin.com/in/manuelnegrin",
       github: "https://github.com/ManuelNegrin",
+      description: "Some quick example text to build on the card title",
     },
     {
       name: "Alfonso Pavia",
       profileImg: "src/img/fotoPerfilAlfo.jpg",
       linkedin: "https://www.linkedin.com/in/alfonso-paiva-vázquez-03112a13b",
       github: "https://github.com/paiva92",
+      description: "Some quick example text to build on the card title",
     },
     {
       name: "Juan Pedro Diaz",
       profileImg: "src/img/fotoPerfilJuanPe.png",
       linkedin: "https://www.linkedin.com/in/juanpedrodiazlumaca/",
       github: "https://github.com/juanpediaz",
+      description: "Some quick example text to build on the card title",
     },
     {
       name: "Joaquin Reinante",
       profileImg: "src/img/fotoPerfilCato.jpg",
       linkedin: "https://www.linkedin.com/in/joaquin-reinante-818007193/",
       github: "https://github.com/CatoReinante",
+      description: "Some quick example text to build on the card title",
     },
   ];
 
@@ -150,21 +156,19 @@ export default function AboutUs() {
                     src={dev.profileImg}
                     alt="Avatar"
                   />
-                  <div className="card-body">
+                  <div className="card-body d-flex flex-column h-100">
                     <h5 className="card-title fw-bold mb-4">{dev.name}</h5>
-                    <div className="">
+                    <div>
                       <h5 className="card-subtitle my-2">Web Developer</h5>
-                      <p className="card-text text-muted">
-                        Some quick example text to build on the card title.
-                      </p>
-                      <div className="m-0 p-0 d-flex justify-content-center gap-3 flex-wrap mt-4">
-                        <a href={dev.linkedin} className="m-0 p-0">
-                          <i className="bi bi-linkedin fs-3"></i>
-                        </a>
-                        <a href={dev.github} className="m-0 p-0">
-                          <i className="bi bi-github fs-3"></i>
-                        </a>
-                      </div>
+                      <p className="card-text text-muted">{dev.description}</p>
+                    </div>
+                    <div className="m-0 p-0 d-flex justify-content-center gap-3 flex-wrap mt-auto">
+                      <a href={dev.linkedin} className="m-0 p-0">
+                        <i className="bi bi-linkedin fs-3"></i>
+                      </a>
+                      <a href={dev.github} className="m-0 p-0">
+                        <i className="bi bi-github fs-3 text-dark"></i>
+                      </a>
                     </div>
                   </div>
                 </div>
