@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
-import catogiesReducer from "./catogriesSlice";
+import categoriesReducer from "./categoriesSlice";
 import productsReducer from "./productsSlice";
 import checkoutReducer from "./checkoutSlice";
 import modalReducer from "./modalSlice";
@@ -26,7 +26,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   cart: cartReducer,
   user: userReducer,
-  categories: catogiesReducer,
+  categories: categoriesReducer,
   products: productsReducer,
   checkout: checkoutReducer,
   modal: modalReducer,

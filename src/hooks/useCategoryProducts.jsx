@@ -16,15 +16,15 @@ export const useCategoryProducts = ({ category } = {}) => {
     lastFetched = 0,
   } = useSelector((state) => state.products);
 
-  const isStale = Date.now() - lastFetched > STALE_TIME;
-
   useEffect(() => {
+    const isStale = Date.now() - lastFetched > STALE_TIME;
+
     if (!loading && (!items.length || isStale)) {
       getProducts({ limit: 50 }).then(
         (res) => res && dispatch(productsReceived(res))
       );
     }
-  }, []);
+  }, [loading, items.length, lastFetched, dispatch]);
 
   const filtered = items.filter((item) =>
     category ? item.category.name === category : true
