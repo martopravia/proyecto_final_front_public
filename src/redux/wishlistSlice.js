@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react";
 
 const wishlistSlice = createSlice({
   name: "wishlist",
-  initialState: { favorites: [] },
+  initialState: { favorites: [], products: [] },
   reducers: {
     setFavorites(state, action) {
       state.favorites = action.payload;
@@ -16,8 +17,12 @@ const wishlistSlice = createSlice({
         state.favorites = state.favorites.filter((id) => id !== productId);
       }
     },
+    setWishlistProducts(state, action) {
+      state.products = action.payload;
+    },
   },
 });
 
-export const { setFavorites, toggleFavorites } = wishlistSlice.actions;
+export const { setFavorites, toggleFavorites, setWishlistProducts } =
+  wishlistSlice.actions;
 export default wishlistSlice.reducer;
