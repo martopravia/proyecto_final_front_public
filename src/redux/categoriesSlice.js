@@ -22,6 +22,9 @@ const categoriesSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    resetCategoriesLastFetched(state) {
+      state.lastFetched = 0;
+    },
   },
 });
 
@@ -31,5 +34,6 @@ export const {
   categoriesRequested,
   categoriesReceived,
   categoriesRequestFailed,
+  resetCategoriesLastFetched,
 } = actions;
 export default reducer;

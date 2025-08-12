@@ -3,17 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/userSlice";
 import { useMemo } from "react";
 import {
-  productsReceived,
   productsRequested,
   productsRequestFailed,
 } from "../redux/productsSlice";
 import { toast } from "react-toastify";
 import { setFavorites } from "../redux/wishlistSlice";
 import {
-  categoriesReceived,
   categoriesRequested,
   categoriesRequestFailed,
-} from "../redux/catogriesSlice";
+} from "../redux/categoriesSlice";
 
 export const useApi = () => {
   const dispatch = useDispatch();
