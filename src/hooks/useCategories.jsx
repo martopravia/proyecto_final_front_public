@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useApi } from "./useApi";
-import { productsReceived } from "../redux/productsSlice";
-import { categoriesReceived } from "../redux/catogriesSlice";
+import { categoriesReceived } from "../redux/categoriesSlice";
 
 const STALE_TIME = import.meta.env.VITE_STALE_TIME_SEC * 1000;
 
@@ -17,15 +16,15 @@ export const useCategories = () => {
     lastFetched = 0,
   } = useSelector((state) => state.categories);
 
-  const isStale = Date.now() - lastFetched > STALE_TIME;
-
   useEffect(() => {
+    const isStale = Date.now() - lastFetched > STALE_TIME;
+
     if (!loading && (!items.length || isStale)) {
       getCategories({ limit: 50 }).then(
         (res) => res && dispatch(categoriesReceived(res))
       );
     }
-  }, []);
+  }, [loading, items.length, lastFetched, dispatch]);
 
   return { categories: items, loadingCategories: loading, error };
 };
