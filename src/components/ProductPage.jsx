@@ -49,19 +49,23 @@ export default function ProductPage() {
         <div className="col-md-6 d-flex justify-content-center">
           <img
             className="img-fluid border-0 object-fit-contain"
+            style={{ maxHeight: "80vh" }}
             src={image}
             alt={name}
           />
         </div>
         <div className="col-md-6 d-flex">
           <div className="container p-5 d-flex flex-column justify-content-center align-content-center">
-            <h2>{formatName(name)}</h2>
+            <div className="d-flex justify-content-between">
+              <h2>{formatName(name)}</h2>
+              <WishlistButton productId={id} className="fs-3" />
+            </div>
             <p>{description}</p>
             <hr />
             <div className="row">
               <div className="col-6 d-flex flex-column justify-content-between">
                 <p className="fs-4">
-                  USD {Number(price).toLocaleString("de-DE")}
+                  U$S {Number(price).toLocaleString("de-DE")}
                 </p>
                 <p>Price without shipping</p>
                 <div className="d-flex justify-content-start gap-2 mb-4">
@@ -98,7 +102,7 @@ export default function ProductPage() {
             >
               Add to cart
             </button>
-            <WishlistButton productId={id} />
+
             <Link
               to="/products"
               className="btn btn-outline-dark rounded-pill w-100 my-2"

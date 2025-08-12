@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { useApi } from "../hooks/useApi";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import Wishlist from "./Wishlist";
 
 export default function Profile() {
   const [orders, setOrders] = useState([]);
@@ -129,6 +130,7 @@ export default function Profile() {
             </div>
           )}
         </Card>
+        <Wishlist />
       </div>
     </Container>
   );
