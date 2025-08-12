@@ -36,10 +36,7 @@ export default function AboutUs() {
 
   return (
     <>
-      <div
-        className="container"
-        // style={{ marginLeft: "150px", marginRight: "150px" }}
-      >
+      <div className="container">
         <div className="about-hero d-flex flex-column justify-content-center align-items-center text-center">
           <div className="container">
             <h1 className="fw-bold my-4">About this project</h1>

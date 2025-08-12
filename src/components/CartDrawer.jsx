@@ -1,12 +1,12 @@
 import { Link } from "react-router";
-import { useEffect } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart, updateQuantity } from "../redux/cartSlice";
 import { formatName } from "../utils/formatName";
 import { toast } from "react-toastify";
 import { useKeyDown } from "../hooks/useKeyDown";
 
-export default function CartDrawer({ isOpen, onQuantityChange, onClose }) {
+export default function CartDrawer({ isOpen, onClose }) {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
 

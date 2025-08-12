@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { nextStep, prevStep, resetStep } from "../redux/checkoutSlice";
 import { useNavigate } from "react-router";

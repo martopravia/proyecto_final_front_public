@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import { useApi } from "../hooks/useApi";
 import { toggleFavorites } from "../redux/wishlistSlice";
 
