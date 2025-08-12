@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
 import { formatName } from "../utils/formatName";
 import { toast } from "react-toastify";
@@ -17,7 +17,7 @@ export default function ProductPage() {
     return <div>Loading...</div>;
   }
 
-  const product = products.find((product) => product.id === Number(productId));
+  const product = products.find((product) => product.id == productId);
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));
