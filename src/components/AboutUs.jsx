@@ -35,7 +35,7 @@ export default function AboutUs() {
         "https://ubmbvouzxyajisbnmzeu.supabase.co/storage/v1/object/public/products/AboutUs/fotoPerfilJuanPe.png",
       linkedin: "https://www.linkedin.com/in/juanpedrodiazlumaca/",
       github: "https://github.com/juanpediaz",
-      description: "Some quick example text to build on the card title",
+      description: "Full Stack Developer with hands-on experience in Node.js, Express, React.js, SQL, and MongoDB, skilled at transforming ideas into functional, maintainable, and scalable products.",
     },
     {
       name: "Joaquin Reinante",
