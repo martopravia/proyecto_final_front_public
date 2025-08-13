@@ -267,8 +267,9 @@ h5 {
 
 @media (max-width: 768px) {
   .cart-drawer {
-    height: calc(100vh - 80px);
-    width: calc(100% - 40px);
+    height: calc(100vh - 60px);
+    /* width: calc(100% - 40px); */
+    width: 100%;
     max-width: 370px;
     top: 40px;
     right: -100%;
