@@ -119,6 +119,14 @@ export default function CartDrawer({ isOpen, onClose }) {
           <button
             className="btn btn-outline-danger"
             onClick={() => {
+              if (cartItems.length === 0) {
+                toast.warning("Your cart is already empty", {
+                  position: "bottom-right",
+                  autoClose: 3000,
+                });
+                return;
+              }
+
               toast.info(
                 ({ closeToast }) => (
                   <div>
