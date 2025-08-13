@@ -6,24 +6,31 @@ import { toast } from "react-toastify";
 import { resetStep } from "../redux/checkoutSlice";
 import WishlistButton from "./WishlistButton";
 import { useCategoryProducts } from "../hooks/useCategoryProducts";
+import NotFound from "./NotFound"; // ⬅ nuevo import
 
 export default function ProductPage() {
   const { productId } = useParams();
   const dispatch = useDispatch();
-
   const { products, loadingProducts } = useCategoryProducts();
 
   if (loadingProducts) {
     return <div>Loading...</div>;
   }
 
-  const product = products.find((product) => product.id == productId);
+  const product = products.find((p) => p.id == productId);
+
+  if (!product) {
+    return <NotFound />;
+  }
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));
     dispatch(resetStep());
     toast.success(`${product.name} added to cart!`);
   };
+
+  const { id, name, description, price, image } = product;
+
   const colors = [
     { name: "Charcoal Gray", hex: "#36454F" },
     { name: "Slate Blue", hex: "#6A7BA2" },
@@ -47,7 +54,6 @@ export default function ProductPage() {
     { name: "Pewter", hex: "#8E8E8E" },
   ];
 
-  const { id, name, description, price, image } = product;
   return (
     <div className="container-fluid">
       <div className="row flex-column flex-md-row">

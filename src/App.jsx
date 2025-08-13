@@ -19,6 +19,7 @@ import EditProfile from "./components/EditProfile";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
 import ScrollToTop from "./components/ScrollToTop";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
           {<Route path="/aboutus" element={<AboutUs />} />}
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<EditProfile />} />
-          <Route path="*" element={<p>There's nothing here: 404!</p>} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
       <LegalModals />
