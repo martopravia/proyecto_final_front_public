@@ -35,7 +35,8 @@ export default function AboutUs() {
         "https://ubmbvouzxyajisbnmzeu.supabase.co/storage/v1/object/public/products/AboutUs/fotoPerfilJuanPe.png",
       linkedin: "https://www.linkedin.com/in/juanpedrodiazlumaca/",
       github: "https://github.com/juanpediaz",
-      description: "Some quick example text to build on the card title",
+      description:
+        "Full Stack Developer with hands-on experience in Node.js, Express, React.js, SQL, and MongoDB, skilled at transforming ideas into functional, maintainable, and scalable products.",
     },
     {
       name: "Joaquin Reinante",
@@ -100,6 +101,38 @@ export default function AboutUs() {
               </div>
             ))}
           </div>
+          <h3 className="fw-bold text-center">Meet the team</h3>
+          <div className="row justify-content-xxl-between justify-content-center mt-5 mx-3">
+            {developers.map((dev, index) => (
+              <div
+                key={index}
+                className="col-12 col-md-6 col-lg-4 col-xxl-2 mb-4 d-flex justify-content-center"
+              >
+                <div className="card text-center card-profile w-100">
+                  <img
+                    className="card-img-top"
+                    src={dev.profileImg}
+                    alt="Avatar"
+                  />
+                  <div className="card-body d-flex flex-column h-100">
+                    <h5 className="card-title fw-bold mb-4">{dev.name}</h5>
+                    <div>
+                      <h5 className="card-subtitle my-2">Web Developer</h5>
+                      <p className="card-text text-muted">{dev.description}</p>
+                    </div>
+                    <div className="m-0 p-0 d-flex justify-content-center gap-3 flex-wrap mt-auto">
+                      <a href={dev.linkedin} className="m-0 p-0">
+                        <i className="bi bi-linkedin fs-3"></i>
+                      </a>
+                      <a href={dev.github} className="m-0 p-0">
+                        <i className="bi bi-github fs-3 text-dark"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
           <div className=" mt-5">
             <div className=" text-block">
               <h3 className="text-center">Who are we</h3>
@@ -150,38 +183,6 @@ export default function AboutUs() {
                 with you, which makes it all worth it.
               </p>
             </div>
-          </div>
-          <h3 className="fw-bold text-center">Meet the team</h3>
-          <div className="row justify-content-xxl-between justify-content-center mt-5 mx-3">
-            {developers.map((dev, index) => (
-              <div
-                key={index}
-                className="col-12 col-md-6 col-lg-4 col-xxl-2 mb-4 d-flex justify-content-center"
-              >
-                <div className="card text-center card-profile w-100">
-                  <img
-                    className="card-img-top"
-                    src={dev.profileImg}
-                    alt="Avatar"
-                  />
-                  <div className="card-body d-flex flex-column h-100">
-                    <h5 className="card-title fw-bold mb-4">{dev.name}</h5>
-                    <div>
-                      <h5 className="card-subtitle my-2">Web Developer</h5>
-                      <p className="card-text text-muted">{dev.description}</p>
-                    </div>
-                    <div className="m-0 p-0 d-flex justify-content-center gap-3 flex-wrap mt-auto">
-                      <a href={dev.linkedin} className="m-0 p-0">
-                        <i className="bi bi-linkedin fs-3"></i>
-                      </a>
-                      <a href={dev.github} className="m-0 p-0">
-                        <i className="bi bi-github fs-3 text-dark"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </section>
       </div>
