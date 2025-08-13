@@ -253,3 +253,7 @@ h5 {
   padding: 1rem;
   transition: all 0.3s ease-in-out;
 }
+
+.stepper {
+  z-index: 1000;
+}

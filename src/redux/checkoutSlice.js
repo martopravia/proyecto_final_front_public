@@ -15,9 +15,12 @@ export const checkoutSlice = createSlice({
     resetStep: (state) => {
       state.step = 1;
     },
+    setStep: (state, action) => {
+      state.step = action.payload;
+    },
   },
 });
 
 const { actions, reducer } = checkoutSlice;
-export const { nextStep, prevStep, resetStep } = actions;
+export const { nextStep, prevStep, resetStep, setStep } = actions;
 export default reducer;

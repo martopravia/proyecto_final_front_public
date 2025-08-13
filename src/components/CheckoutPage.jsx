@@ -1,14 +1,17 @@
 import Checkout from "./Checkout";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CheckoutSummary from "./CheckoutSummary";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
 import { Link } from "react-router";
+import { StepButton } from "@mui/material";
+import { setStep } from "../redux/checkoutSlice";
 
 export default function CheckoutPage() {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [paymentMethod, setPaymentMethod] = useState("creditCard");
   const [shippingInfo, setShippingInfo] = useState({
@@ -19,6 +22,31 @@ export default function CheckoutPage() {
   });
   const step = useSelector((state) => state.checkout.step);
   const steps = ["Order details", "Contact & Shipping", "Payment method"];
+
+  const handleStepClick = useCallback(
+    (index) => {
+      const targetStep = index + 1;
+      if (targetStep === 1) {
+        dispatch(setStep(1));
+        return;
+      }
+      if (cartItems.length === 0) {
+        dispatch(setStep(1));
+        return;
+      }
+      if (targetStep === 2) {
+        dispatch(setStep(2));
+        return;
+      }
+      if (targetStep === 3 && user) {
+        if (!user) {
+          dispatch(setStep(2));
+        }
+        dispatch(setStep(3));
+      }
+    },
+    [cartItems, dispatch, user]
+  );
 
   return (
     <div className="">
@@ -36,16 +64,28 @@ export default function CheckoutPage() {
         <Stepper
           activeStep={step - 1}
           alternativeLabel
-          sx={{ width: "60%" }} // ajustá el porcentaje según lo angosto que quieras
+          nonLinear
+          sx={{ width: "60%" }}
           completed={{
-            0: step > 1,
-            1: step > 2,
-            2: step > 3,
+            0: step > 1, // step 1 completado si estoy en 2 o 3
+            1: step > 2, // step 2 completado si estoy en 3
+            2: step > 3, // step 3 completado si llego al final
           }}
         >
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
+          {steps.map((label, i) => (
+            <Step key={label} completed={step > i + 1}>
+              <StepButton
+                onClick={() => handleStepClick(i)}
+                disableRipple
+                disableTouchRipple
+                className="stepper"
+                sx={{
+                  "&:hover": { backgroundColor: "transparent" },
+                  "&.Mui-focusVisible": { outline: "none" },
+                }}
+              >
+                {label}
+              </StepButton>
             </Step>
           ))}
         </Stepper>

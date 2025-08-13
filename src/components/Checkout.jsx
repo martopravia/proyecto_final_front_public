@@ -124,7 +124,7 @@ export default function Checkout({
                           />
                         </div>
                         <div className="col-12 col-md-8">
-                          <h4>{formatName(item.name)}</h4>
+                          <h4 className="mt-5">{formatName(item.name)}</h4>
                           <p>{item.description}</p>
                           <div className="d-flex align-items-center my-3 gap-2">
                             <span>Quantity: {item.quantity}</span>
