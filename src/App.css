@@ -16,6 +16,17 @@ body {
 }
 /* buenas combinaciones: Cinzel y Lora // Jost y Prata // Work Sans y Playfair */
 
+/* html,
+body {
+  height: 100%;
+  margin: 0;
+}
+#root {
+  width: calc(100% / 0.8);
+  height: calc(100% / 0.8);
+  transform: scale(0.8);
+  transform-origin: top left;
+} */
 h1,
 h2,
 h3,

@@ -46,14 +46,14 @@ export default function Profile() {
   return (
     <Container className="my-5 px-3 container">
       <h2 className="mb-5 text-center">
-        ACCOUNT OF {user.firstname.toUpperCase()}
+        {user.firstname.toUpperCase()}´S PROFILE
       </h2>
 
       <div className="row">
         {/* Personal Info */}
         <div className="col-12 col-lg-5">
           <Card className="p-4 shadow-sm flex-grow-1">
-            <h5 className="mb-3">PERSONAL INFORMATION</h5>
+            <h5 className="mb-3">PERSONAL INFO</h5>
             <p>
               <strong>First name:</strong> {user.firstname}
             </p>
