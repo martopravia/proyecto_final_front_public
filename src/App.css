@@ -143,8 +143,16 @@ h5 {
   display: inline-block;
   cursor: pointer;
   transition: transform 0.3s ease;
+
   &:hover {
     transform: scale(1.08);
+  }
+
+  @media (max-width: 768px) {
+    &:hover {
+      transform: none;
+    }
+    transition: none;
   }
 }
 
