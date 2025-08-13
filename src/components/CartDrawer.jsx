@@ -55,7 +55,7 @@ export default function CartDrawer({ isOpen, onClose }) {
                     U$S {Number(item.price).toLocaleString("de-DE")} ea.
                   </div>
                   <div className="d-flex align-items-center mt-2 gap-2">
-                    <span style={{ fontSize: "1rem" }}>
+                    <span style={{ fontSize: "1rem", width: "9ch" }}>
                       Quantity: {item.quantity}
                     </span>
                     <button
