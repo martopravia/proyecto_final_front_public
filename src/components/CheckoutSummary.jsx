@@ -83,16 +83,15 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
       </p>
 
       <div className="d-flex flex-column justify-content-between flex-lg-row gap-2 mt-3">
-        {(step === 2 || step === 3) && (
-          <div>
-            <button
-              className="btn btn-secondary"
-              onClick={() => dispatch(prevStep())}
-            >
-              Back
-            </button>
-          </div>
-        )}
+        <div>
+          <button
+            className="btn btn-secondary"
+            disabled={step === 1}
+            onClick={() => dispatch(prevStep())}
+          >
+            Back
+          </button>
+        </div>
 
         {step < 3 && (
           <button
