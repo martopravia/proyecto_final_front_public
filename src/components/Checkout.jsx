@@ -179,7 +179,9 @@ export default function Checkout({
                             <i
                               className="bi bi-trash3"
                               style={{ cursor: "pointer" }}
-                              onClick={() => dispatch(removeFromCart(item.id))}
+                              onClick={() =>
+                                dispatch(removeFromCart({ productId: item.id }))
+                              }
                             ></i>
                           </div>
                         </div>
