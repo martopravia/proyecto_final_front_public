@@ -59,7 +59,7 @@ export default function AboutUs() {
               This e-commerce platform represents a collaborative effort by
               students from Hack Academy's intensive Coding Bootcamp. Our
               comprehensive full-time program spans 3 months, during which we
-              dedicated over 600+ hours of code, 112 cups of coffee (yes, we
+              dedicated over 600+ hours of code, 1182 cups of coffee (yes, we
               counted), and only 3 emotional breakdowns mastering cutting-edge
               technologies including{" "}
               <span className="fw-bold">
