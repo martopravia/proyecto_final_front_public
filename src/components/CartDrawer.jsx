@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
 import { useSelector, useDispatch } from "react-redux";
-import { clearCart, updateQuantity } from "../redux/cartSlice";
+import { clearCart, removeFromCart, updateQuantity } from "../redux/cartSlice";
 import { formatName } from "../utils/formatName";
 import { toast } from "react-toastify";
 import { useKeyDown } from "../hooks/useKeyDown";
@@ -50,7 +50,18 @@ export default function CartDrawer({ isOpen, onClose }) {
                   }}
                 />
                 <div className="flex-grow-1">
-                  <div className="fw-semibold">{formatName(item.name)}</div>
+                  <div className="d-flex align-items-stretch justify-content-between mt-2 gap-2">
+                    <div className="fw-semibold">{formatName(item.name)}</div>
+                    <button
+                      className="btn btn-outline-secondary border-1 border-light-subtle rounded p-1 d-flex align-items-center justify-content-center btn-sm px-2"
+                      onClick={() =>
+                        dispatch(removeFromCart({ productId: item.id }))
+                      }
+                    >
+                      <i className="bi bi-trash"></i>
+                    </button>
+                  </div>
+
                   <div className="text-muted" style={{ fontSize: "0.85rem" }}>
                     U$S {Number(item.price).toLocaleString("de-DE")} ea.
                   </div>
