@@ -219,7 +219,6 @@ h5 {
   }
 }
 
-/* Scrollbar personalizada el slider */
 .scroll-container::-webkit-scrollbar {
   height: 8px;
 }
@@ -255,7 +254,7 @@ h5 {
 
 .custom-collapse {
   position: absolute;
-  top: 100%; /* justo debajo del navbar */
+  top: 100%;
   left: 0;
   background-color: white;
   padding: 1rem;
@@ -264,4 +263,17 @@ h5 {
 
 .stepper {
   z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  .cart-drawer {
+    height: calc(100vh - 80px);
+    width: calc(100% - 40px);
+    max-width: 370px;
+    top: 40px;
+    right: -100%;
+    border-radius: 10px;
+    overflow-y: auto;
+    max-height: calc(100vh - 80px);
+  }
 }
