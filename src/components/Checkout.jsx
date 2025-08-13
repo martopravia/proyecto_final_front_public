@@ -196,7 +196,7 @@ export default function Checkout({
             {!user ? (
               <div className="text-center" style={{ marginTop: "150px" }}>
                 <h4>To continue, please log in or register</h4>
-                <Link to="/login">
+                <Link to="/login?redirect=/checkout">
                   <button className="btn btn-outline-dark mt-3 me-2">
                     Log in
                   </button>
