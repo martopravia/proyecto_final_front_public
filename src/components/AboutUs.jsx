@@ -4,7 +4,8 @@ export default function AboutUs() {
   const developers = [
     {
       name: "Martin Pravia",
-      profileImg: "src/img/fotoPerfilMarto.jpeg",
+      profileImg:
+        "https://ubmbvouzxyajisbnmzeu.supabase.co/storage/v1/object/public/products/AboutUs/fotoPerfilMarto.jpeg",
       linkedin: "https://www.linkedin.com/in/martin-pravia/",
       github: "https://github.com/martopravia",
       description:
@@ -12,28 +13,33 @@ export default function AboutUs() {
     },
     {
       name: "Manuel Negrin",
-      profileImg: "src/img/fotoPerfilManu.jpeg",
+      profileImg:
+        "https://ubmbvouzxyajisbnmzeu.supabase.co/storage/v1/object/public/products/AboutUs/fotoPerfilManu.jpeg",
       linkedin: "https://www.linkedin.com/in/manuelnegrin",
       github: "https://github.com/ManuelNegrin",
-      description: "Some quick example text to build on the card title",
+      description:
+        "Full Stack Developer with a creative yet methodical mindset, skilled in Node.js, Express, React.js, SQL, and Sequelize. Deeply curious and passionate about exploring new technologies, I’m constantly seeking to learn, experiment, and push my limits to deliver innovative, user-focused, and high-quality solutions.",
     },
     {
       name: "Alfonso Pavia",
-      profileImg: "src/img/fotoPerfilAlfo.jpg",
+      profileImg:
+        "https://ubmbvouzxyajisbnmzeu.supabase.co/storage/v1/object/public/products/AboutUs/fotoPerfilAlfo.jpg",
       linkedin: "https://www.linkedin.com/in/alfonso-paiva-vázquez-03112a13b",
       github: "https://github.com/paiva92",
       description: "Some quick example text to build on the card title",
     },
     {
       name: "Juan Pedro Diaz",
-      profileImg: "src/img/fotoPerfilJuanPe.png",
+      profileImg:
+        "https://ubmbvouzxyajisbnmzeu.supabase.co/storage/v1/object/public/products/AboutUs/fotoPerfilJuanPe.png",
       linkedin: "https://www.linkedin.com/in/juanpedrodiazlumaca/",
       github: "https://github.com/juanpediaz",
       description: "Some quick example text to build on the card title",
     },
     {
       name: "Joaquin Reinante",
-      profileImg: "src/img/fotoPerfilCato.jpg",
+      profileImg:
+        "https://ubmbvouzxyajisbnmzeu.supabase.co/storage/v1/object/public/products/AboutUs/fotoPerfilCato.jpg",
       linkedin: "https://www.linkedin.com/in/joaquin-reinante-818007193/",
       github: "https://github.com/CatoReinante",
       description:
