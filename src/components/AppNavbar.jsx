@@ -121,7 +121,7 @@ export default function AppNavbar() {
             {user && user.role === "admin" && (
               <Nav.Link
                 as={NavLink}
-                to="http://localhost:5174/admin"
+                to="https://proyecto-final-front-dashboard.vercel.app/"
                 className="text-dark"
               >
                 Admin Panel
