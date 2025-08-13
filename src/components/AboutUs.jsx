@@ -22,7 +22,8 @@ export default function AboutUs() {
       profileImg: "src/img/fotoPerfilAlfo.jpg",
       linkedin: "https://www.linkedin.com/in/alfonso-paiva-vázquez-03112a13b",
       github: "https://github.com/paiva92",
-      description: "Some quick example text to build on the card title",
+      description:
+        "Full Stack Developer skilled in JavaScript, Node.js, ReactJS, MongoDB, Java, Spring Boot, and MySQL, passionate about building scalable web applications, with experience in Godot game development and a background in consulting and leading IT teams.",
     },
     {
       name: "Juan Pedro Diaz",
