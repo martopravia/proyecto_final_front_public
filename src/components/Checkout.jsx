@@ -118,7 +118,11 @@ export default function Checkout({
                         <div className="col-12 col-md-4 mb-3 mb-md-0">
                           <img
                             src={item.image}
-                            style={{ width: "auto", height: "300px" }}
+                            style={{
+                              width: "auto",
+                              height: "300px",
+                              objectFit: "contain",
+                            }}
                             className="img-fluid me-3 w-100"
                             alt=""
                           />
