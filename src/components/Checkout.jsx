@@ -4,6 +4,7 @@ import { removeFromCart, updateQuantity } from "../redux/cartSlice";
 import { Link } from "react-router";
 import { resetStep } from "../redux/checkoutSlice";
 import { formatName } from "../utils/formatName";
+import { toast } from "react-toastify";
 
 export default function Checkout({
   cartItems,
@@ -72,6 +73,7 @@ export default function Checkout({
       [e.target.name]: e.target.value,
     });
   };
+
   const handleShippingOptionChange = (option) => {
     setSelectedShippingOption(option);
 
@@ -82,8 +84,40 @@ export default function Checkout({
         email: `${user.email}`,
         phone: `${user.phone}`,
       });
-    } else {
     }
+  };
+
+  const handleRemoveItem = (itemId) => {
+    toast.info(
+      ({ closeToast }) => (
+        <div>
+          <p>Are you sure you want to remove this product?</p>
+          <div className="d-flex justify-content-end gap-2 mt-2">
+            <button
+              className="btn btn-outline-danger"
+              onClick={() => {
+                dispatch(removeFromCart({ productId: itemId }));
+                closeToast();
+                toast.success("Product removed!");
+              }}
+            >
+              Accept
+            </button>
+            <button className="btn btn-sm btn-secondary" onClick={closeToast}>
+              Cancel
+            </button>
+          </div>
+        </div>
+      ),
+      {
+        position: "bottom-right",
+        autoClose: false,
+        closeOnClick: false,
+        closeButton: false,
+        draggable: false,
+        pauseOnHover: true,
+      }
+    );
   };
 
   return (
@@ -183,9 +217,7 @@ export default function Checkout({
                             <i
                               className="bi bi-trash3"
                               style={{ cursor: "pointer" }}
-                              onClick={() =>
-                                dispatch(removeFromCart({ productId: item.id }))
-                              }
+                              onClick={() => handleRemoveItem(item.id)}
                             ></i>
                           </div>
                         </div>
