@@ -20,6 +20,7 @@ export default function CheckoutPage() {
     email: "",
     phone: "",
   });
+  const [isCardValid, setIsCardValid] = useState(false);
   const step = useSelector((state) => state.checkout.step);
   const steps = ["Order details", "Contact & Shipping", "Payment method"];
 
@@ -114,6 +115,7 @@ export default function CheckoutPage() {
               setPaymentMethod={setPaymentMethod}
               shippingInfo={shippingInfo}
               setShippingInfo={setShippingInfo}
+              onValidityCardChange={setIsCardValid}
             />
           </div>
           <div className="col-md-4 col-sm-12">
@@ -121,13 +123,14 @@ export default function CheckoutPage() {
               <CheckoutSummary
                 paymentMethod={paymentMethod}
                 shippingInfo={shippingInfo}
+                isCardValid={isCardValid}
               />
             </div>
           </div>
           <div className="col-md-8 col-sm-12 d-flex justify-content-center">
             <Link
               to="/products"
-              className="btn btn-outline-dark rounded-pill w-100 mx-4 text-center my-2"
+              className="btn btn-outline-dark rounded-pill w-100 mx-4 text-center my-2 mt-4"
             >
               Continue Shopping...
             </Link>

@@ -11,10 +11,87 @@ export default function Checkout({
   setPaymentMethod,
   shippingInfo,
   setShippingInfo,
+  onValidityCardChange,
 }) {
   const dispatch = useDispatch();
+
   const step = useSelector((state) => state.checkout.step);
   const { user } = useSelector((state) => state.user);
+  const [cardInfo, setCardInfo] = useState({
+    name: "",
+    number: "",
+    expiry: "",
+    cvv: "",
+  });
+  const [expiryError, setExpiryError] = useState("");
+
+  const validateExpiry = (mmYY) => {
+    const m = mmYY.match(/^(0[1-9]|1[0-2])\/\d{2}$/);
+    if (!m) {
+      return "";
+    }
+
+    const [mm, YY] = mmYY.split("/");
+    const month = parseInt(mm, 10);
+    const year = 2000 + parseInt(YY, 10);
+
+    const now = new Date();
+    const currentMonth = now.getMonth() + 1;
+    const currentYear = now.getFullYear();
+
+    if (year < currentYear || (year === currentYear && month < currentMonth)) {
+      return "Date is expired";
+    }
+
+    return "";
+  };
+  const handleCardChange = (field, value) => {
+    if (field === "number") {
+      value = value.replace(/\D/g, ""); // quita lo que no sea dígito
+      if (value.length > 16) value = value.slice(0, 16);
+    }
+    if (field === "cvv") {
+      value = value.replace(/\D/g, "");
+      if (value.length > 4) value = value.slice(0, 4);
+    }
+    if (field === "expiry") {
+      value = value.replace(/\D/g, "").slice(0, 4);
+      if (value.length >= 1) {
+        let firstDigit = value[0];
+
+        if (value.length >= 2) {
+          const month = parseInt(value.slice(0, 2), 10);
+          if (month < 1) {
+            value = `01${value.slice(2)}`; // mínimo mes 01
+          } else if (month > 12) {
+            value = `12${value.slice(2)}`; // máximo mes 12
+          }
+        }
+        value =
+          value.length > 2 ? `${value.slice(0, 2)}/${value.slice(2)}` : value;
+      }
+      if (field === "expiry") {
+        const error = validateExpiry(value);
+        setExpiryError(error);
+      }
+    }
+    setCardInfo({
+      ...cardInfo,
+      [field]: value,
+    });
+  };
+
+  useEffect(() => {
+    if (!onValidityCardChange) return;
+
+    const isValid =
+      cardInfo.name.trim().length > 0 &&
+      /^\d{16}$/.test(cardInfo.number) &&
+      /^\d{3,4}$/.test(cardInfo.cvv) &&
+      validateExpiry(cardInfo.expiry) === "";
+
+    onValidityCardChange(isValid);
+  }, [cardInfo, onValidityCardChange]);
 
   const inputFields = [
     { name: "name", label: "Name", type: "text" },
@@ -216,46 +293,49 @@ export default function Checkout({
             ) : (
               <>
                 <h3 className="mt-2 mb-4"> Contact & Shipping info </h3>
-                <div className="p-0 align-items-left d-flex">
-                  <div
-                    className={`border rounded shadow p-4 w-100 d-flex flex-column ${
-                      selectedShippingOption === "saved" ? "border-black" : ""
-                    }`}
-                    style={{ cursor: "pointer" }}
-                    onClick={() => handleShippingOptionChange("saved")}
-                  >
-                    <div className="d-flex align-items-start mb-3">
-                      <input
-                        className="form-check-input me-3 mt-1"
-                        type="radio"
-                        name="shippingOption"
-                        checked={selectedShippingOption === "saved"}
-                        onChange={() => setSelectedShippingOption("saved")}
-                      />
-                      <label className="fw-bold">Use saved shipping info</label>
-                    </div>
-                    <div className="row">
-                      {inputFields.map((field, index) => (
-                        <div className="col-md-6 mb-2" key={index}>
-                          <label className="form-label">{field.label}</label>
-                          <input
-                            type={field.type}
-                            className="form-control"
-                            value={
-                              field.name === "name"
-                                ? `${user.firstname} ${user.lastname}`
-                                : user[field.name]
-                            }
-                            disabled
-                          />
-                        </div>
-                      ))}
-                    </div>
+                <div
+                  className={`border rounded shadow p-4 w-100 d-flex flex-column ${
+                    selectedShippingOption === "saved" ? "border-black" : ""
+                  }`}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleShippingOptionChange("saved")}
+                >
+                  <div className="d-flex align-items-start">
+                    <input
+                      className="form-check-input me-3 mt-1"
+                      type="radio"
+                      name="shippingOption"
+                      checked={selectedShippingOption === "saved"}
+                      onChange={() => setSelectedShippingOption("saved")}
+                    />
+                    <label className="fw-bold ">Use saved shipping info</label>
                   </div>
+
+                  {selectedShippingOption === "saved" && (
+                    <div className="mt-2">
+                      <div className="row">
+                        {inputFields.map((field, index) => (
+                          <div className="col-md-6 mb-2" key={index}>
+                            <label className="form-label">{field.label}</label>
+                            <input
+                              type={field.type}
+                              className="form-control"
+                              value={
+                                field.name === "name"
+                                  ? `${user.firstname} ${user.lastname}`
+                                  : user[field.name]
+                              }
+                              disabled
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
-                <div className="mt-5 p-0 align-items-left d-flex">
+                <div className="my-5 p-0 align-items-left d-flex">
                   <div
-                    className={`border rounded shadow p-4 w-100 ${
+                    className={`border rounded shadow p-4 w-100  ${
                       selectedShippingOption === "manual" ? "border-black" : ""
                     }`}
                     style={{ cursor: "pointer" }}
@@ -271,24 +351,25 @@ export default function Checkout({
                     <label className="fw-bold">Add new shipping info</label>
 
                     {selectedShippingOption === "manual" && (
-                      <div className="p-2 mt-2 d-flex flex-wrap">
-                        {inputFields.map((field, index) => (
-                          <div
-                            className="me-2 mb-2"
-                            style={{ flex: "1 1 45%" }}
-                            key={index}
-                          >
-                            <input
-                              className="form-control mb-2"
-                              type={field.type}
-                              name={field.name}
-                              placeholder={field.label}
-                              value={shippingInfo[field.name]}
-                              onChange={handleShippingChange}
-                              required={field.name === "address"}
-                            />
-                          </div>
-                        ))}
+                      <div className="mt-2">
+                        <div className="row">
+                          {inputFields.map((field, index) => (
+                            <div className="col-12 col-md-6 mb-3" key={index}>
+                              <label className="form-label ">
+                                {field.label}
+                              </label>
+                              <input
+                                className="form-control"
+                                type={field.type}
+                                name={field.name}
+                                placeholder={field.label}
+                                value={shippingInfo[field.name]}
+                                onChange={handleShippingChange}
+                                required={field.name === "address"}
+                              />
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -332,22 +413,60 @@ export default function Checkout({
               <div className="mt-4">
                 <h5>Card Details</h5>
                 <div className="row">
-                  {[
-                    { placeholder: "Cardholder Name", type: "text" },
-                    { placeholder: "Card Number", type: "text" },
-                    { placeholder: "MM/YY", type: "text" },
-                    { placeholder: "CVV", type: "text" },
-                  ].map((field, i) => (
-                    <div className="col-md-6 mb-3" key={i}>
-                      <input
-                        type={field.type}
-                        className="form-control"
-                        placeholder={field.placeholder}
-                        autoComplete="off"
-                        required
-                      />
-                    </div>
-                  ))}
+                  <div className="col-md-6 mb-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Cardholder Name"
+                      value={cardInfo.name}
+                      onChange={(e) => handleCardChange("name", e.target.value)}
+                      required
+                    />
+                  </div>
+
+                  <div className="col-md-6 mb-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Card Number"
+                      inputMode="numeric"
+                      value={cardInfo.number}
+                      onChange={(e) =>
+                        handleCardChange("number", e.target.value)
+                      }
+                      required
+                      title="Debe tener 16 dígitos"
+                    />
+                  </div>
+
+                  <div className="col-md-6 mb-1">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="MM/YY"
+                      inputMode="numeric"
+                      value={cardInfo.expiry}
+                      onChange={(e) =>
+                        handleCardChange("expiry", e.target.value)
+                      }
+                      required
+                    />
+                    {expiryError && (
+                      <small className="text-danger">{expiryError}</small>
+                    )}
+                  </div>
+
+                  <div className="col-md-6 mb-3">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="cvv"
+                      inputMode="numeric"
+                      value={cardInfo.cvv}
+                      onChange={(e) => handleCardChange("cvv", e.target.value)}
+                      required
+                    />
+                  </div>
                 </div>
               </div>
             )}

@@ -5,7 +5,7 @@ import { clearCart } from "../redux/cartSlice";
 import { toast } from "react-toastify";
 import { useApi } from "../hooks/useApi";
 
-function CheckoutSummary({ paymentMethod, shippingInfo }) {
+function CheckoutSummary({ paymentMethod, shippingInfo, isCardValid }) {
   const dispatch = useDispatch();
   const step = useSelector((state) => state.checkout.step);
   const { user } = useSelector((state) => state.user);
@@ -56,6 +56,9 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
     !shippingInfo.address?.trim() ||
     !shippingInfo.email?.trim() ||
     !shippingInfo.phone?.trim();
+
+  const isConfirmDisabled =
+    isShippingIncomplete || (paymentMethod === "creditCard" && !isCardValid);
 
   return (
     <div className="p-4 border rounded shadow mx-4">
@@ -112,9 +115,10 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
           <button
             className="btn btn-success"
             onClick={() => {
+              if (isConfirmDisabled) return;
               handleConfirm();
             }}
-            disabled={isShippingIncomplete}
+            disabled={isShippingIncomplete || isConfirmDisabled}
           >
             Confirm Order
           </button>
@@ -124,6 +128,11 @@ function CheckoutSummary({ paymentMethod, shippingInfo }) {
         <p className="text-danger mt-4">
           Please complete all Contact & Shipping information before confirming
           your order.
+        </p>
+      )}
+      {step === 3 && paymentMethod === "creditCard" && !isCardValid && (
+        <p className="text-danger mt-3">
+          Please complete valid card details to continue.
         </p>
       )}
     </div>
