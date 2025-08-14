@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 import { useApi } from "../hooks/useApi";
 import { toast } from "react-toastify";
 
@@ -9,13 +9,17 @@ function Login() {
   const [password, setPassword] = useState("user");
   const { loginUser } = useApi();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const params = new URLSearchParams(location.search);
+  const redirect = params.get("redirect") || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const token = await loginUser({ email, password });
       if (token) {
-        navigate("/");
+        navigate(redirect);
         toast.success("Login successful!");
       }
     } catch (error) {
