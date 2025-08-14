@@ -107,7 +107,12 @@ export default function AppNavbar() {
         >
           <Nav
             className="flex-column text-dark ps-3"
-            onSelect={() => setExpanded(false)}
+            onSelect={(key) => {
+              setExpanded(false);        
+              if (key === "logout") {
+                handleLogout();         
+              }
+            }}
           >
             <Nav.Link eventKey="1" as={NavLink} to="/" end>
               Home
@@ -118,6 +123,7 @@ export default function AppNavbar() {
             <Nav.Link eventKey="3" as={NavLink} to="/aboutus">
               About this Project
             </Nav.Link>
+
             {user && user.role === "admin" && (
               <Nav.Link
                 as={NavLink}
@@ -125,6 +131,36 @@ export default function AppNavbar() {
                 className="text-dark"
               >
                 Admin Panel
+              </Nav.Link>
+            )}
+            {user ? (
+              <>
+                <Nav.Link
+                  as={NavLink}
+                  to="/profile"
+                  className="d-sm-none"
+                  onClick={() => setExpanded(false)}
+                >
+                  Profile
+                </Nav.Link>
+                <Nav.Link
+                  as={NavLink}
+                  className="d-sm-none text-start nav-link"
+                  // onClick={handleLogout}
+                  eventKey="logout"
+                >
+                  Logout
+                </Nav.Link>
+              </>
+            ) : (
+              <Nav.Link
+                eventKey="4"
+                as={NavLink}
+                to="/login"
+                className="d-sm-none"
+                onClick={() => setExpanded(false)}
+              >
+                Login
               </Nav.Link>
             )}
           </Nav>

@@ -14,7 +14,17 @@ export default function ProductPage() {
   const { products, loadingProducts } = useCategoryProducts();
 
   if (loadingProducts) {
-    return <div>Loading...</div>;
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100 bg-white">
+        <div
+          className="spinner-border text-dark"
+          role="status"
+          style={{ width: "4rem", height: "4rem" }}
+        >
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
   }
 
   const product = products.find((p) => p.id == productId);
