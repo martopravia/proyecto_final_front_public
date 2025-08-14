@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
 import { useSelector, useDispatch } from "react-redux";
-import { clearCart, updateQuantity } from "../redux/cartSlice";
+import { clearCart, removeFromCart, updateQuantity } from "../redux/cartSlice";
 import { formatName } from "../utils/formatName";
 import { toast } from "react-toastify";
 import { useKeyDown } from "../hooks/useKeyDown";
@@ -50,12 +50,23 @@ export default function CartDrawer({ isOpen, onClose }) {
                   }}
                 />
                 <div className="flex-grow-1">
-                  <div className="fw-semibold">{formatName(item.name)}</div>
+                  <div className="d-flex align-items-stretch justify-content-between mt-2 gap-2">
+                    <div className="fw-semibold">{formatName(item.name)}</div>
+                    <button
+                      className="btn btn-outline-secondary border-1 border-light-subtle rounded p-1 d-flex align-items-center justify-content-center btn-sm px-2"
+                      onClick={() =>
+                        dispatch(removeFromCart({ productId: item.id }))
+                      }
+                    >
+                      <i className="bi bi-trash"></i>
+                    </button>
+                  </div>
+
                   <div className="text-muted" style={{ fontSize: "0.85rem" }}>
                     U$S {Number(item.price).toLocaleString("de-DE")} ea.
                   </div>
                   <div className="d-flex align-items-center mt-2 gap-2">
-                    <span style={{ fontSize: "1rem" }}>
+                    <span style={{ fontSize: "1rem", width: "9ch" }}>
                       Quantity: {item.quantity}
                     </span>
                     <button
@@ -119,6 +130,14 @@ export default function CartDrawer({ isOpen, onClose }) {
           <button
             className="btn btn-outline-danger"
             onClick={() => {
+              if (cartItems.length === 0) {
+                toast.warning("Your cart is already empty", {
+                  position: "bottom-right",
+                  autoClose: 3000,
+                });
+                return;
+              }
+
               toast.info(
                 ({ closeToast }) => (
                   <div>

@@ -4,6 +4,7 @@ import { removeFromCart, updateQuantity } from "../redux/cartSlice";
 import { Link } from "react-router";
 import { resetStep } from "../redux/checkoutSlice";
 import { formatName } from "../utils/formatName";
+import { toast } from "react-toastify";
 
 export default function Checkout({
   cartItems,
@@ -72,6 +73,7 @@ export default function Checkout({
       [e.target.name]: e.target.value,
     });
   };
+
   const handleShippingOptionChange = (option) => {
     setSelectedShippingOption(option);
 
@@ -82,8 +84,40 @@ export default function Checkout({
         email: `${user.email}`,
         phone: `${user.phone}`,
       });
-    } else {
     }
+  };
+
+  const handleRemoveItem = (itemId) => {
+    toast.info(
+      ({ closeToast }) => (
+        <div>
+          <p>Are you sure you want to remove this product?</p>
+          <div className="d-flex justify-content-end gap-2 mt-2">
+            <button
+              className="btn btn-outline-danger"
+              onClick={() => {
+                dispatch(removeFromCart({ productId: itemId }));
+                closeToast();
+                toast.success("Product removed!");
+              }}
+            >
+              Accept
+            </button>
+            <button className="btn btn-sm btn-secondary" onClick={closeToast}>
+              Cancel
+            </button>
+          </div>
+        </div>
+      ),
+      {
+        position: "bottom-right",
+        autoClose: false,
+        closeOnClick: false,
+        closeButton: false,
+        draggable: false,
+        pauseOnHover: true,
+      }
+    );
   };
 
   return (
@@ -118,13 +152,17 @@ export default function Checkout({
                         <div className="col-12 col-md-4 mb-3 mb-md-0">
                           <img
                             src={item.image}
-                            style={{ width: "auto", height: "300px" }}
+                            style={{
+                              width: "auto",
+                              height: "300px",
+                              objectFit: "contain",
+                            }}
                             className="img-fluid me-3 w-100"
                             alt=""
                           />
                         </div>
                         <div className="col-12 col-md-8">
-                          <h4>{formatName(item.name)}</h4>
+                          <h4 className="mt-5">{formatName(item.name)}</h4>
                           <p>{item.description}</p>
                           <div className="d-flex align-items-center my-3 gap-2">
                             <span>Quantity: {item.quantity}</span>
@@ -179,7 +217,7 @@ export default function Checkout({
                             <i
                               className="bi bi-trash3"
                               style={{ cursor: "pointer" }}
-                              onClick={() => dispatch(removeFromCart(item.id))}
+                              onClick={() => handleRemoveItem(item.id)}
                             ></i>
                           </div>
                         </div>
@@ -196,7 +234,7 @@ export default function Checkout({
             {!user ? (
               <div className="text-center" style={{ marginTop: "150px" }}>
                 <h4>To continue, please log in or register</h4>
-                <Link to="/login">
+                <Link to="/login?redirect=/checkout">
                   <button className="btn btn-outline-dark mt-3 me-2">
                     Log in
                   </button>

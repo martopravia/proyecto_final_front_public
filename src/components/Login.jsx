@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useApi } from "../hooks/useApi";
 import { toast } from "react-toastify";
@@ -23,7 +23,7 @@ function Login() {
     }
   };
   return (
-    <div className="container vh-100 d-flex align-items-center">
+    <div className="container min-vh-100 d-flex align-items-center pt-5 pt-sm-5 pt-md-4">
       <div className="row w-100 mx-1">
         <div className="d-lg-flex w-100">
           <div className="col-12 col-lg-6 mb-4  me-lg-3 border rounded shadow p-5">
@@ -71,7 +71,7 @@ function Login() {
                   }}
                 ></i>
                 <p>
-                  <Link to="/forgot-password">Forgot your password?</Link>
+                  <a href="">Forgot your password?</a>
                 </p>
               </div>
               <button type="submit" className="btn btn-dark w-100 mt-3">
