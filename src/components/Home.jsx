@@ -10,7 +10,17 @@ function Home() {
   const { categories, loadingCategories } = useCategories();
 
   if (loadingProducts || loadingCategories) {
-    return <div>Loading...</div>;
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100 bg-white">
+        <div
+          className="spinner-border text-dark"
+          role="status"
+          style={{ width: "4rem", height: "4rem" }}
+        >
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
   }
 
   const handleClick = (categoryName) => {
