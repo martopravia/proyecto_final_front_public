@@ -26,7 +26,6 @@ export default function ProductPage() {
       </div>
     );
   }
-
   const product = products.find((p) => p.id == productId);
 
   if (!product) {
