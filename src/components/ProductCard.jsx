@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import { formatName } from "../utils/formatName";
 import WishlistButton from "./WishlistButton";
+import { slugify } from "../hooks/slugify";
 
 export default function ProductCard({
   id,
@@ -13,7 +14,7 @@ export default function ProductCard({
 }) {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/products/${id}`);
+    navigate(`/products/${slugify(name)}/${id}`);
   };
 
   const colors = [

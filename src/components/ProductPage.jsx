@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { resetStep } from "../redux/checkoutSlice";
 import WishlistButton from "./WishlistButton";
 import { useCategoryProducts } from "../hooks/useCategoryProducts";
-import NotFound from "./NotFound"; // ⬅ nuevo import
+import NotFound from "./NotFound";
 
 export default function ProductPage() {
   const { productId } = useParams();
