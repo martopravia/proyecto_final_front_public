@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/userSlice";
+import { login, logout } from "../redux/userSlice";
 import { useMemo } from "react";
 import {
   productsRequested,
@@ -17,13 +17,31 @@ export const useApi = () => {
   const dispatch = useDispatch();
   const { token, user } = useSelector((state) => state.user);
 
-  const api = useMemo(
-    () =>
-      axios.create({
-        baseURL: import.meta.env.VITE_API_URL,
-      }),
-    []
-  );
+  const api = useMemo(() => {
+    const instance = axios.create({
+      baseURL: import.meta.env.VITE_API_URL,
+    });
+
+    instance.interceptors.request.use((config) => {
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    });
+
+    instance.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response?.status === 401) {
+          dispatch(logout());
+          toast.info("You've been logged out");
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    return instance;
+  }, [dispatch]);
 
   const loginUser = async (data) => {
     try {
@@ -57,7 +75,6 @@ export const useApi = () => {
       const response = await api.post("/orders", orderData, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
       });
       return response.data;
@@ -93,9 +110,6 @@ export const useApi = () => {
     try {
       const response = await api.get("/orders", {
         params,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       });
       return response.data;
     } catch (error) {
@@ -105,11 +119,7 @@ export const useApi = () => {
 
   const getUser = async (userId) => {
     try {
-      const response = await api.get(`/users/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.get(`/users/${userId}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching user:", error);
@@ -118,11 +128,7 @@ export const useApi = () => {
 
   const updateUser = async (userId, updatedData) => {
     try {
-      const response = await api.patch(`/users/${userId}`, updatedData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.patch(`/users/${userId}`, updatedData);
       return response.data;
     } catch (error) {
       console.error("Error updating user:", error);
@@ -133,12 +139,7 @@ export const useApi = () => {
     try {
       const response = await api.patch(
         `/users/${userId}/change-password`,
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        data
       );
       return response.data;
     } catch (error) {
@@ -149,15 +150,9 @@ export const useApi = () => {
 
   const toggleFavorite = async (productId) => {
     try {
-      const response = await api.patch(
-        `users/${user.id}/favorites`,
-        { productId },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await api.patch(`users/${user.id}/favorites`, {
+        productId,
+      });
       return response.data;
     } catch (error) {
       console.error("Error toggling favorite product:", error);
