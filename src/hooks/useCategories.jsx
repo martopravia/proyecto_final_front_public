@@ -21,7 +21,9 @@ export const useCategories = () => {
 
     if (!loading && (!items.length || isStale)) {
       getCategories({ limit: 50 }).then(
-        (res) => res && dispatch(categoriesReceived(res))
+        (res) =>
+          res &&
+          dispatch(categoriesReceived(res.filter((category) => category.image)))
       );
     }
   }, [loading, items.length, lastFetched, dispatch]);
