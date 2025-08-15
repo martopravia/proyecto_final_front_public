@@ -24,12 +24,15 @@ export default function ProductPage() {
   }
 
   const handleAddToCart = () => {
-    dispatch(addToCart(product));
-    dispatch(resetStep());
-    toast.success(`${product.name} added to cart!`);
+    if (product.stock > 0) {
+      dispatch(addToCart(product));
+      dispatch(resetStep());
+    } else {
+      toast.warning(`${formatName(product.name)} out of stock!`);
+    }
   };
 
-  const { id, name, description, price, image } = product;
+  const { id, name, description, price, stock, image } = product;
 
   const colors = [
     { name: "Charcoal Gray", hex: "#36454F" },
@@ -104,6 +107,9 @@ export default function ProductPage() {
                 </p>
                 <p>
                   <span className="fw-bold">Warranty: </span> 2 years
+                </p>
+                <p>
+                  <span className="fw-bold">Stock: </span> {stock}
                 </p>
               </div>
             </div>
