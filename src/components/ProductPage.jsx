@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
 import { formatName } from "../utils/formatName";
@@ -7,10 +7,13 @@ import { resetStep } from "../redux/checkoutSlice";
 import WishlistButton from "./WishlistButton";
 import { useCategoryProducts } from "../hooks/useCategoryProducts";
 import NotFound from "./NotFound";
+import { slugify } from "../hooks/slugify";
+import { useEffect } from "react";
 
 export default function ProductPage() {
-  const { productId } = useParams();
+  const { slug, productId } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { products, loadingProducts } = useCategoryProducts();
 
   if (loadingProducts) {
@@ -27,6 +30,15 @@ export default function ProductPage() {
     );
   }
   const product = products.find((p) => p.id == productId);
+
+  useEffect(() => {
+    if (product) {
+      const correctSlug = slugify(product.name);
+      if (slug !== correctSlug) {
+        navigate(`/products/${correctSlug}/${product.id}`, { replace: true });
+      }
+    }
+  }, [product, productId, slug, navigate]);
 
   if (!product) {
     return <NotFound />;
