@@ -10,23 +10,23 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const { id, name, price, stock } = action.payload;
+      const item = action.payload;
       const existingItem = state.cartItems.find(
-        (cartItem) => cartItem.id === id
+        (cartItem) => cartItem.id === item.id
       );
       if (existingItem) {
-        if (existingItem.quantity < stock) {
+        if (existingItem.quantity < item.stock) {
           existingItem.quantity += 1;
-          toast.success(`${formatName(name)} added to cart!`);
+          toast.success(`${formatName(item.name)} added to cart!`);
         } else {
-          toast.error(`Not suficient stock of ${formatName(name)}`);
+          toast.error(`Not suficient stock of ${formatName(item.name)}`);
         }
       } else {
-        if (stock > 0) {
-          toast.success(`${formatName(name)} added to cart!`);
-          state.cartItems.push({ id, name, price, quantity: 1, stock });
+        if (item.stock > 0) {
+          toast.success(`${formatName(item.name)} added to cart!`);
+          state.cartItems.push({ ...item, quantity: 1 });
         } else {
-          toast.error(`Not suficient stock of ${formatName(name)}`);
+          toast.error(`Not suficient stock of ${formatName(item.name)}`);
         }
       }
     },

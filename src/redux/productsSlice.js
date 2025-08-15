@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react";
 
 const productsSlice = createSlice({
   name: "products",
@@ -28,6 +29,13 @@ const productsSlice = createSlice({
     finishLoading(state) {
       state.loading = false;
     },
+    reduceStock(state, action) {
+      const { id, quantity } = action.payload;
+      const product = state.items.find((product) => product.id === id);
+      if (product) {
+        product.stock = product.stock - quantity;
+      }
+    },
   },
 });
 
@@ -36,6 +44,7 @@ export const {
   finishLoading,
   productsRequested,
   productsReceived,
+  reduceStock,
   productsRequestFailed,
   resetProductsLastFetched,
 } = actions;
