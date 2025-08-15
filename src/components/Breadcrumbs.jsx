@@ -26,10 +26,8 @@ export default function Breadcrumbs() {
               Products
             </Link>
           </li>
-          <li className="breadcrumb-item">
-            <Link className="text-dark" to={url}>
-              {label.length > 20 ? label.slice(0, 20) + "…" : label}
-            </Link>
+          <li className="breadcrumb-item active" aria-current="page">
+            {label.length > 20 ? label.slice(0, 20) + "…" : label}
           </li>
         </ol>
       </nav>
@@ -42,12 +40,20 @@ export default function Breadcrumbs() {
     if (/^\d+$/.test(seg)) return;
     acc += `/${seg}`;
     const text = formatName(decodeURIComponent(seg));
+    const isLast = idx === parts.length - 1;
+
     crumbs.push(
-      <li key={idx} className="breadcrumb-item">
-        <Link className="text-dark" to={acc}>
+      isLast ? (
+        <li key={seg} className="breadcrumb-item active" aria-current="page">
           {text.length > 20 ? text.slice(0, 20) + "…" : text}
-        </Link>
-      </li>
+        </li>
+      ) : (
+        <li key={seg} className="breadcrumb-item">
+          <Link className="text-dark" to={acc}>
+            {text.length > 20 ? text.slice(0, 20) + "…" : text}
+          </Link>
+        </li>
+      )
     );
   });
 
