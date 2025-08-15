@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { clearCart } from "../redux/cartSlice";
 import { toast } from "react-toastify";
 import { useApi } from "../hooks/useApi";
+import { reduceStock } from "../redux/productsSlice";
 
 function CheckoutSummary({ paymentMethod, shippingInfo, isCardValid }) {
   const dispatch = useDispatch();
@@ -18,6 +19,15 @@ function CheckoutSummary({ paymentMethod, shippingInfo, isCardValid }) {
   );
 
   const handleConfirm = async () => {
+    const outOfStockItems = cartItems.filter(
+      (item) => item.quantity > item.stock
+    );
+
+    if (outOfStockItems.length > 0) {
+      toast.error(`Not suficient stock of ${outOfStockItems[0].name}`);
+      return;
+    }
+
     const orderPayload = {
       userId: user.id,
       products: cartItems.map(({ id, quantity }) => ({
@@ -36,6 +46,9 @@ function CheckoutSummary({ paymentMethod, shippingInfo, isCardValid }) {
         error: "Order failed, please try again later.",
       });
       dispatch(nextStep());
+      for (let cartItem of cartItems) {
+        dispatch(reduceStock(cartItem));
+      }
       dispatch(clearCart());
       toast.info("You will be redirected to your order history...", {
         autoClose: 4500,
