@@ -21,7 +21,7 @@ export default function AboutUs() {
         "Full Stack Developer with a creative yet methodical mindset, skilled in Node.js, Express, React.js, SQL, and Sequelize. Deeply curious and passionate about exploring new technologies, I’m constantly seeking to learn, experiment, and push my limits to deliver innovative, user-focused, and high-quality solutions.",
     },
     {
-      name: "Alfonso Pavia",
+      name: "Alfonso Paiva",
       profileImg:
         "https://ubmbvouzxyajisbnmzeu.supabase.co/storage/v1/object/public/products/AboutUs/fotoPerfilAlfo.jpg",
       linkedin: "https://www.linkedin.com/in/alfonso-paiva-vázquez-03112a13b",
