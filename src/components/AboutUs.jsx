@@ -75,7 +75,7 @@ export default function AboutUs() {
             {[
               {
                 title: "⏳ Duration",
-                text: "This project was completed within 3 weeks during July/August 2025 using Agile methodology and sprints in Asana.",
+                text: "This project was completed within 150 hours during July/August 2025 using Agile methodology and sprints in Asana.",
               },
               {
                 title: "💻 Technologies",
