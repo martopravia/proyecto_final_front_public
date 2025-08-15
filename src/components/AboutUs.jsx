@@ -70,65 +70,67 @@ export default function AboutUs() {
             </p>
           </div>
         </div>
-        <section className=" my-5">
-          <div className="row text-center">
-            {[
-              {
-                title: "⏳ Duration",
-                text: "This project was completed within 150 hours during July/August 2025 using Agile methodology and sprints in Asana.",
-              },
-              {
-                title: "💻 Technologies",
-                text: "Frontend built with React.js + CRA and Backend with Node.js, Express, SQL, and Git/GitHub.",
-              },
-              {
-                title: "📋 Task Management",
-                text: "We used Asana to track milestones and manage team communication and task assignments.",
-              },
-            ].map((item, index) => (
+        <section className="my-5">
+          <div className="row">
+            <div className="col-lg-6 col-12 text-center d-flex justify-content-start h-75">
               <div
-                key={index}
-                className="col-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center"
+                className="card shadow-lg border-0 rounded-4"
+                style={{ width: "90%" }}
               >
-                <div className="card shadow-lg border-0 rounded-4 h-100 w-100">
-                  <div className="card-body p-4">
-                    <h5 className="fw-bold mb-3">{item.title}</h5>
-                    <p className="text-muted" style={{ lineHeight: "1.6" }}>
-                      {item.text}
-                    </p>
-                  </div>
+                <div className="card-body p-4">
+                  <h5 className="fw-bold mb-3">Duration</h5>
+                  <p className="text-muted" style={{ lineHeight: "1.6" }}>
+                    This project was completed within 150 hours during
+                    July/August 2025 using Agile methodology and sprints in
+                    Asana.
+                  </p>
                 </div>
               </div>
-            ))}
-          </div>
-          <div className=" mt-5">
-            <div className=" text-block">
-              <h3 className="text-center">Who are we</h3>
+            </div>{" "}
+            <div className="col-lg-6 col-12 text-block">
+              <h3 className="text-start fw-bold">Our mission</h3>
               <p>
-                We’re just five people who met while doing the same full-stack
-                programming bootcamp. It was intense, fun, stressful, and
-                honestly one of the best decisions we’ve made. At first, we were
-                just a bunch of strangers trying to figure out what all these
-                weird code errors meant. But somewhere between the late-night
-                coding sessions, the “wait… why isn’t this working?” meltdowns,
-                and the little celebrations when it finally did, we went from
-                classmates to friends, and from friends to a real team. We’ve
-                seen each other at our most frustrated and at our happiest, and
-                somehow we’ve survived it all with a sense of humor still
-                intact.
-              </p>
-              <p>
-                This e-commerce site is what came out of that whole adventure.
-                We planned it, designed it, built it, broke it, fixed it, broke
-                it again, and then fixed it for real (we hope). Along the way,
-                we learned more than we expected — not just about coding, but
-                about patience, problem-solving, and how much better things go
-                when you have people who’ve got your back. It’s not perfect, but
-                it’s ours, and we’re proud of every line of code in it. Thanks
-                for checking it out — it honestly means a lot to us that you’re
-                here.
+                Our goal is simple: create a site that’s easy, smooth, and
+                friendly — no confusing menus or extra steps, just something
+                that works. We’re just a group who loves building and improving
+                things. We’ve focused on every detail, from page speed to mobile
+                design, so whether you’re here to shop or browse, we hope you
+                enjoy it. This project is the result of hard work, plenty of
+                coffee, and lots of laughs — and now we’re excited to share it
+                with you.
               </p>
             </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-6 col-12 text-block ">
+              <h3 className="fw-bold text-start">Who are we</h3>
+              <p>
+                We’re five people who met during an intense full-stack
+                programming bootcamp. Between late-night coding, frustrating
+                bugs, and small victories, we went from strangers to friends and
+                then to a real team. This e-commerce site is the result of that
+                journey — planned, built, broken, fixed (more than once), and
+                filled with lessons in coding, patience, and teamwork. It’s not
+                perfect, but it’s ours, and we’re proud of every line. Thanks
+                for being here.
+              </p>
+            </div>
+            <div className="col-lg-6 col-12 text-center d-flex justify-content-start h-75">
+              <div
+                className="card shadow-lg border-0 rounded-4 "
+                style={{ width: "90%" }}
+              >
+                <div className="card-body p-4">
+                  <h5 className="fw-bold mb-3">Technologies</h5>
+                  <p className="text-muted" style={{ lineHeight: "1.6" }}>
+                    Frontend built with React.js + CRA and Backend with Node.js,
+                    Express, SQL, and Git/GitHub
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className=" mt-5">
             <h3 className="fw-bold text-center">Meet the team</h3>
             <div className="row justify-content-xxl-between justify-content-center mt-5 mx-3">
               {developers.map((dev, index) => (
@@ -162,28 +164,6 @@ export default function AboutUs() {
                   </div>
                 </div>
               ))}
-            </div>
-            <div className=" text-block">
-              <h3 className="text-center">Our mission</h3>
-              <p>
-                Our goal is pretty simple: make a site that’s easy to use and
-                does what you need it to do without giving you a headache. We
-                wanted it to feel smooth, elegant, clear, and friendly, so you
-                don’t have to think about the tech behind it — you just use it
-                and it works. No overcomplicated menus, no unnecessary steps,
-                and definitely no confusing buttons that make you wonder what
-                you just clicked.
-              </p>
-              <p>
-                We’re not some big company; we’re just a group of people who
-                like building things and making them better. That’s why we’ve
-                paid attention to every little detail we could, from how the
-                pages load to how things look on your phone. Whether you’re here
-                to buy something specific or just to have a browse, we hope you
-                enjoy the experience. This project is a mix of a lot of work, a
-                lot of coffee, and a lot of laughs — and now we get to share it
-                with you, which makes it all worth it.
-              </p>
             </div>
           </div>
         </section>
