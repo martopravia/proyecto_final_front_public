@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+import { formatName } from "../utils/formatName";
 
 const initialState = {
   cartItems: [],
@@ -8,14 +10,24 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const item = action.payload;
+      const { id, name, price, stock } = action.payload;
       const existingItem = state.cartItems.find(
-        (cartItem) => cartItem.id === item.id
+        (cartItem) => cartItem.id === id
       );
       if (existingItem) {
-        existingItem.quantity += item.quantity || 1;
+        if (existingItem.quantity < stock) {
+          existingItem.quantity += 1;
+          toast.success(`${formatName(name)} added to cart!`);
+        } else {
+          toast.error(`Not suficient stock of ${formatName(name)}`);
+        }
       } else {
-        state.cartItems.push({ ...item, quantity: item.quantity || 1 });
+        if (stock > 0) {
+          toast.success(`${formatName(name)} added to cart!`);
+          state.cartItems.push({ id, name, price, quantity: 1, stock });
+        } else {
+          toast.error(`Not suficient stock of ${formatName(name)}`);
+        }
       }
     },
     removeFromCart: (state, action) => {
@@ -26,9 +38,14 @@ const cartSlice = createSlice({
       const { productId, delta } = action.payload;
       const item = state.cartItems.find((item) => item.id === productId);
       if (item) {
-        item.quantity += delta;
+        const newQty = (item.quantity += delta);
         if (item.quantity <= 0) {
           item.quantity = 1;
+          return;
+        }
+        if (newQty > item.stock) {
+          item.quantity = item.stock;
+          toast.warning(`Maximun stock of ${formatName(item.name)} reached`);
         }
       }
     },
