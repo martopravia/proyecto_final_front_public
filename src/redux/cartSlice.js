@@ -38,9 +38,14 @@ const cartSlice = createSlice({
       const { productId, delta } = action.payload;
       const item = state.cartItems.find((item) => item.id === productId);
       if (item) {
-        item.quantity += delta;
+        const newQty = (item.quantity += delta);
         if (item.quantity <= 0) {
           item.quantity = 1;
+          return;
+        }
+        if (newQty > item.stock) {
+          item.quantity = item.stock;
+          toast.warning(`Maximun stock of ${formatName(item.name)} reached`);
         }
       }
     },
