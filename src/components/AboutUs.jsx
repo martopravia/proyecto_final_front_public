@@ -72,13 +72,14 @@ export default function AboutUs() {
         </div>
         <section className="my-5">
           <div className="row">
-            <div className="col-lg-6 col-12 text-center d-flex justify-content-start h-75">
+            <div className="col-lg-6 col-12 text-center">
               <div
                 className="card shadow-lg border-0 rounded-4"
-                style={{ width: "90%" }}
+                style={{ width: "100%" }}
               >
                 <div className="card-body p-4">
-                  <h5 className="fw-bold mb-3">Duration</h5>
+                  {" "}
+                  <h5 className="fw-bold mb-3 ">Duration</h5>
                   <p className="text-muted" style={{ lineHeight: "1.6" }}>
                     This project was completed within 150 hours during
                     July/August 2025 using Agile methodology and sprints in
@@ -88,7 +89,7 @@ export default function AboutUs() {
               </div>
             </div>{" "}
             <div className="col-lg-6 col-12 text-block">
-              <h3 className="text-start fw-bold">Our mission</h3>
+              <h3 className="text-start fw-bold mt-5 mt-lg-0">Our mission</h3>
               <p>
                 Our goal is simple: create a site that’s easy, smooth, and
                 friendly — no confusing menus or extra steps, just something
@@ -115,10 +116,10 @@ export default function AboutUs() {
                 for being here.
               </p>
             </div>
-            <div className="col-lg-6 col-12 text-center d-flex justify-content-start h-75">
+            <div className="col-lg-6 col-12 text-center h-75">
               <div
                 className="card shadow-lg border-0 rounded-4 "
-                style={{ width: "90%" }}
+                style={{ width: "100%" }}
               >
                 <div className="card-body p-4">
                   <h5 className="fw-bold mb-3">Technologies</h5>
@@ -130,34 +131,66 @@ export default function AboutUs() {
               </div>
             </div>
           </div>
-          <div className=" mt-5">
-            <h3 className="fw-bold text-center">Meet the team</h3>
-            <div className="row justify-content-xxl-between justify-content-center mt-5 mx-3">
+          <div className="mt-3q">
+            <h3
+              className="fw-bold text-center"
+              style={{ marginBottom: "130px" }}
+            >
+              Meet the team
+            </h3>
+            <div className="row justify-content-center mx-3">
               {developers.map((dev, index) => (
                 <div
                   key={index}
-                  className="col-12 col-md-6 col-lg-4 col-xxl-2 mb-4 d-flex justify-content-center"
+                  className="col-12 col-md-6 col-lg-4 mb-5 d-flex justify-content-center"
                 >
-                  <div className="card text-center card-profile w-100">
-                    <img
-                      className="card-img-top"
-                      src={dev.profileImg}
-                      alt="Avatar"
-                    />
-                    <div className="card-body d-flex flex-column h-100">
-                      <h5 className="card-title fw-bold mb-4">{dev.name}</h5>
-                      <div>
-                        <h5 className="card-subtitle my-2">Web Developer</h5>
-                        <p className="card-text text-muted">
-                          {dev.description}
-                        </p>
-                      </div>
-                      <div className="m-0 p-0 d-flex justify-content-center gap-3 flex-wrap mt-auto">
-                        <a href={dev.linkedin} className="m-0 p-0">
-                          <i className="bi bi-linkedin fs-3"></i>
+                  <div
+                    className="card text-center shadow border-0 bg-white position-relative pt-5 px-3 w-100"
+                    style={{ marginBottom: "100px" }}
+                  >
+                    {/* Imagen flotante */}
+                    <div className="position-absolute top-0 start-50 translate-middle">
+                      <img
+                        src={dev.profileImg}
+                        alt="Avatar"
+                        className="rounded-circle border border-3 border-white shadow"
+                        style={{
+                          width: "180px",
+                          height: "180px",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </div>
+
+                    <div className="card-body d-flex flex-column mt-5">
+                      <h5 className="fw-bold fs-5 text-dark mb-1">
+                        {dev.name}
+                      </h5>
+                      <h6 className="text-muted fw-semibold mb-3">
+                        Web Developer
+                      </h6>
+                      <p
+                        className="small text-secondary"
+                        style={{ lineHeight: "1.5" }}
+                      >
+                        {dev.description}
+                      </p>
+
+                      {/* Íconos estilizados */}
+                      <div className="d-flex justify-content-center gap-2 mt-auto">
+                        <a
+                          href={dev.linkedin}
+                          className="btn btn-outline-dark btn-sm rounded-circle d-flex align-items-center justify-content-center"
+                          style={{ width: "36px", height: "36px" }}
+                        >
+                          <i className="bi bi-linkedin"></i>
                         </a>
-                        <a href={dev.github} className="m-0 p-0">
-                          <i className="bi bi-github fs-3 text-dark"></i>
+                        <a
+                          href={dev.github}
+                          className="btn btn-outline-dark btn-sm rounded-circle d-flex align-items-center justify-content-center"
+                          style={{ width: "36px", height: "36px" }}
+                        >
+                          <i className="bi bi-github"></i>
                         </a>
                       </div>
                     </div>
