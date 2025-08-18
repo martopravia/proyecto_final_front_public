@@ -278,3 +278,13 @@ h5 {
     max-height: calc(100vh - 80px);
   }
 }
+.Mui-completed,
+.Mui-active {
+  color: black !important;
+}
+
+.form-check-input:checked {
+  color: black !important;
+  background-color: black !important;
+  border-color: gray !important;
+}

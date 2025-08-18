@@ -418,7 +418,7 @@ export default function Checkout({
                 <div className="col-lg-4 col-md-12 mb-3" key={id}>
                   <div
                     className={`p-3 h-100 border rounded shadow ${
-                      paymentMethod === id ? "border-primary" : ""
+                      paymentMethod === id ? "border-dark" : ""
                     }`}
                     onClick={() => setPaymentMethod(id)}
                     style={{ cursor: "pointer" }}
