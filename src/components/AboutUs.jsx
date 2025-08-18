@@ -15,7 +15,7 @@ export default function AboutUs() {
       name: "Manuel Negrin",
       profileImg:
         "https://ubmbvouzxyajisbnmzeu.supabase.co/storage/v1/object/public/products/AboutUs/fotoPerfilManu.jpeg",
-      linkedin: "https://www.linkedin.com/in/manuelnegrin",
+      linkedin: "https://www.linkedin.com/in/manuel-negrin-20541b82/",
       github: "https://github.com/ManuelNegrin",
       description:
         "Full Stack Developer with a creative yet methodical mindset, skilled in Node.js, Express, React.js, SQL, and Sequelize. Deeply curious and passionate about exploring new technologies, I’m constantly seeking to learn, experiment, and push my limits to deliver innovative, user-focused, and high-quality solutions.",
@@ -181,13 +181,18 @@ export default function AboutUs() {
                       <div className="d-flex justify-content-center gap-2 mt-auto">
                         <a
                           href={dev.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="btn btn-outline-dark btn-sm rounded-circle d-flex align-items-center justify-content-center"
                           style={{ width: "36px", height: "36px" }}
                         >
                           <i className="bi bi-linkedin"></i>
                         </a>
+
                         <a
                           href={dev.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="btn btn-outline-dark btn-sm rounded-circle d-flex align-items-center justify-content-center"
                           style={{ width: "36px", height: "36px" }}
                         >
