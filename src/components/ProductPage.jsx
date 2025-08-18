@@ -29,7 +29,12 @@ export default function ProductPage() {
       </div>
     );
   }
+
   const product = products.find((p) => p.id == productId);
+
+  if (!product) {
+    return <NotFound />;
+  }
 
   useEffect(() => {
     if (product) {
@@ -39,10 +44,6 @@ export default function ProductPage() {
       }
     }
   }, [product, productId, slug, navigate]);
-
-  if (!product) {
-    return <NotFound />;
-  }
 
   const handleAddToCart = () => {
     if (product.stock > 0) {
