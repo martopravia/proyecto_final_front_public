@@ -131,7 +131,7 @@ export default function AboutUs() {
               </div>
             </div>
           </div>
-          <div className="mt-3q">
+          <div className="mt-5">
             <h3
               className="fw-bold text-center"
               style={{ marginBottom: "130px" }}
