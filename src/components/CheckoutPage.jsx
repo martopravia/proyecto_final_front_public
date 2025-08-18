@@ -79,7 +79,7 @@ export default function CheckoutPage() {
                 onClick={() => handleStepClick(i)}
                 disableRipple
                 disableTouchRipple
-                className="stepper"
+                className="stepper "
                 sx={{
                   "&:hover": { backgroundColor: "transparent" },
                   "&.Mui-focusVisible": { outline: "none" },

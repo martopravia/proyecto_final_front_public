@@ -111,7 +111,7 @@ function CheckoutSummary({ paymentMethod, shippingInfo, isCardValid }) {
 
         {step < 3 && (
           <button
-            className="btn btn-primary"
+            className="btn btn-dark"
             onClick={() => {
               if (step === 1 && cartItems.length === 0) return;
               if (step === 2 && !user) return;
