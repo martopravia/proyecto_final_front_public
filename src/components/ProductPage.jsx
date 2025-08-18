@@ -16,6 +16,15 @@ export default function ProductPage() {
   const navigate = useNavigate();
   const { products, loadingProducts } = useCategoryProducts();
 
+  useEffect(() => {
+    if (product) {
+      const correctSlug = slugify(product.name);
+      if (slug !== correctSlug) {
+        navigate(`/products/${correctSlug}/${product.id}`, { replace: true });
+      }
+    }
+  }, [product, productId, slug, navigate]);
+
   if (loadingProducts) {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100 bg-white">
@@ -35,15 +44,6 @@ export default function ProductPage() {
   if (!product) {
     return <NotFound />;
   }
-
-  useEffect(() => {
-    if (product) {
-      const correctSlug = slugify(product.name);
-      if (slug !== correctSlug) {
-        navigate(`/products/${correctSlug}/${product.id}`, { replace: true });
-      }
-    }
-  }, [product, productId, slug, navigate]);
 
   const handleAddToCart = () => {
     if (product.stock > 0) {
