@@ -27,7 +27,7 @@ function Login() {
     }
   };
   return (
-    <div className="container min-vh-100 d-flex align-items-center pt-5 pt-sm-5 pt-md-4">
+    <div className="container d-flex align-items-center py-3" style={{ minHeight: "calc(100vh - 100px)" }} >
       <div className="row w-100 mx-1">
         <div className="d-lg-flex w-100">
           <div className="col-12 col-lg-6 mb-4  me-lg-3 border rounded shadow p-5">
