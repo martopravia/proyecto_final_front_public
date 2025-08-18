@@ -102,7 +102,7 @@ export default function ProductPage() {
                 <p className="fs-4">
                   U$S {Number(price).toLocaleString("de-DE")}
                 </p>
-                <p>Price without shipping</p>
+                <p>Price without taxes or shipping</p>
                 <div className="d-flex justify-content-start gap-2 mb-4">
                   {colors.slice(0, 5).map((color, i) => (
                     <div

@@ -5,6 +5,7 @@ import { useApi } from "../hooks/useApi";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import Wishlist from "./Wishlist";
+import { formatName } from "../utils/formatName";
 
 export default function Profile() {
   const [orders, setOrders] = useState([]);
@@ -14,6 +15,8 @@ export default function Profile() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
   const { getOrders } = useApi();
+  const taxes = 0.21;
+  const shipping = 0.02;
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -74,7 +77,6 @@ export default function Profile() {
           </div>
         </div>
 
-        {/* Order History */}
         <div className="col-12 col-lg-7">
           <Card className="p-4  shadow-sm flex-grow-1">
             <h5 className="mb-3">ORDER HISTORY</h5>
@@ -83,49 +85,81 @@ export default function Profile() {
             {!loadingOrders && orders.length === 0 && <p>No orders found.</p>}
             {!loadingOrders && orders.length > 0 && (
               <div className="d-flex flex-column gap-3 w-100">
-                {orders.map((order) => (
-                  <Card
-                    className="p-3 bg-light border-0 w-100"
-                    style={{ maxWidth: "100%" }}
-                    key={order.id}
-                  >
-                    <h6 className="mb-2">Order #{order.id}</h6>
-                    <p className="mb-1">
-                      <strong>Status:</strong> {order.status}
-                    </p>
-                    <p className="mb-2">
-                      <strong>Date:</strong>{" "}
-                      {new Date(order.createdAt).toLocaleDateString()}
-                    </p>
-                    {order.orderDetails?.map((item) => (
-                      <div
-                        key={item.id}
-                        className="d-flex justify-content-between align-items-center border-bottom pb-1 mb-2"
-                      >
-                        <span>
-                          <strong>{item.name}</strong> x{item.quantity}
-                        </span>
-                        <span>
+                {orders.map((order) => {
+                  const totalAmount = Number(order.totalAmount) || 0;
+                  const shippingAmount = totalAmount * shipping;
+                  const taxesAmount = totalAmount * taxes;
+                  const finalTotal = totalAmount + shippingAmount + taxesAmount;
+
+                  return (
+                    <Card
+                      className="p-3 bg-light border-0 w-100"
+                      style={{ maxWidth: "100%" }}
+                      key={order.id}
+                    >
+                      <h6 className="mb-2">Order #{order.id}</h6>
+                      <p className="mb-1">
+                        <strong>Status:</strong> {order.status}
+                      </p>
+                      <p className="mb-2">
+                        <strong>Date:</strong>{" "}
+                        {new Date(order.createdAt).toLocaleDateString()}
+                      </p>
+
+                      {order.orderDetails?.map((item) => (
+                        <div
+                          key={item.id}
+                          className="d-flex justify-content-between align-items-center border-bottom pb-1 mb-1"
+                        >
+                          <span>
+                            <strong>{formatName(item.name)}</strong> x
+                            {item.quantity}
+                          </span>
+                          <span>
+                            U$S{" "}
+                            {(item.unitPrice * item.quantity).toLocaleString(
+                              "de-DE",
+                              {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                              }
+                            )}
+                          </span>
+                        </div>
+                      ))}
+
+                      <div className="text-end d-flex justify-content-between align-items-center">
+                        <p className="mb-0">Shipping:</p>
+                        <p className="mb-0">
                           U$S{" "}
-                          {(item.unitPrice * item.quantity).toLocaleString(
-                            "de-DE",
-                            {
-                              minimumFractionDigits: 2,
-                              maximumFractionDigits: 2,
-                            }
-                          )}
-                        </span>
+                          {shippingAmount.toLocaleString("de-DE", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </p>
                       </div>
-                    ))}
-                    <div className="text-end fw-bold">
-                      Total: U$S{" "}
-                      {Number(order.totalAmount).toLocaleString("de-DE", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}
-                    </div>
-                  </Card>
-                ))}
+
+                      <div className="text-end d-flex justify-content-between align-items-center">
+                        <p className="mb-0">Taxes:</p>
+                        <p className="mb-0">
+                          U$S{" "}
+                          {taxesAmount.toLocaleString("de-DE", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </p>
+                      </div>
+
+                      <div className="text-end fw-bold mt-1">
+                        Total: U$S{" "}
+                        {finalTotal.toLocaleString("de-DE", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </div>
+                    </Card>
+                  );
+                })}
               </div>
             )}
           </Card>

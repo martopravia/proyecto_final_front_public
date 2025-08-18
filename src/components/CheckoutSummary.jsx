@@ -13,6 +13,9 @@ function CheckoutSummary({ paymentMethod, shippingInfo, isCardValid }) {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const navigate = useNavigate();
   const { confirmOrder } = useApi();
+  const taxes = 0.21;
+  const shipping = 0.02;
+
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
@@ -83,16 +86,23 @@ function CheckoutSummary({ paymentMethod, shippingInfo, isCardValid }) {
       <p>Subtotal: U$S {Number(total).toLocaleString("de-DE")} </p>
       <p>
         Taxes: U$S{" "}
-        {(total * 0.21).toLocaleString("de-DE", {
+        {(total * taxes).toLocaleString("de-DE", {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         })}
       </p>
-      <p>Shipping: U$S 5,00</p>
+
+      <p>
+        Shipping: U$S{" "}
+        {(total * shipping).toLocaleString("de-DE", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })}
+      </p>
       <hr />
       <p className="fw-bold">
         Total: U$S{" "}
-        {(total + 5 + total * 0.21).toLocaleString("de-DE", {
+        {(total + total * shipping + total * taxes).toLocaleString("de-DE", {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         })}
