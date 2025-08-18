@@ -16,6 +16,7 @@ export default function ProductPage() {
   const navigate = useNavigate();
   const { products, loadingProducts } = useCategoryProducts();
 
+  const product = products.find((p) => p.id == productId);
   useEffect(() => {
     if (product) {
       const correctSlug = slugify(product.name);
@@ -38,8 +39,6 @@ export default function ProductPage() {
       </div>
     );
   }
-
-  const product = products.find((p) => p.id == productId);
 
   if (!product) {
     return <NotFound />;
