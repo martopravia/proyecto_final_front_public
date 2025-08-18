@@ -108,9 +108,9 @@ export default function AppNavbar() {
           <Nav
             className="flex-column text-dark ps-3"
             onSelect={(key) => {
-              setExpanded(false);        
+              setExpanded(false);
               if (key === "logout") {
-                handleLogout();         
+                handleLogout();
               }
             }}
           >
@@ -127,7 +127,7 @@ export default function AppNavbar() {
             {user && user.role === "admin" && (
               <Nav.Link
                 as={NavLink}
-                to="https://proyecto-final-front-dashboard.vercel.app/"
+                to="https://studio-nora-dashboard.vercel.app/"
                 className="text-dark"
               >
                 Admin Panel

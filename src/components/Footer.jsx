@@ -192,7 +192,7 @@ const Footer = () => {
               </p>
               <p>
                 <a
-                  href="https://proyecto-final-front-public.vercel.app/"
+                  href="https://studio-nora-ecommerce.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
