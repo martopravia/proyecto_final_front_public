@@ -9,7 +9,7 @@ export default function AboutUs() {
       linkedin: "https://www.linkedin.com/in/martin-pravia/",
       github: "https://github.com/martopravia",
       description:
-        "Full Stack Developer skilled in Node.js, Express, React.js, SQL, and MongoDB. Driven by curiosity and a passion for building impactful web applications, I’m committed to delivering clean, efficient, and scalable solutions while continuously pushing my limits to stand out in the tech field.",
+        "Full Stack Developer skilled in Node.js, Express, React.js, MySQL, Sequelize, MongoDB, and Python. Driven by curiosity and a passion for building impactful web applications, I’m committed to delivering clean, efficient, and scalable solutions while continuously pushing my limits to stand out in the tech field.",
     },
     {
       name: "Manuel Negrin",
@@ -59,8 +59,8 @@ export default function AboutUs() {
               This e-commerce platform represents a collaborative effort by
               students from Hack Academy's intensive Coding Bootcamp. Our
               comprehensive full-time program spans 3 months, during which we
-              dedicated over 600+ hours of code, 1182 cups of coffee (yes, we
-              counted), and only 3 emotional breakdowns mastering cutting-edge
+              dedicated over 650+ hours of code, 1182 cups of coffee (yes, we
+              counted), and only 7 emotional breakdowns mastering cutting-edge
               technologies including{" "}
               <span className="fw-bold">
                 Node.js, Express, React.js, SQL, MongoDB, and Git version
@@ -89,7 +89,7 @@ export default function AboutUs() {
               </div>
             </div>{" "}
             <div className="col-lg-6 col-12 text-block">
-              <h3 className="text-start fw-bold mt-5 mt-lg-0">Our mission</h3>
+              <h3 className="text-center fw-bold mt-5 mt-lg-0">Our mission</h3>
               <p>
                 Our goal is simple: create a site that’s easy, smooth, and
                 friendly — no confusing menus or extra steps, just something
@@ -104,7 +104,7 @@ export default function AboutUs() {
           </div>
           <div className="row">
             <div className="col-lg-6 col-12 text-block ">
-              <h3 className="fw-bold text-start">Who are we</h3>
+              <h3 className="fw-bold text-center">Who are we</h3>
               <p>
                 We’re five people who met during an intense full-stack
                 programming bootcamp. Between late-night coding, frustrating
@@ -124,8 +124,9 @@ export default function AboutUs() {
                 <div className="card-body p-4">
                   <h5 className="fw-bold mb-3">Technologies</h5>
                   <p className="text-muted" style={{ lineHeight: "1.6" }}>
-                    Frontend built with React.js + CRA and Backend with Node.js,
-                    Express, SQL, and Git/GitHub
+                    Frontend: React.js (Vite). Backend: Node.js, Express, SQL
+                    (Sequelize), JWT. Deployment with Vercel. Version control
+                    with Git/GitHub.
                   </p>
                 </div>
               </div>
