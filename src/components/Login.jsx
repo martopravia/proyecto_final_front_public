@@ -27,7 +27,10 @@ function Login() {
     }
   };
   return (
-    <div className="container d-flex align-items-center py-3" style={{ minHeight: "calc(100vh - 100px)" }} >
+    <div
+      className="container d-flex align-items-center py-3"
+      style={{ minHeight: "calc(100vh - 100px)" }}
+    >
       <div className="row w-100 mx-1">
         <div className="d-lg-flex w-100">
           <div className="col-12 col-lg-6 mb-4  me-lg-3 border rounded shadow p-5">
@@ -74,9 +77,7 @@ function Login() {
                     fontSize: "1.2rem",
                   }}
                 ></i>
-                <p>
-                  <a href="">Forgot your password?</a>
-                </p>
+                <Link to="/forgot-password">Forgot your password?</Link>
               </div>
               <button type="submit" className="btn btn-dark w-100 mt-3">
                 Login
