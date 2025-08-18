@@ -199,7 +199,7 @@ export default function Checkout({
 
   return (
     <div>
-      <div className="p-4 d-flex flex-column align-items-left">
+      <div className="p-4 pt-0 d-flex flex-column align-items-left">
         {step === 1 && (
           <>
             {cartItems.length === 0 ? (
@@ -215,7 +215,6 @@ export default function Checkout({
               </div>
             ) : (
               <>
-                <h3 className="mt-2 mb-4">Order details</h3>
                 <ul
                   className="p-0 align-items-left"
                   style={{ listStyleType: "none" }}
@@ -324,7 +323,6 @@ export default function Checkout({
               </div>
             ) : (
               <>
-                <h3 className="mt-2 mb-4"> Contact & Shipping info </h3>
                 <div
                   className={`border rounded shadow p-4 w-100 d-flex flex-column ${
                     selectedShippingOption === "saved" ? "border-black" : ""
@@ -412,7 +410,6 @@ export default function Checkout({
         )}
         {step === 3 && (
           <>
-            <h3 className="mt-2 mb-4">Payment method</h3>
             <div className="row">
               {paymentOptions.map(({ id, label, description }) => (
                 <div className="col-lg-4 col-md-12 mb-3" key={id}>

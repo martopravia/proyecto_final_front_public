@@ -109,6 +109,10 @@ export default function CheckoutPage() {
         // Si hay productos, mostrar las dos columnas
         <div className="row">
           <div className="col-md-8 col-sm-12">
+            <h3 className="mt-2 mb-4 p-4">{steps[step - 1]}</h3>
+          </div>
+
+          <div className="col-md-8 col-sm-12">
             <Checkout
               cartItems={cartItems}
               paymentMethod={paymentMethod}
@@ -119,7 +123,7 @@ export default function CheckoutPage() {
             />
           </div>
           <div className="col-md-4 col-sm-12">
-            <div className="position-sticky sticky-padding">
+            <div className="sticky-top pt-0" style={{ top: "100px" }}>
               <CheckoutSummary
                 paymentMethod={paymentMethod}
                 shippingInfo={shippingInfo}
